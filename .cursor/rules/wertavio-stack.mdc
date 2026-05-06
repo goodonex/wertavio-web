@@ -1,0 +1,21 @@
+---
+description: Wertavio — Tech-Stack & Sprache
+alwaysApply: true
+---
+
+# Stack
+
+- Next.js 14 App Router, TypeScript strict, Deploy Vercel
+- Tailwind CSS v3, Framer Motion, react-hook-form + zod + @hookform/resolvers
+- Icons lucide-react; Fonts `next/font/google` — Playfair Display (headings), Inter (body)
+- Import-Alias `@/*`
+
+# Sprache & Domain
+
+- Alle sichtbaren UI-Texte **Deutsch (de-DE)** — keine englischen Platzhalter
+- Canonical / SEO-Basis: `https://wertavio.de`
+
+# Do not
+
+- Kein Lorem, kein CRA/Vite, keine DB/Auth in diesem Projektumfang
+- Kein CSS-in-JS / styled-components

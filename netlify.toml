@@ -1,0 +1,6 @@
+# Statischer Export (Drag & Drop: Ordner „dist“ hochladen)
+# Oder Repo verbinden: Build „npm run build:dist“, Publish „dist“
+
+[build]
+  command = "npm run build:dist"
+  publish = "dist"

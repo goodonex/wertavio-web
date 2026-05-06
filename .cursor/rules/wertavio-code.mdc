@@ -1,0 +1,25 @@
+---
+description: Wertavio — Code-Standards
+alwaysApply: true
+---
+
+# TypeScript & Komponenten
+
+- `strict`, kein `any`; jede Komponente mit explizitem `Props`-Interface
+- Max. **150 Zeilen** pro Datei — sonst splitten
+- Nur **Tailwind** für Styling — keine `style={}` in Komponenten, kein CSS-in-JS
+- `next/image` mit deutschen `alt`, feste width/height wo möglich
+
+# UX / A11y
+
+- Interaktives mit Tastatur bedienbar; sinnvolle `aria-*` / Labels
+- Mobile-first Breakpoints: default → sm → md → lg
+
+# Struktur
+
+- Komponenten `PascalCase.tsx`; Utils camelCase in `lib/`
+- Kein unnötiges Prop-Drilling >2 Ebenen — Composition oder Context
+
+# Duplikate
+
+- Wiederholte Klassen über `cn()` + Konstanten / kleine Varianten-Helfer bündeln (ohne neue Heavy-Deps wenn möglich)

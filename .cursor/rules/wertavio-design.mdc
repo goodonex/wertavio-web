@@ -1,0 +1,26 @@
+---
+description: Wertavio — Brand, Layout, Motion
+alwaysApply: true
+---
+
+# Farben (Tailwind `wertavio.*`)
+
+- slate `#1A1F2E`, gold `#B8902A`, gold-light `#D4A843`, cream `#FAFAF5`, white `#FFFFFF`, muted `#6B7380`, border `#E4E2D8`, slate-soft `#2A3045`
+- Gold **sparsam**: primäre CTAs, Heading-Underline, nummerierte Steps, punktuelle Icon-Akzente (Homepage ca. ≤6 sichtbare Gold-Akzente)
+- Kein Blau als Akzent; keine Gradients
+
+# Layout & Typo
+
+- Hero + ausgewählte CTAs: dunkler Slate-Hintergrund; sonst cream / weiße Cards
+- Cards: weiß, Rand `wertavio-border`, `rounded-[10px]`, `p-6`, nur `shadow-sm`
+- Section: `py-16 md:py-24`, Content `max-w-5xl` zentriert, Mobile min. horizontales Padding (`px-4`)
+- H1/H2 per Utilities (`text-h1` / `text-h2` in globals); Eyebrow 11px uppercase tracking-widest muted
+- Body min. 14px; Fließtext `leading-relaxed`
+
+# Motion
+
+- Sektionen: Fade-up beim Scroll, stagger ~0.08s, ease `[0.25,0.1,0.25,1]`
+- `prefers-reduced-motion`: Animationen reduzieren/abschalten
+- Header: `backdrop-blur` + Border **erst nach Scroll**
+- TrustBar-Marquee: Pause bei Hover; bei reduced-motion statisch oder minimal
+- Primary CTA: dezenter Hover-Scale, optionales subtiles Idle-Glow (kein „Portal-Glass“ auf Cards)
