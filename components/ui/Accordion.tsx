@@ -27,14 +27,21 @@ export function Accordion({ items }: AccordionProps): JSX.Element {
         const panelId = `${headingId}-${item.id}-p`;
 
         return (
-          <div key={item.id} className="card-surface overflow-hidden p-0">
+          <div key={item.id} className="card-surface relative overflow-hidden p-0">
+            <motion.span
+              aria-hidden
+              className="pointer-events-none absolute left-0 top-0 z-0 h-full w-0 origin-left bg-wertavio-gold"
+              initial={false}
+              animate={{ width: isOpen ? 3 : 0 }}
+              transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+            />
             <h3 className="text-base font-semibold text-wertavio-slate">
               <button
                 type="button"
                 id={headerId}
                 aria-expanded={isOpen}
                 aria-controls={panelId}
-                className="flex w-full items-center justify-between gap-4 px-6 py-4 text-left text-base font-semibold text-wertavio-slate transition-colors hover:bg-wertavio-cream/60"
+                className="relative z-[1] flex w-full items-center justify-between gap-4 px-6 py-4 text-left text-base font-semibold text-wertavio-slate transition-colors hover:bg-wertavio-cream/60"
                 onClick={() => setOpenId(isOpen ? null : item.id)}
               >
                 <span className="pr-2">
@@ -59,7 +66,7 @@ export function Accordion({ items }: AccordionProps): JSX.Element {
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.28, ease: [0.25, 0.1, 0.25, 1] }}
-                  className="overflow-hidden px-6"
+                  className="relative z-[1] overflow-hidden px-6"
                 >
                   <p className="pb-5 text-sm leading-relaxed text-wertavio-muted">
                     {item.answer}

@@ -5,14 +5,21 @@ import { AnimatePresence, motion } from "framer-motion";
 import { motionEase } from "@/lib/utils";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
+import { cn } from "@/lib/utils";
+
 type Tab = "portal" | "wertavio";
 
-function ArrowConnector({ stroke }: { stroke: string }): JSX.Element {
+function ArrowConnector({ className }: { className?: string }): JSX.Element {
   return (
-    <svg viewBox="0 0 48 20" className="h-5 w-10 shrink-0 md:w-12" fill="none" aria-hidden>
+    <svg
+      viewBox="0 0 48 20"
+      className={cn("h-5 w-10 shrink-0 md:w-12", className)}
+      fill="none"
+      aria-hidden
+    >
       <path
         d="M2 10h36m-8-6l8 6-8 6"
-        stroke={stroke}
+        stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -21,12 +28,17 @@ function ArrowConnector({ stroke }: { stroke: string }): JSX.Element {
   );
 }
 
-function ArrowDown({ stroke }: { stroke: string }): JSX.Element {
+function ArrowDown({ className }: { className?: string }): JSX.Element {
   return (
-    <svg viewBox="0 0 20 32" className="mx-auto h-8 w-5 shrink-0" fill="none" aria-hidden>
+    <svg
+      viewBox="0 0 20 32"
+      className={cn("mx-auto h-8 w-5 shrink-0", className)}
+      fill="none"
+      aria-hidden
+    >
       <path
         d="M10 2v24m-6-6l6 6 6-6"
-        stroke={stroke}
+        stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -50,68 +62,72 @@ function Bubble({ children, theme }: { children: React.ReactNode; theme: "red" |
 }
 
 function PortalFlow(): JSX.Element {
-  const s = "#DC2626";
   return (
-    <div className="flex flex-col items-stretch gap-2 py-4 md:flex-row md:flex-wrap md:items-center md:justify-center">
+    <div className="flex flex-col items-stretch gap-2 py-4 text-red-600 md:flex-row md:flex-wrap md:items-center md:justify-center">
       <Bubble theme="red">Eigentümer</Bubble>
       <div className="hidden md:block">
-        <ArrowConnector stroke={s} />
+        <ArrowConnector />
       </div>
       <div className="md:hidden">
-        <ArrowDown stroke={s} />
+        <ArrowDown />
       </div>
       <Bubble theme="red">8 Makler erhalten Lead</Bubble>
       <div className="hidden md:block">
-        <ArrowConnector stroke={s} />
+        <ArrowConnector />
       </div>
       <div className="md:hidden">
-        <ArrowDown stroke={s} />
+        <ArrowDown />
       </div>
       <Bubble theme="red">5 rufen an</Bubble>
       <div className="hidden md:block">
-        <ArrowConnector stroke={s} />
+        <ArrowConnector />
       </div>
       <div className="md:hidden">
-        <ArrowDown stroke={s} />
+        <ArrowDown />
       </div>
       <Bubble theme="red">Eigentümer overwhelmed</Bubble>
       <div className="hidden md:block">
-        <ArrowConnector stroke={s} />
+        <ArrowConnector />
       </div>
       <div className="md:hidden">
-        <ArrowDown stroke={s} />
+        <ArrowDown />
       </div>
       <Bubble theme="red">kein klarer nächster Schritt</Bubble>
     </div>
   );
 }
 
-function WertavioFlow(): JSX.Element {
-  const s = "#B8902A";
+function GoldFlowBubble({ children }: { children: React.ReactNode }): JSX.Element {
   return (
-    <div className="flex flex-col items-stretch gap-2 py-4 md:flex-row md:flex-wrap md:items-center md:justify-center">
-      <Bubble theme="gold">Eigentümer</Bubble>
-      <div className="hidden md:block">
-        <ArrowConnector stroke={s} />
+    <div className="inline-flex max-w-[12rem] items-center justify-center rounded-full border-[1.5px] border-wertavio-gold bg-[rgba(201,168,76,0.08)] px-4 py-2 text-center text-xs font-medium leading-snug text-wertavio-gold md:max-w-[14rem] md:text-sm">
+      {children}
+    </div>
+  );
+}
+
+function WertavioFlow(): JSX.Element {
+  return (
+    <div className="py-4">
+      <div className="flex flex-col items-stretch gap-2 text-wertavio-gold md:flex-row md:flex-wrap md:items-center md:justify-center">
+        <GoldFlowBubble>Eigentümer</GoldFlowBubble>
+        <div className="hidden md:block">
+          <ArrowConnector />
+        </div>
+        <div className="md:hidden">
+          <ArrowDown />
+        </div>
+        <GoldFlowBubble>Wertavio matcht</GoldFlowBubble>
+        <div className="hidden md:block">
+          <ArrowConnector />
+        </div>
+        <div className="md:hidden">
+          <ArrowDown />
+        </div>
+        <GoldFlowBubble>1 Spezialist meldet sich</GoldFlowBubble>
       </div>
-      <div className="md:hidden">
-        <ArrowDown stroke={s} />
-      </div>
-      <Bubble theme="gold">Wertavio analysiert &amp; matcht</Bubble>
-      <div className="hidden md:block">
-        <ArrowConnector stroke={s} />
-      </div>
-      <div className="md:hidden">
-        <ArrowDown stroke={s} />
-      </div>
-      <Bubble theme="gold">1 Spezialist meldet sich</Bubble>
-      <div className="hidden md:block">
-        <ArrowConnector stroke={s} />
-      </div>
-      <div className="md:hidden">
-        <ArrowDown stroke={s} />
-      </div>
-      <Bubble theme="gold">klarer Ablaufplan</Bubble>
+      <p className="mx-auto mt-4 max-w-xl text-center text-sm leading-relaxed text-wertavio-muted">
+        Ein Makler. Kein Chaos. Klarer nächster Schritt.
+      </p>
     </div>
   );
 }
@@ -186,12 +202,23 @@ export function PortalComparisonSection(): JSX.Element {
           </AnimatePresence>
         </div>
 
-        <div className="relative grid gap-6 lg:grid-cols-2 lg:gap-0">
+          <div className="relative grid gap-6 lg:grid-cols-2 lg:gap-0">
           <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-wertavio-border bg-wertavio-white font-display text-sm font-semibold text-wertavio-slate shadow-md lg:flex">
             vs
           </div>
 
-          <article className="rounded-xl border border-red-100 bg-[#FEF2F2] p-6 md:p-8 lg:rounded-r-none lg:border-r-0">
+          <motion.article
+            className="rounded-xl border border-red-100 bg-[#FEF2F2] p-6 md:p-8 lg:rounded-r-none lg:border-r-0"
+            initial={
+              prefersReducedMotion ? { opacity: 1, x: 0, rotate: 0 } : { opacity: 0, x: -28, rotate: -1 }
+            }
+            whileInView={{ opacity: 1, x: 0, rotate: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{
+              duration: prefersReducedMotion ? 0 : 0.5,
+              ease: [0.215, 0.61, 0.355, 1],
+            }}
+          >
             <p className="mb-4 inline-flex items-center gap-2 text-sm font-semibold text-red-700">
               <span aria-hidden className="text-red-600">
                 ✗
@@ -199,15 +226,34 @@ export function PortalComparisonSection(): JSX.Element {
               Maklersuche über Portale
             </p>
             <ul className="space-y-3 text-sm leading-relaxed text-wertavio-slate">
-              <li>✗ Ihre Anfrage geht an jeden, der zahlt — nicht an den Besten</li>
-              <li>✗ 5–10 Makler rufen gleichzeitig an</li>
-              <li>✗ Kein Qualitätscheck, kein Aufnahmefilter</li>
-              <li>✗ Sie vergleichen alleine — ohne Orientierung</li>
-              <li>✗ Provision trotzdem fällig</li>
+              <li className="rounded-md px-1 py-1 transition-colors duration-150 hover:bg-[rgba(239,68,68,0.05)]">
+                ✗ Ihre Anfrage geht an jeden, der zahlt — nicht an den Besten
+              </li>
+              <li className="rounded-md px-1 py-1 transition-colors duration-150 hover:bg-[rgba(239,68,68,0.05)]">
+                ✗ 5–10 Makler rufen gleichzeitig an
+              </li>
+              <li className="rounded-md px-1 py-1 transition-colors duration-150 hover:bg-[rgba(239,68,68,0.05)]">
+                ✗ Kein Qualitätscheck, kein Aufnahmefilter
+              </li>
+              <li className="rounded-md px-1 py-1 transition-colors duration-150 hover:bg-[rgba(239,68,68,0.05)]">
+                ✗ Sie vergleichen alleine — ohne Orientierung
+              </li>
+              <li className="rounded-md px-1 py-1 transition-colors duration-150 hover:bg-[rgba(239,68,68,0.05)]">
+                ✗ Provision trotzdem fällig
+              </li>
             </ul>
-          </article>
+          </motion.article>
 
-          <article className="rounded-xl border border-wertavio-gold/25 bg-[#FEFBF0] p-6 md:p-8 lg:rounded-l-none">
+          <motion.article
+            className="rounded-xl border border-wertavio-gold/25 bg-[#FEFBF0] p-6 md:p-8 lg:rounded-l-none"
+            initial={prefersReducedMotion ? { opacity: 1, x: 0, rotate: 0 } : { opacity: 0, x: 28, rotate: 1 }}
+            whileInView={{ opacity: 1, x: 0, rotate: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{
+              duration: prefersReducedMotion ? 0 : 0.5,
+              ease: [0.215, 0.61, 0.355, 1],
+            }}
+          >
             <p className="mb-4 inline-flex items-center gap-2 text-sm font-semibold text-wertavio-slate">
               <span aria-hidden className="text-wertavio-gold">
                 ✓
@@ -215,13 +261,23 @@ export function PortalComparisonSection(): JSX.Element {
               Mit Wertavio
             </p>
             <ul className="space-y-3 text-sm leading-relaxed text-wertavio-slate">
-              <li>✓ Ein Makler — persönlich für Sie ausgewählt</li>
-              <li>✓ Geprüft vor der Aufnahme ins Netzwerk</li>
-              <li>✓ Passend zu Ihrer Region, Immobilie und Ziel</li>
-              <li>✓ Klare Empfehlung statt Vergleichsmarathon</li>
-              <li>✓ 0 € für Eigentümer</li>
+              <li className="rounded-md px-1 py-1 transition-colors duration-150 hover:bg-[rgba(201,168,76,0.05)]">
+                ✓ Ein Makler — persönlich für Sie ausgewählt
+              </li>
+              <li className="rounded-md px-1 py-1 transition-colors duration-150 hover:bg-[rgba(201,168,76,0.05)]">
+                ✓ Geprüft vor der Aufnahme ins Netzwerk
+              </li>
+              <li className="rounded-md px-1 py-1 transition-colors duration-150 hover:bg-[rgba(201,168,76,0.05)]">
+                ✓ Passend zu Ihrer Region, Immobilie und Ziel
+              </li>
+              <li className="rounded-md px-1 py-1 transition-colors duration-150 hover:bg-[rgba(201,168,76,0.05)]">
+                ✓ Klare Empfehlung statt Vergleichsmarathon
+              </li>
+              <li className="rounded-md px-1 py-1 transition-colors duration-150 hover:bg-[rgba(201,168,76,0.05)]">
+                ✓ 0 € für Eigentümer
+              </li>
             </ul>
-          </article>
+          </motion.article>
 
           <p className="text-center text-sm font-display font-semibold text-wertavio-muted lg:col-span-2 lg:hidden">
             vs

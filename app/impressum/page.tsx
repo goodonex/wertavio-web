@@ -5,7 +5,7 @@ export default function ImpressumPage(): JSX.Element {
   return (
     <>
       <Header />
-      <main className="section-y bg-wertavio-cream">
+      <main className="section-y bg-wertavio-cream pt-24">
         <div className="container-narrow max-w-2xl space-y-4">
           <h1 className="text-h2 text-wertavio-slate">Impressum</h1>
           <p className="text-sm leading-relaxed text-wertavio-muted">

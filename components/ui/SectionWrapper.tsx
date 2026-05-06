@@ -1,9 +1,5 @@
-"use client";
-
 import type { ReactNode } from "react";
-import { motion } from "framer-motion";
-import { fadeUp, motionEase, cn } from "@/lib/utils";
-import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
+import { cn } from "@/lib/utils";
 
 export interface SectionWrapperProps {
   id?: string;
@@ -21,8 +17,6 @@ export function SectionWrapper({
   background = "cream",
   fullBleedBackdrop,
 }: SectionWrapperProps): JSX.Element {
-  const prefersReducedMotion = usePrefersReducedMotion();
-
   const bg =
     background === "slate"
       ? "bg-wertavio-slate text-wertavio-cream"
@@ -31,32 +25,11 @@ export function SectionWrapper({
         : "bg-wertavio-cream";
 
   const sectionClass = cn("section-y", bg, fullBleedBackdrop && "relative overflow-hidden", className);
-  const content = (
-    <>
-      {fullBleedBackdrop}
-      <div className={cn("container-narrow", fullBleedBackdrop && "relative z-10")}>{children}</div>
-    </>
-  );
-
-  if (prefersReducedMotion) {
-    return (
-      <section id={id} className={sectionClass}>
-        {content}
-      </section>
-    );
-  }
 
   return (
-    <motion.section
-      id={id}
-      className={sectionClass}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.2 }}
-      variants={fadeUp}
-      transition={{ ease: motionEase, duration: 0.55 }}
-    >
-      {content}
-    </motion.section>
+    <section id={id} className={sectionClass}>
+      {fullBleedBackdrop}
+      <div className={cn("container-narrow", fullBleedBackdrop && "relative z-10")}>{children}</div>
+    </section>
   );
 }

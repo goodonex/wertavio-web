@@ -37,7 +37,7 @@ function AnfrageInner(): JSX.Element {
   return (
     <>
       <Header />
-      <main className="section-y bg-wertavio-cream">
+      <main className="section-y bg-wertavio-cream pt-24">
         <div className="container-narrow space-y-8">
           <div className="max-w-2xl space-y-3">
             <p className="text-eyebrow">Wertavio</p>
@@ -69,7 +69,7 @@ function FallbackShell({ children }: { children: ReactNode }): JSX.Element {
   return (
     <>
       <Header />
-      <main className="section-y bg-wertavio-cream">
+      <main className="section-y bg-wertavio-cream pt-24">
         <div className="container-narrow space-y-8">{children}</div>
       </main>
       <Footer />

@@ -1,12 +1,9 @@
 "use client";
 
-import { Fragment } from "react";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { FileText, Phone, Search } from "lucide-react";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
-import { motionEase } from "@/lib/utils";
-import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
+import { StaggerItem, StaggerReveal } from "@/components/ui/StaggerReveal";
 
 const steps = [
   {
@@ -29,29 +26,19 @@ const steps = [
   },
 ] as const;
 
-function StepColumn({
-  index,
-  step,
-}: {
-  index: number;
-  step: (typeof steps)[number];
-}): JSX.Element {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.35 });
-  const prefersReducedMotion = usePrefersReducedMotion();
-  const reduced = Boolean(prefersReducedMotion);
+const connectorVariants = {
+  hidden: { opacity: 1 },
+  show: { opacity: 1, transition: { duration: 0 } },
+} as const;
+
+function StepCard({ index, step }: { index: number; step: (typeof steps)[number] }): JSX.Element {
   const Icon = step.icon;
-  const label = String(index + 1).padStart(2, "0");
 
   return (
-    <motion.div
-      ref={ref}
-      className="relative flex min-w-0 flex-1 flex-col gap-4"
-      initial={reduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      animate={reduced ? { opacity: 1, y: 0 } : inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ duration: 0.35, ease: motionEase, delay: reduced ? 0 : index * 0.2 }}
-    >
-      <div className="font-display text-[5rem] font-semibold leading-[0.85] text-wertavio-gold">{label}</div>
+    <article className="group/step flex h-full flex-col gap-3 rounded-[12px] border border-wertavio-border bg-wertavio-white p-6 shadow-sm">
+      <div className="font-display text-[3rem] font-semibold leading-none text-wertavio-gold transition-transform duration-150 ease-out motion-safe:group-hover/step:scale-[1.08]">
+        {String(index + 1).padStart(2, "0")}
+      </div>
       <div className="flex flex-wrap items-center gap-2">
         <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-wertavio-gold/35 text-wertavio-slate">
           <Icon className="h-5 w-5" strokeWidth={1.5} aria-hidden />
@@ -60,53 +47,46 @@ function StepColumn({
           {step.badge}
         </span>
       </div>
-      <h3 className="text-lg font-semibold text-wertavio-slate">{step.title}</h3>
-      <p className="text-sm leading-relaxed text-wertavio-muted text-pretty">{step.body}</p>
+      <h3 className="text-[1.1rem] font-semibold text-wertavio-slate">{step.title}</h3>
+      <p className="text-[0.9rem] leading-[1.6] text-wertavio-muted text-pretty">{step.body}</p>
+    </article>
+  );
+}
+
+function GoldDashedConnector(): JSX.Element {
+  return (
+    <motion.div
+      variants={connectorVariants}
+      className="hidden min-h-[1px] min-w-[2rem] flex-[0.45] flex-col pt-12 lg:flex"
+      aria-hidden
+    >
+      <div className="h-px w-full border-t border-dashed border-wertavio-gold" />
     </motion.div>
-  );
-}
-
-function DashedH(): JSX.Element {
-  return (
-    <div
-      className="mx-2 hidden min-h-[1px] min-w-[1.5rem] flex-1 self-center border-t-2 border-dashed border-wertavio-border md:block"
-      aria-hidden
-    />
-  );
-}
-
-function DashedV(): JSX.Element {
-  return (
-    <div
-      className="mx-auto h-10 w-px border-l-2 border-dashed border-wertavio-border md:hidden"
-      aria-hidden
-    />
   );
 }
 
 export function HowItWorks(): JSX.Element {
   return (
-    <SectionWrapper id="ablauf" background="white">
-      <div className="mx-auto max-w-3xl text-center">
-        <p className="text-eyebrow">Ablauf in 3 Schritten</p>
-        <h2 className="text-h2 mt-3 text-balance text-wertavio-slate">
-          In drei Schritten zum passenden Makler
-        </h2>
-      </div>
+    <SectionWrapper id="how-it-works" background="white">
+      <StaggerReveal className="mx-auto max-w-3xl text-center">
+        <StaggerItem>
+          <p className="text-eyebrow">Ablauf in 3 Schritten</p>
+        </StaggerItem>
+        <StaggerItem>
+          <h2 className="text-h2 mt-3 text-balance text-wertavio-slate">
+            In drei Schritten zum passenden Makler
+          </h2>
+        </StaggerItem>
+      </StaggerReveal>
 
-      <div className="mx-auto mt-14 flex max-w-5xl flex-col md:flex-row md:items-start md:justify-between">
-        {steps.map((step, i) => (
-          <Fragment key={step.title}>
-            {i > 0 ? (
-              <>
-                <DashedV />
-                <DashedH />
-              </>
-            ) : null}
-            <StepColumn index={i} step={step} />
-          </Fragment>
-        ))}
-      </div>
+      <StaggerReveal className="mx-auto mt-14 flex max-w-5xl flex-col gap-6 lg:flex-row lg:items-stretch lg:gap-0">
+        {steps.flatMap((step, i) => [
+          ...(i > 0 ? [<GoldDashedConnector key={`${step.title}-conn`} />] : []),
+          <StaggerItem key={step.title} className="min-w-0 flex-1">
+            <StepCard index={i} step={step} />
+          </StaggerItem>,
+        ])}
+      </StaggerReveal>
     </SectionWrapper>
   );
 }

@@ -10,7 +10,15 @@ export const motionEase = [0.25, 0.1, 0.25, 1] as const;
 export const staggerContainer = {
   hidden: {},
   show: {
-    transition: { staggerChildren: 0.08, delayChildren: 0.05 },
+    transition: { staggerChildren: 0.08, delayChildren: 0.04 },
+  },
+} as const;
+
+/** Rezensionskarten: etwas großzügigerer Abstand */
+export const reviewStaggerContainer = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.1, delayChildren: 0.04 },
   },
 } as const;
 
@@ -19,6 +27,6 @@ export const fadeUp = {
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, ease: motionEase },
+    transition: { duration: 0.6, ease: motionEase },
   },
 } as const;

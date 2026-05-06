@@ -1,4 +1,7 @@
+"use client";
+
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
+import { StaggerItem, StaggerReveal } from "@/components/ui/StaggerReveal";
 import { Accordion } from "@/components/ui/Accordion";
 
 const faqItems = [
@@ -22,8 +25,7 @@ const faqItems = [
   {
     id: "daten",
     question: "Was passiert mit meinen Daten?",
-    answer:
-      "Nutzung ausschließlich für das Matching — kein Verkauf an Dritte, keine Portalweitergabe.",
+    answer: "Nutzung ausschließlich für das Matching — kein Verkauf an Dritte, keine Portalweitergabe.",
   },
   {
     id: "verpflichtung",
@@ -42,12 +44,16 @@ const faqItems = [
 export function FAQ(): JSX.Element {
   return (
     <SectionWrapper id="faq" background="white">
-      <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-h2 text-balance text-wertavio-slate">Häufige Fragen</h2>
-      </div>
-      <div className="mx-auto mt-10 max-w-3xl">
-        <Accordion items={[...faqItems]} />
-      </div>
+      <StaggerReveal className="mx-auto max-w-3xl text-center">
+        <StaggerItem>
+          <h2 className="text-h2 text-balance text-wertavio-slate">Häufige Fragen</h2>
+        </StaggerItem>
+      </StaggerReveal>
+      <StaggerReveal className="mx-auto mt-10 max-w-3xl">
+        <StaggerItem>
+          <Accordion items={[...faqItems]} />
+        </StaggerItem>
+      </StaggerReveal>
     </SectionWrapper>
   );
 }

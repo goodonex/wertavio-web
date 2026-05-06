@@ -24,7 +24,7 @@ export default function PartnerPage(): JSX.Element {
   return (
     <>
       <Header />
-      <main>
+      <main className="pt-24">
         <section className="bg-wertavio-slate py-16 text-wertavio-cream md:py-24">
           <div className="container-narrow space-y-6">
             <p className="text-eyebrow text-wertavio-cream/70">Für Makler</p>

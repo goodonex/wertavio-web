@@ -15,7 +15,7 @@ const labels = [
 
 function PlaceholderLogo({ label }: { label: string }): JSX.Element {
   return (
-    <div className="flex h-12 min-w-[11rem] items-center justify-center rounded-[10px] border border-wertavio-border bg-wertavio-white px-4 text-xs font-semibold text-wertavio-slate shadow-sm">
+    <div className="flex h-12 min-w-[11rem] cursor-default items-center justify-center rounded-[10px] border border-wertavio-border bg-wertavio-white px-4 text-xs font-semibold text-wertavio-slate shadow-sm transition-transform duration-200 motion-safe:hover:-translate-y-1">
       {label}
     </div>
   );
@@ -38,11 +38,29 @@ export function TrustBar(): JSX.Element {
         </p>
         <div className="relative overflow-hidden">
           <div className="flex w-max gap-4 motion-safe:animate-marquee hover:[animation-play-state:paused]">
-            {labels.map((label) => (
-              <PlaceholderLogo key={label} label={label} />
+            {labels.map((label, i) => (
+              <motion.div
+                key={label}
+                initial={prefersReducedMotion ? false : { opacity: 0, x: -24 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.45, ease: motionEase, delay: prefersReducedMotion ? 0 : i * 0.08 }}
+              >
+                <PlaceholderLogo label={label} />
+              </motion.div>
             ))}
-            {labels.map((label) => (
-              <PlaceholderLogo key={`${label}-dup`} label={label} />
+            {labels.map((label, i) => (
+              <motion.div
+                key={`${label}-dup`}
+                initial={prefersReducedMotion ? false : { opacity: 0, x: -24 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  duration: 0.45,
+                  ease: motionEase,
+                  delay: prefersReducedMotion ? 0 : (i + labels.length) * 0.08,
+                }}
+              >
+                <PlaceholderLogo label={label} />
+              </motion.div>
             ))}
           </div>
         </div>

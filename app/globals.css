@@ -4,11 +4,11 @@
 
 @layer base {
   html {
-    @apply scroll-smooth;
+    @apply m-0 p-0 scroll-smooth;
   }
 
   body {
-    @apply bg-wertavio-cream font-sans text-wertavio-slate text-base leading-relaxed antialiased;
+    @apply m-0 bg-wertavio-cream p-0 font-sans text-base leading-relaxed text-wertavio-slate antialiased;
   }
 }
 
@@ -61,6 +61,10 @@
     }
 
     .motion-safe\:animate-cta-idle-glow {
+      animation: none !important;
+    }
+
+    .motion-safe\:animate-cta-ring-pulse {
       animation: none !important;
     }
   }

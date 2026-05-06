@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
+import { StaggerItem, StaggerReveal } from "@/components/ui/StaggerReveal";
 
 type ProblemItem = {
   title: string;
@@ -28,29 +31,35 @@ const items: readonly ProblemItem[] = [
 export function ProblemSection(): JSX.Element {
   return (
     <SectionWrapper id="problem" background="cream">
-      <div className="mx-auto max-w-3xl text-center">
-        <p className="text-eyebrow">Das Problem</p>
-        <h2 className="text-h2 mt-3 text-balance text-wertavio-slate">
-          Welchem Makler sollen Sie Ihre Immobilie anvertrauen?
-        </h2>
-      </div>
-      <div className="mt-12 grid gap-6 md:grid-cols-3">
+      <StaggerReveal className="mx-auto max-w-3xl text-center">
+        <StaggerItem>
+          <p className="text-eyebrow">Das Problem</p>
+        </StaggerItem>
+        <StaggerItem>
+          <h2 className="text-h2 mt-3 text-balance text-wertavio-slate">
+            Welchem Makler sollen Sie Ihre Immobilie anvertrauen?
+          </h2>
+        </StaggerItem>
+      </StaggerReveal>
+      <StaggerReveal className="mt-12 grid gap-6 md:grid-cols-3">
         {items.map((item) => (
-          <article key={item.title} className="card-surface-hover flex flex-col gap-4">
-            <div className="flex min-h-[140px] items-center justify-center rounded-lg border border-wertavio-border bg-wertavio-white px-4 pt-6">
-              <Image
-                src={item.image.src}
-                alt={item.image.alt}
-                width={320}
-                height={240}
-                className="h-auto w-full max-w-[320px] object-contain"
-              />
-            </div>
-            <h3 className="text-lg font-semibold text-wertavio-slate text-balance">{item.title}</h3>
-            <p className="text-sm leading-relaxed text-wertavio-muted text-pretty">{item.body}</p>
-          </article>
+          <StaggerItem key={item.title}>
+            <article className="card-surface-hover flex h-full flex-col gap-4">
+              <div className="flex min-h-[140px] items-center justify-center rounded-lg border border-wertavio-border bg-wertavio-white px-4 pt-6">
+                <Image
+                  src={item.image.src}
+                  alt={item.image.alt}
+                  width={320}
+                  height={240}
+                  className="h-auto w-full max-w-[320px] object-contain"
+                />
+              </div>
+              <h3 className="text-lg font-semibold text-wertavio-slate text-balance">{item.title}</h3>
+              <p className="text-sm leading-relaxed text-wertavio-muted text-pretty">{item.body}</p>
+            </article>
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerReveal>
     </SectionWrapper>
   );
 }

@@ -49,7 +49,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de-DE" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="min-h-dvh font-sans">
+      <body className="font-sans">
         <RootShell>
           <JsonLd />
           {children}
