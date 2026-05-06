@@ -1,20 +1,17 @@
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
+import type { Metadata } from "next";
+import { LegalLayout } from "@/components/legal/LegalLayout";
+import { ImpressumContent } from "@/components/legal/ImpressumContent";
+
+export const metadata: Metadata = {
+  title: "Impressum — Wertavio",
+  description: "Impressum und gesetzliche Anbieterkennzeichnung von Wertavio.",
+  alternates: { canonical: "/impressum" },
+};
 
 export default function ImpressumPage(): JSX.Element {
   return (
-    <>
-      <Header />
-      <main className="section-y bg-wertavio-cream pt-24">
-        <div className="container-narrow max-w-2xl space-y-4">
-          <h1 className="text-h2 text-wertavio-slate">Impressum</h1>
-          <p className="text-sm leading-relaxed text-wertavio-muted">
-            Platzhalter-Seite: Angaben gemäß TMG folgen. Bitte ergänzen Sie Firmenname,
-            Anschrift, Vertretungsberechtigte, Kontakt und Registereintrag sobald verfügbar.
-          </p>
-        </div>
-      </main>
-      <Footer />
-    </>
+    <LegalLayout title="Impressum">
+      <ImpressumContent />
+    </LegalLayout>
   );
 }

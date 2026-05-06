@@ -23,12 +23,15 @@ export function Footer(): JSX.Element {
             Der richtige Makler. Für Ihre Immobilie.
           </p>
         </div>
-        <nav aria-label="Fußzeilen-Navigation" className="flex flex-col gap-3 text-sm">
+        <nav aria-label="Fußzeilen-Navigation" className="flex flex-col gap-3 text-sm sm:flex-row sm:flex-wrap sm:gap-x-8">
           <Link href="/impressum" className={footerLinkClass}>
             Impressum
           </Link>
           <Link href="/datenschutz" className={footerLinkClass}>
             Datenschutz
+          </Link>
+          <Link href="/agb" className={footerLinkClass}>
+            Nutzungsbedingungen
           </Link>
         </nav>
       </div>

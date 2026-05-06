@@ -1,21 +1,17 @@
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
+import type { Metadata } from "next";
+import { LegalLayout } from "@/components/legal/LegalLayout";
+import { DatenschutzContent } from "@/components/legal/DatenschutzContent";
+
+export const metadata: Metadata = {
+  title: "Datenschutz — Wertavio",
+  description: "Informationen zur Verarbeitung personenbezogener Daten bei Wertavio.",
+  alternates: { canonical: "/datenschutz" },
+};
 
 export default function DatenschutzPage(): JSX.Element {
   return (
-    <>
-      <Header />
-      <main className="section-y bg-wertavio-cream pt-24">
-        <div className="container-narrow max-w-2xl space-y-4">
-          <h1 className="text-h2 text-wertavio-slate">Datenschutz</h1>
-          <p className="text-sm leading-relaxed text-wertavio-muted">
-            Platzhalter-Seite: Informationen zur Verarbeitung personenbezogener Daten, Rechtsgrundlagen,
-            Speicherdauer und Betroffenenrechte werden hier eingestellt, sobald die endgültige
-            Datenschutzerklärung vorliegt.
-          </p>
-        </div>
-      </main>
-      <Footer />
-    </>
+    <LegalLayout title="Datenschutzerklärung">
+      <DatenschutzContent />
+    </LegalLayout>
   );
 }
