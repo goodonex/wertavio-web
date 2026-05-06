@@ -107,7 +107,7 @@ export function MaklerProfilSection(): JSX.Element {
   return (
     <section className="bg-wertavio-cream py-16 md:py-20">
       <div className="container-narrow">
-        <StaggerReveal className="mx-auto mb-10 max-w-2xl text-center">
+        <StaggerReveal className="mx-auto mb-10 max-w-2xl text-center md:mx-0 md:text-left">
           <StaggerItem>
             <p className="text-eyebrow">Kostenlos &amp; in 2 Minuten</p>
           </StaggerItem>
@@ -117,16 +117,16 @@ export function MaklerProfilSection(): JSX.Element {
             </h2>
           </StaggerItem>
           <StaggerItem>
-            <p className="mt-3 text-sm leading-relaxed text-wertavio-muted md:text-base">
+            <p className="mt-3 text-base leading-relaxed text-wertavio-muted">
               Nicht jeder Makler passt zu jeder Immobilie. Wir erstellen Ihr persönliches Anforderungsprofil —
               bevor wir matchen.
             </p>
           </StaggerItem>
         </StaggerReveal>
 
-        <StaggerReveal className="mx-auto max-w-2xl">
+        <StaggerReveal className="mx-auto max-w-2xl md:mx-0">
           <StaggerItem>
-            <div className="rounded-lg border border-wertavio-border border-l-4 border-l-wertavio-gold bg-wertavio-white px-6 py-8 shadow-sm md:px-10 md:py-10">
+            <div className="w-full rounded-lg border border-wertavio-border border-l-4 border-l-wertavio-gold bg-wertavio-white px-6 py-8 shadow-sm md:px-10 md:py-10">
               <AnimatePresence mode="wait">
                 {!done ? (
                   <motion.div

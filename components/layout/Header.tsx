@@ -15,7 +15,7 @@ const navItems = [
 ] as const;
 
 const pillClass =
-  "rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(15,20,35,0.65)] py-[10px] pl-6 pr-4 shadow-[0_8px_32px_rgba(0,0,0,0.24)] [backdrop-filter:blur(20px)] [-webkit-backdrop-filter:blur(20px)]";
+  "rounded-2xl border border-[rgba(255,255,255,0.12)] bg-[rgba(15,20,35,0.65)] py-2 pl-3 pr-3 shadow-[0_8px_32px_rgba(0,0,0,0.24)] [backdrop-filter:blur(20px)] [-webkit-backdrop-filter:blur(20px)] lg:rounded-full lg:py-[10px] lg:pl-6 lg:pr-4";
 
 export function Header(): JSX.Element {
   const pathname = usePathname();
@@ -29,14 +29,15 @@ export function Header(): JSX.Element {
   return (
     <header
       className={cn(
-        "fixed left-1/2 top-4 z-50 flex -translate-x-1/2 flex-col gap-2",
-        "w-[calc(100vw-32px)] max-w-[calc(100vw-48px)] md:min-w-[680px] md:w-max",
+        "fixed top-4 z-50 flex flex-col gap-2",
+        "left-4 right-4 w-auto max-w-none translate-x-0",
+        "lg:left-1/2 lg:right-auto lg:min-w-[680px] lg:max-w-[calc(100vw-48px)] lg:w-max lg:-translate-x-1/2",
       )}
     >
-      <div className={cn("flex w-full items-center gap-3 md:gap-6", pillClass)}>
+      <div className={cn("flex w-full items-center gap-2 lg:gap-6", pillClass)}>
         <Link
           href="/"
-          className="group/logo shrink-0 font-display text-lg font-semibold text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.35)] transition-colors md:text-xl"
+          className="group/logo min-w-0 shrink font-display text-base font-semibold text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.35)] transition-colors sm:text-lg lg:text-xl"
         >
           <span
             className={cn(
@@ -49,7 +50,7 @@ export function Header(): JSX.Element {
           </span>
         </Link>
 
-        <nav className="hidden flex-1 justify-center gap-5 md:flex md:gap-6" aria-label="Hauptnavigation">
+        <nav className="hidden flex-1 justify-center gap-5 lg:flex lg:gap-6" aria-label="Hauptnavigation">
           {navItems.map((item) => (
             <a
               key={item.href}
@@ -61,14 +62,19 @@ export function Header(): JSX.Element {
           ))}
         </nav>
 
-        <div className="ml-auto flex shrink-0 items-center gap-2">
-          <Button href="/anfrage" className="!rounded-full !px-4 !py-2 text-sm" enableIdleGlow>
-            {PRIMARY_CTA_LABEL}
+        <div className="ml-auto flex shrink-0 items-center gap-1.5 lg:gap-2">
+          <Button
+            href="/anfrage"
+            className="!rounded-full !px-3 !py-1.5 text-[13px] leading-tight lg:!px-4 lg:!py-2 lg:text-sm"
+            enableIdleGlow
+          >
+            <span className="lg:hidden">Anfrage starten</span>
+            <span className="hidden lg:inline">{PRIMARY_CTA_LABEL}</span>
           </Button>
 
           <button
             type="button"
-            className="inline-flex rounded-full p-2 text-white hover:bg-white/10 md:hidden"
+            className="inline-flex rounded-full p-2 text-white hover:bg-white/10 lg:hidden"
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"
             onClick={() => setMobileOpen((o) => !o)}
@@ -83,7 +89,7 @@ export function Header(): JSX.Element {
         <div
           id="mobile-nav"
           className={cn(
-            "flex flex-col rounded-2xl border border-[rgba(255,255,255,0.12)] bg-[rgba(15,20,35,0.92)] px-2 py-2 shadow-[0_8px_32px_rgba(0,0,0,0.24)] [backdrop-filter:blur(20px)] [-webkit-backdrop-filter:blur(20px)] md:hidden",
+            "flex flex-col rounded-2xl border border-[rgba(255,255,255,0.12)] bg-[rgba(15,20,35,0.92)] px-2 py-2 shadow-[0_8px_32px_rgba(0,0,0,0.24)] [backdrop-filter:blur(20px)] [-webkit-backdrop-filter:blur(20px)] lg:hidden",
           )}
         >
           <ul className="flex flex-col">

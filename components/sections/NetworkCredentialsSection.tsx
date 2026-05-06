@@ -51,7 +51,7 @@ const credentials = [
 
 function CredentialBadge({ c }: { c: (typeof credentials)[number] }): JSX.Element {
   return (
-    <div className="flex h-12 w-full max-w-[22rem] items-center gap-3 rounded-lg border border-wertavio-border bg-wertavio-white px-4 shadow-sm sm:w-auto sm:max-w-[20rem]">
+    <div className="flex h-12 min-w-0 w-full items-center gap-2 rounded-lg border border-wertavio-border bg-wertavio-white px-3 shadow-sm sm:gap-3 sm:px-4 md:w-auto md:max-w-[20rem]">
       <div
         className={`flex h-9 w-14 shrink-0 items-center justify-center rounded text-[10px] font-bold uppercase leading-none text-white ${c.brandClass}`}
       >
@@ -76,17 +76,17 @@ export function NetworkCredentialsSection(): JSX.Element {
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5, ease: motionEase }}
     >
-      <div className="container-narrow text-center">
+      <div className="container-narrow text-center md:text-left">
         <p className="text-eyebrow text-wertavio-muted">GEPRÜFTE NETZWERKPARTNER</p>
-        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-wertavio-slate text-pretty">
+        <p className="mx-auto mt-3 max-w-2xl text-base leading-relaxed text-wertavio-slate text-pretty md:mx-0">
           Jeder Makler im Wertavio-Netzwerk wird vor Aufnahme persönlich geprüft.
         </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
+        <div className="mt-8 grid grid-cols-2 gap-3 md:flex md:flex-wrap md:justify-center">
           {credentials.map((c) => (
             <CredentialBadge key={c.key} c={c} />
           ))}
         </div>
-        <p className="mx-auto mt-4 max-w-xl text-[11px] leading-relaxed text-wertavio-muted">
+        <p className="mx-auto mt-4 max-w-xl text-[11px] leading-relaxed text-wertavio-muted md:mx-0 md:text-left">
           * Nicht alle Partner tragen alle Zertifikate. Mindestvoraussetzung: IHK-Sachkundenachweis §34c GewO.
         </p>
       </div>

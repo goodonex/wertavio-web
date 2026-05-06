@@ -44,12 +44,12 @@ const faqItems = [
 export function FAQ(): JSX.Element {
   return (
     <SectionWrapper id="faq" background="white">
-      <StaggerReveal className="mx-auto max-w-3xl text-center">
+      <StaggerReveal className="mx-auto max-w-3xl md:mx-0">
         <StaggerItem>
           <h2 className="text-h2 text-balance text-wertavio-slate">Häufige Fragen</h2>
         </StaggerItem>
       </StaggerReveal>
-      <StaggerReveal className="mx-auto mt-10 max-w-3xl">
+      <StaggerReveal className="mx-auto mt-10 max-w-3xl text-left">
         <StaggerItem>
           <Accordion items={[...faqItems]} />
         </StaggerItem>

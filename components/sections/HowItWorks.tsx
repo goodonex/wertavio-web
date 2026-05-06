@@ -35,7 +35,7 @@ function StepCard({ index, step }: { index: number; step: (typeof steps)[number]
   const Icon = step.icon;
 
   return (
-    <article className="group/step flex h-full flex-col gap-3 rounded-[12px] border border-wertavio-border bg-wertavio-white p-6 shadow-sm">
+    <article className="group/step flex h-full w-full flex-col gap-3 rounded-[12px] border border-wertavio-border bg-wertavio-white p-6 shadow-sm">
       <div className="font-display text-[3rem] font-semibold leading-none text-wertavio-gold transition-transform duration-150 ease-out motion-safe:group-hover/step:scale-[1.08]">
         {String(index + 1).padStart(2, "0")}
       </div>
@@ -68,7 +68,7 @@ function GoldDashedConnector(): JSX.Element {
 export function HowItWorks(): JSX.Element {
   return (
     <SectionWrapper id="how-it-works" background="white">
-      <StaggerReveal className="mx-auto max-w-3xl text-center">
+      <StaggerReveal className="mx-auto max-w-3xl md:mx-0">
         <StaggerItem>
           <p className="text-eyebrow">Ablauf in 3 Schritten</p>
         </StaggerItem>
@@ -79,7 +79,7 @@ export function HowItWorks(): JSX.Element {
         </StaggerItem>
       </StaggerReveal>
 
-      <StaggerReveal className="mx-auto mt-14 flex max-w-5xl flex-col gap-6 lg:flex-row lg:items-stretch lg:gap-0">
+      <StaggerReveal className="mx-auto mt-14 flex max-w-5xl flex-col gap-6 text-center md:mx-0 md:text-left lg:flex-row lg:items-stretch lg:gap-0">
         {steps.flatMap((step, i) => [
           ...(i > 0 ? [<GoldDashedConnector key={`${step.title}-conn`} />] : []),
           <StaggerItem key={step.title} className="min-w-0 flex-1">

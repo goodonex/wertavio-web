@@ -26,9 +26,9 @@ const points = [
 export function TrustSignals(): JSX.Element {
   return (
     <SectionWrapper id="why-wertavio" background="cream">
-      <div className="grid items-start gap-12 lg:grid-cols-5 lg:gap-14">
+      <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-5 lg:gap-14">
         <div className="lg:col-span-3">
-          <StaggerReveal className="max-w-xl">
+          <StaggerReveal className="max-w-xl md:max-w-none">
             <StaggerItem>
               <p className="text-eyebrow">Warum Wertavio</p>
             </StaggerItem>
@@ -38,7 +38,7 @@ export function TrustSignals(): JSX.Element {
               </h2>
             </StaggerItem>
           </StaggerReveal>
-          <StaggerReveal className="mt-10 grid gap-6 sm:grid-cols-2">
+          <StaggerReveal className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
             {points.map((p) => (
               <StaggerItem key={p.title}>
                 <article className="card-surface-hover space-y-3">

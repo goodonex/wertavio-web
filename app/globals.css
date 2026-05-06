@@ -8,35 +8,47 @@
   }
 
   body {
-    @apply m-0 bg-wertavio-cream p-0 font-sans text-base leading-relaxed text-wertavio-slate antialiased;
+    @apply m-0 overflow-x-hidden bg-wertavio-cream p-0 font-sans text-base leading-relaxed text-wertavio-slate antialiased;
   }
 }
 
 @layer components {
   .text-eyebrow {
-    @apply text-[11px] font-medium uppercase tracking-[0.1em] text-wertavio-muted;
+    @apply text-center text-[11px] font-medium uppercase tracking-[0.1em] text-wertavio-muted md:text-left;
   }
 
   .text-h1 {
     font-family: var(--font-playfair), Georgia, serif;
-    font-size: clamp(2.75rem, 5vw, 4.5rem);
+    font-size: 2.25rem;
     line-height: 1.1;
     @apply font-normal;
   }
 
+  @media (min-width: 768px) {
+    .text-h1 {
+      font-size: clamp(2.75rem, 5vw, 4.5rem);
+    }
+  }
+
   .text-h2 {
     font-family: var(--font-playfair), Georgia, serif;
-    font-size: clamp(1.75rem, 3vw, 2.75rem);
+    font-size: 1.875rem;
     line-height: 1.2;
     @apply font-normal;
   }
 
+  @media (min-width: 768px) {
+    .text-h2 {
+      font-size: clamp(1.75rem, 3vw, 2.75rem);
+    }
+  }
+
   .card-surface {
-    @apply rounded-[10px] border border-wertavio-border bg-wertavio-white p-6 shadow-sm;
+    @apply w-full rounded-[10px] border border-wertavio-border bg-wertavio-white p-6 shadow-sm;
   }
 
   .card-surface-hover {
-    @apply card-surface transition-transform duration-200 ease-out motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-md;
+    @apply w-full card-surface transition-transform duration-200 ease-out motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-md;
   }
 
   .section-y {

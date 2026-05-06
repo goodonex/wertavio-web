@@ -31,7 +31,7 @@ const items: readonly ProblemItem[] = [
 export function ProblemSection(): JSX.Element {
   return (
     <SectionWrapper id="problem" background="cream">
-      <StaggerReveal className="mx-auto max-w-3xl text-center">
+      <StaggerReveal className="mx-auto max-w-3xl md:mx-0">
         <StaggerItem>
           <p className="text-eyebrow">Das Problem</p>
         </StaggerItem>
@@ -41,10 +41,10 @@ export function ProblemSection(): JSX.Element {
           </h2>
         </StaggerItem>
       </StaggerReveal>
-      <StaggerReveal className="mt-12 grid gap-6 md:grid-cols-3">
+      <StaggerReveal className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
         {items.map((item) => (
           <StaggerItem key={item.title}>
-            <article className="card-surface-hover flex h-full flex-col gap-4">
+            <article className="card-surface-hover flex h-full w-full flex-col gap-4">
               <div className="flex min-h-[140px] items-center justify-center rounded-lg border border-wertavio-border bg-wertavio-white px-4 pt-6">
                 <Image
                   src={item.image.src}

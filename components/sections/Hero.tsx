@@ -43,7 +43,7 @@ export function Hero(): JSX.Element {
       <div className="relative z-10 min-h-[calc(100dvh-5.5rem)] md:min-h-[calc(100dvh-5rem)]">
         <div className="container-narrow">
           <div className="flex min-h-[inherit] flex-col justify-center gap-5 pt-36 lg:flex-row lg:items-center lg:gap-10 lg:pt-44 xl:gap-14">
-            <div className="flex max-w-2xl flex-1 flex-col justify-center gap-5 md:gap-8 lg:max-w-none lg:min-w-0">
+            <div className="flex max-w-2xl flex-1 flex-col justify-center gap-5 text-center md:gap-8 lg:max-w-none lg:min-w-0 lg:text-left">
               {prefersReducedMotion ? (
                 <>
                   <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-white/80">Makler-Matching ohne Portal-Chaos</p>
@@ -56,7 +56,7 @@ export function Hero(): JSX.Element {
                     <br />
                     Für Ihre Immobilie.
                   </h1>
-                  <p className="max-w-2xl text-pretty text-sm leading-relaxed text-white/90 md:text-base">
+                  <p className="max-w-2xl text-pretty text-base leading-relaxed text-white/90">
                     Sie erhalten einen passenden Spezialisten aus geprüftem Netzwerk — abgestimmt auf Immobilie,
                     Region und Ziel. Ohne Portal. Ohne Streuung an zehn Büros gleichzeitig.
                   </p>
@@ -76,7 +76,7 @@ export function Hero(): JSX.Element {
                     <br />
                     Für Ihre Immobilie.
                   </h1>
-                  <p className="max-w-2xl text-pretty text-sm leading-relaxed text-white/90 md:text-base">
+                  <p className="max-w-2xl text-pretty text-base leading-relaxed text-white/90">
                     Sie erhalten einen passenden Spezialisten aus geprüftem Netzwerk — abgestimmt auf Immobilie,
                     Region und Ziel. Ohne Portal. Ohne Streuung an zehn Büros gleichzeitig.
                   </p>
@@ -89,7 +89,7 @@ export function Hero(): JSX.Element {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, ease: motionEase, delay: 0.18 }}
               >
-                <div className="flex w-full flex-col items-center sm:items-start">
+                <div className="flex w-full flex-col items-center md:items-start">
                   <Button href="/anfrage" className="w-full justify-center sm:w-auto">
                     {PRIMARY_CTA_LABEL}
                   </Button>
@@ -98,7 +98,7 @@ export function Hero(): JSX.Element {
               </motion.div>
 
               <motion.ul
-                className="flex flex-col gap-2 text-xs sm:flex-row sm:flex-wrap sm:gap-x-3 sm:gap-y-2 sm:text-sm"
+                className="flex flex-col items-center gap-2 text-xs sm:flex-row sm:flex-wrap sm:items-start sm:justify-center md:justify-start sm:gap-x-3 sm:gap-y-2 sm:text-sm"
                 variants={prefersReducedMotion ? undefined : staggerContainer}
                 initial={prefersReducedMotion ? false : "hidden"}
                 animate={prefersReducedMotion ? undefined : "show"}

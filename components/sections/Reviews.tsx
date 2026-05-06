@@ -42,17 +42,17 @@ function StarRow(): JSX.Element {
 export function Reviews(): JSX.Element {
   return (
     <SectionWrapper id="bewertungen" background="white">
-      <StaggerReveal className="mx-auto max-w-3xl text-center">
+      <StaggerReveal className="mx-auto max-w-3xl md:mx-0">
         <StaggerItem>
           <h2 className="text-h2 text-balance text-wertavio-slate">Stimmen von Eigentümern</h2>
         </StaggerItem>
         <StaggerItem>
-          <p className="mt-3 text-xs text-wertavio-muted">
+          <p className="mt-3 text-base text-wertavio-muted">
             Beispielzitate — Platzhalter, noch keine verifizierte Bewertungsanbindung (z. B. ProvenExpert)
           </p>
         </StaggerItem>
       </StaggerReveal>
-      <StaggerReveal variants={reviewStaggerContainer} className="mt-10 grid gap-6 md:grid-cols-2">
+      <StaggerReveal variants={reviewStaggerContainer} className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
         {reviews.map((r) => (
           <StaggerItem key={r.name}>
             <figure className="card-surface-hover space-y-4">

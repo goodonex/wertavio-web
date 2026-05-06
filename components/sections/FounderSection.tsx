@@ -15,7 +15,7 @@ const bullets = [
 export function FounderSection(): JSX.Element {
   return (
     <SectionWrapper background="cream">
-      <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
+      <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
         <StaggerReveal className="lg:col-span-5">
           <StaggerItem className="flex flex-col items-center text-center lg:items-start lg:text-left">
             <div className="relative w-full max-w-[20rem] overflow-hidden rounded-2xl">
@@ -41,28 +41,28 @@ export function FounderSection(): JSX.Element {
               <h2 className="text-h2 mt-3 text-balance text-wertavio-slate">Ich kenne beide Seiten.</h2>
             </StaggerItem>
             <StaggerItem>
-              <p className="mt-5 text-sm leading-relaxed text-wertavio-slate text-pretty md:text-base">
+              <p className="mt-5 text-base leading-relaxed text-wertavio-slate text-pretty">
                 Ich war selbst Immobilienmakler. Ich weiß wie Portale funktionieren — und warum sie für Eigentümer oft
                 das falsche Werkzeug sind.
               </p>
             </StaggerItem>
             <StaggerItem>
-              <p className="mt-4 text-sm leading-relaxed text-wertavio-slate text-pretty md:text-base">
+              <p className="mt-4 text-base leading-relaxed text-wertavio-slate text-pretty">
                 Wertavio ist meine Antwort darauf: Eine Vermittlung, die dem Eigentümer nützt. Nicht dem Portal. Nicht
                 dem schnellsten Makler.
               </p>
             </StaggerItem>
             <StaggerItem>
-              <ul className="mt-6 space-y-2.5">
+              <ul className="mt-6 flex flex-col items-center gap-2.5 md:items-start">
                 {bullets.map((line) => (
-                  <li key={line} className="flex gap-2 text-sm text-wertavio-slate">
+                  <li key={line} className="flex max-w-lg gap-2 text-left text-sm text-wertavio-slate md:max-w-none">
                     <Check className="mt-0.5 h-4 w-4 shrink-0 text-wertavio-gold" strokeWidth={2} aria-hidden />
                     <span className="leading-relaxed">{line}</span>
                   </li>
                 ))}
               </ul>
             </StaggerItem>
-            <StaggerItem className="mt-8 flex flex-col gap-2">
+            <StaggerItem className="mt-8 flex w-full flex-col items-center gap-2 md:items-start">
               <Button href="/anfrage" variant="secondary">
                 Jetzt persönlich Anfrage stellen →
               </Button>

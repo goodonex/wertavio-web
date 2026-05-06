@@ -29,7 +29,7 @@ export function SectionWrapper({
   return (
     <section id={id} className={sectionClass}>
       {fullBleedBackdrop}
-      <div className={cn("container-narrow", fullBleedBackdrop && "relative z-10")}>{children}</div>
+      <div className={cn("container-narrow text-center md:text-left", fullBleedBackdrop && "relative z-10")}>{children}</div>
     </section>
   );
 }

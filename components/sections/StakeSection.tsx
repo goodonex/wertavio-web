@@ -67,7 +67,7 @@ export function StakeSection(): JSX.Element {
   return (
     <SectionWrapper id="geistige-brandstiftung" background="slate">
       <div ref={ref}>
-        <StaggerReveal className="mx-auto max-w-3xl text-center">
+        <StaggerReveal className="mx-auto max-w-3xl text-center md:mx-0 md:text-left">
           <StaggerItem>
             <p className="text-eyebrow text-wertavio-cream/70">WAS AUF DEM SPIEL STEHT</p>
           </StaggerItem>
@@ -77,17 +77,17 @@ export function StakeSection(): JSX.Element {
             </h2>
           </StaggerItem>
           <StaggerItem>
-            <p className="mt-4 text-sm leading-relaxed text-wertavio-cream/85 md:text-base text-pretty">
+            <p className="mt-4 text-base leading-relaxed text-wertavio-cream/85 text-pretty">
               Der häufigste Fehler beim Immobilienverkauf ist nicht der Makler, der zu viel nimmt — sondern der, der zu
               wenig erreicht.
             </p>
           </StaggerItem>
         </StaggerReveal>
 
-        <StaggerReveal className="mt-12 grid gap-6 md:grid-cols-3">
+        <StaggerReveal className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
           {cards.map((c) => (
             <StaggerItem key={c.label}>
-              <article className="flex h-full flex-col gap-4 rounded-[10px] bg-wertavio-slate-soft p-6 shadow-sm">
+              <article className="flex h-full w-full flex-col gap-4 rounded-[10px] bg-wertavio-slate-soft p-6 shadow-sm">
                 <StatBlock active={inView} variant={c.variant} />
                 <h3 className="text-base font-semibold text-wertavio-white">{c.label}</h3>
                 <p className="text-sm leading-relaxed text-wertavio-cream/75 text-pretty">{c.body}</p>
@@ -96,7 +96,7 @@ export function StakeSection(): JSX.Element {
           ))}
         </StaggerReveal>
 
-        <div className="mx-auto mt-12 flex max-w-xl flex-col items-center gap-3 text-center">
+        <div className="mx-auto mt-12 flex max-w-xl flex-col items-center gap-3 text-center md:mx-0 md:items-start md:text-left">
           <Button href="/anfrage">Jetzt den richtigen Makler finden →</Button>
           <p className="text-[11px] text-wertavio-cream/55">* Schätzwerte basierend auf Marktbeobachtungen</p>
         </div>

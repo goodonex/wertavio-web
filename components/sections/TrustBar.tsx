@@ -33,7 +33,7 @@ export function TrustBar(): JSX.Element {
       transition={{ duration: 0.55, ease: motionEase }}
     >
       <div className="container-narrow space-y-6">
-        <p className="text-eyebrow text-center">
+        <p className="text-eyebrow text-wertavio-muted">
           Partner werden in Deutschland geprüft — vor der Aufnahme
         </p>
         <div className="relative overflow-hidden">
