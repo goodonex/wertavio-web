@@ -36,14 +36,13 @@ function AnfrageInner(): JSX.Element {
 
   return (
     <>
-      <Header />
-      <main className="section-y bg-wertavio-cream pt-24">
+      <Header audience={flowType === "makler" ? "partner" : "owner"} />
+      <main className="bg-wertavio-cream pb-20 pt-32 md:pb-28 md:pt-40">
         <div className="container-narrow space-y-8">
           <div className="max-w-2xl space-y-3">
-            <p className="text-eyebrow">Wertavio</p>
-            <h1 className="text-h1 text-wertavio-slate">{headline}</h1>
-            <p className="text-sm text-wertavio-muted md:text-base">
-              Start mit Immobilie und Ziel — Kontaktdaten erst zum Schluss. Daten nur fürs Matching, keine
+                        <h1 className="text-h1 text-wertavio-slate">{headline}</h1>
+            <p className="text-lead">
+              Start mit Immobilie und Ziel, Kontaktdaten erst zum Schluss. Daten nur fürs Matching, keine
               Portalweitergabe.
             </p>
           </div>
@@ -52,7 +51,7 @@ function AnfrageInner(): JSX.Element {
             <div className="rounded border border-wertavio-border bg-wertavio-white p-4 text-sm text-wertavio-slate">
               <p>
                 Für das geführte Formular wird JavaScript benötigt. Bitte aktivieren Sie JavaScript in
-                Ihrem Browser — oder melden Sie sich per E-Mail, wenn Ihnen das recht ist.
+                Ihrem Browser oder melden Sie sich per E-Mail, wenn Ihnen das recht ist.
               </p>
             </div>
           </noscript>
@@ -69,7 +68,7 @@ function FallbackShell({ children }: { children: ReactNode }): JSX.Element {
   return (
     <>
       <Header />
-      <main className="section-y bg-wertavio-cream pt-24">
+      <main className="bg-wertavio-cream pb-20 pt-32 md:pb-28 md:pt-40">
         <div className="container-narrow space-y-8">{children}</div>
       </main>
       <Footer />

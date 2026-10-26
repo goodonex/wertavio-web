@@ -105,17 +105,17 @@ export function LeadForm({ flowType, prefill }: LeadFormProps): JSX.Element {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="mx-auto max-w-2xl overflow-hidden rounded-[10px] border border-wertavio-border bg-wertavio-white shadow-sm"
+      className="max-w-2xl rounded-2xl border border-wertavio-border bg-wertavio-white shadow-soft"
       noValidate
     >
-      <div className="sticky top-16 z-30 border-b border-wertavio-border bg-wertavio-white px-6 py-4 md:top-20">
+      <div className="sticky top-[72px] z-30 rounded-t-2xl border-b border-wertavio-border bg-wertavio-white px-6 py-4">
         <FormProgress progress={progress} />
       </div>
       <div className="space-y-8 p-6">
         <input type="hidden" {...register("flowType")} />
         {flowType === "makler" ? (
           <p className="text-sm text-wertavio-muted">
-            Nach dem Absenden erhalten Sie innerhalb von 48 Stunden einen Terminvorschlag fürs Partnergespräch — per E-Mail.
+            Nach dem Absenden erhalten Sie innerhalb von 48 Stunden einen Terminvorschlag fürs Partnergespräch, per E-Mail.
           </p>
         ) : null}
         <LeadFormStepFields step={step} register={register} control={control} errors={errors} />

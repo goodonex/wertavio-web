@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
@@ -8,105 +8,114 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { PRIMARY_CTA_LABEL } from "@/lib/cta";
 
-const navItems = [
-  { href: "#how-it-works", label: "Wie es funktioniert" },
-  { href: "#why-wertavio", label: "Warum Wertavio" },
-  { href: "#faq", label: "FAQ" },
-] as const;
+export interface HeaderProps {
+  /** Eigentümer-Seiten (Standard) oder Makler-Partnerseite. */
+  audience?: "owner" | "partner";
+}
 
-const pillClass =
-  "rounded-2xl border border-[rgba(255,255,255,0.12)] bg-[rgba(15,20,35,0.65)] py-2 pl-3 pr-3 shadow-[0_8px_32px_rgba(0,0,0,0.24)] [backdrop-filter:blur(20px)] [-webkit-backdrop-filter:blur(20px)] lg:rounded-full lg:py-[10px] lg:pl-6 lg:pr-4";
+const navByAudience = {
+  owner: [
+    { href: "/#how-it-works", label: "Wie es funktioniert" },
+    { href: "/#why-wertavio", label: "Warum Wertavio" },
+    { href: "/#faq", label: "FAQ" },
+    { href: "/partner", label: "Für Makler" },
+  ],
+  partner: [
+    { href: "/partner#ablauf", label: "Ablauf" },
+    { href: "/partner#preise", label: "Preise" },
+    { href: "/", label: "Für Eigentümer" },
+  ],
+} as const;
 
-export function Header(): JSX.Element {
+const ctaByAudience = {
+  owner: { href: "/anfrage", label: PRIMARY_CTA_LABEL, short: "Makler finden" },
+  partner: { href: "/partner#region", label: "Region prüfen", short: "Region prüfen" },
+} as const;
+
+export function Header({ audience = "owner" }: HeaderProps): JSX.Element {
   const pathname = usePathname();
-  const isHome = pathname === "/";
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+  const nav = navByAudience[audience];
+  const cta = ctaByAudience[audience];
 
   useEffect(() => {
     setMobileOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    const el = sentinelRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => setScrolled(!entry.isIntersecting));
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <header
-      className={cn(
-        "fixed top-4 z-50 flex flex-col gap-2",
-        "left-4 right-4 w-auto max-w-none translate-x-0",
-        "lg:left-1/2 lg:right-auto lg:min-w-[680px] lg:max-w-[calc(100vw-48px)] lg:w-max lg:-translate-x-1/2",
-      )}
-    >
-      <div className={cn("flex w-full items-center gap-2 lg:gap-6", pillClass)}>
-        <Link
-          href="/"
-          className="group/logo min-w-0 shrink font-display text-base font-semibold text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.35)] transition-colors sm:text-lg lg:text-xl"
-        >
-          <span
-            className={cn(
-              "inline-block bg-[length:200%_auto] bg-clip-text transition-[color,background-image] duration-300",
-              "motion-safe:group-hover/logo:animate-logo-shimmer",
-              "group-hover/logo:bg-gradient-to-r group-hover/logo:from-wertavio-cream group-hover/logo:via-wertavio-gold group-hover/logo:to-wertavio-cream group-hover/logo:text-transparent",
-            )}
-          >
+    <>
+      <div ref={sentinelRef} className="pointer-events-none absolute inset-x-0 top-0 h-2" aria-hidden />
+      <header
+        className={cn(
+          "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300",
+          scrolled || mobileOpen
+            ? "border-wertavio-border bg-wertavio-cream/90 [-webkit-backdrop-filter:blur(14px)] [backdrop-filter:blur(14px)]"
+            : "border-transparent bg-wertavio-cream",
+        )}
+      >
+        <div className="container-wide flex h-[72px] items-center gap-6">
+          <Link href="/" className="font-display text-[1.375rem] font-bold tracking-[-0.03em] text-wertavio-slate">
             Wertavio
-          </span>
-        </Link>
+          </Link>
 
-        <nav className="hidden flex-1 justify-center gap-5 lg:flex lg:gap-6" aria-label="Hauptnavigation">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={isHome ? item.href : `/${item.href}`}
-              className="whitespace-nowrap text-sm font-medium text-white/90 transition-colors hover:text-white"
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="ml-auto flex shrink-0 items-center gap-1.5 lg:gap-2">
-          <Button
-            href="/anfrage"
-            className="!rounded-full !px-3 !py-1.5 text-[13px] leading-tight lg:!px-4 lg:!py-2 lg:text-sm"
-            enableIdleGlow
-          >
-            <span className="lg:hidden">Anfrage starten</span>
-            <span className="hidden lg:inline">{PRIMARY_CTA_LABEL}</span>
-          </Button>
-
-          <button
-            type="button"
-            className="inline-flex rounded-full p-2 text-white hover:bg-white/10 lg:hidden"
-            aria-expanded={mobileOpen}
-            aria-controls="mobile-nav"
-            onClick={() => setMobileOpen((o) => !o)}
-          >
-            <span className="sr-only">Menü</span>
-            {mobileOpen ? <X className="h-6 w-6" aria-hidden /> : <Menu className="h-6 w-6" aria-hidden />}
-          </button>
-        </div>
-      </div>
-
-      {mobileOpen ? (
-        <div
-          id="mobile-nav"
-          className={cn(
-            "flex flex-col rounded-2xl border border-[rgba(255,255,255,0.12)] bg-[rgba(15,20,35,0.92)] px-2 py-2 shadow-[0_8px_32px_rgba(0,0,0,0.24)] [backdrop-filter:blur(20px)] [-webkit-backdrop-filter:blur(20px)] lg:hidden",
-          )}
-        >
-          <ul className="flex flex-col">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={isHome ? item.href : `/${item.href}`}
-                  className="block rounded-xl px-4 py-3 text-sm font-medium text-white/95 hover:bg-white/10"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {item.label}
-                </a>
-              </li>
+          <nav className="ml-6 hidden items-center gap-7 lg:flex" aria-label="Hauptnavigation">
+            {nav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="whitespace-nowrap text-[0.9375rem] font-medium text-wertavio-slate/75 transition-colors hover:text-wertavio-slate"
+              >
+                {item.label}
+              </Link>
             ))}
-          </ul>
+          </nav>
+
+          <div className="ml-auto flex items-center gap-2">
+            <Button href={cta.href} className="px-4 py-2.5 text-sm lg:px-5">
+              <span className="sm:hidden">{cta.short}</span>
+              <span className="hidden sm:inline">{cta.label}</span>
+            </Button>
+            <button
+              type="button"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full text-wertavio-slate hover:bg-wertavio-slate/5 lg:hidden"
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-nav"
+              onClick={() => setMobileOpen((o) => !o)}
+            >
+              <span className="sr-only">Menü</span>
+              {mobileOpen ? <X className="h-6 w-6" aria-hidden /> : <Menu className="h-6 w-6" aria-hidden />}
+            </button>
+          </div>
         </div>
-      ) : null}
-    </header>
+
+        {mobileOpen ? (
+          <nav id="mobile-nav" className="container-wide pb-5 lg:hidden" aria-label="Mobile Navigation">
+            <ul className="flex flex-col border-t border-wertavio-border pt-2">
+              {nav.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="block py-3 text-base font-medium text-wertavio-slate"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ) : null}
+      </header>
+    </>
   );
 }

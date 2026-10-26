@@ -15,7 +15,7 @@ export function StepKontakt({
   return (
     <section aria-labelledby="step3-title" className="space-y-6">
       <h2 id="step3-title" className="text-lg font-semibold text-wertavio-slate">
-        Schritt 3 — Ihre Kontaktdaten
+        Schritt 3: Ihre Kontaktdaten
       </h2>
       <div className="grid gap-4 sm:grid-cols-2">
         <TextField

@@ -6,7 +6,7 @@ const localBusinessJsonLd = {
   name: "Wertavio",
   url: "https://wertavio.de",
   description:
-    "Eigentümer erhalten innerhalb von 48 Stunden einen passenden Makler — 0 € Entgelt bei Wertavio, ohne Portal-Streuung.",
+    "Eigentümer erhalten innerhalb von 48 Stunden einen passenden Makler: 0 € Entgelt bei Wertavio, ohne Portal-Streuung.",
   addressCountry: "DE",
 } as const;
 

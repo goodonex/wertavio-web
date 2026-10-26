@@ -1,58 +1,74 @@
 "use client";
 
-import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { StaggerItem, StaggerReveal } from "@/components/ui/StaggerReveal";
-import { TrustCertificateCard } from "@/components/sections/TrustCertificateCard";
 
-const points = [
+const checks = [
   {
-    title: "Ein Makler. Nicht zehn.",
-    body: "Ihre Anfrage geht an genau einen ausgewählten Spezialisten — nicht an ein Raster von fünf Konkurrenten.",
+    title: "Prüfung vor der Aufnahme",
+    body: "Jedes Büro wird persönlich geprüft, bevor es eine einzige Anfrage erhält.",
   },
   {
-    title: "Aufnahme nur nach Check",
-    body: "Jedes Büro wird vor Netzwerkaufnahme geprüft — und mindestens 1× jährlich erneut bewertet.",
+    title: "Neubewertung jedes Jahr",
+    body: "Mindestens einmal pro Jahr wird jedes Büro erneut bewertet.",
   },
   {
-    title: "0 € für Eigentümer",
-    body: "Sie zahlen kein Honorar an Wertavio — weder vorweg noch nach erfolgreichem Verkauf.",
+    title: "Klare Mindestvoraussetzung",
+    body: "Ohne IHK-Sachkundenachweis nach §34c GewO kommt niemand ins Netzwerk.",
   },
-  {
-    title: "Gebaut von Makler-Alltag",
-    body: "Kevin Herrmann verkaufte Jahre lang selbst Immobilien — aus Sicht von Eigentümer und Makler.",
-  },
+] as const;
+
+const credentials = [
+  { name: "IHK-Zertifiziert", line: "Sachkundenachweis §34c GewO" },
+  { name: "IVD-Mitglied", line: "Immobilienverband Deutschland" },
+  { name: "DEKRA-geprüft", line: "Unabhängige Qualitätsprüfung" },
+  { name: "TÜV-zertifiziert", line: "Geprüfte Fachkompetenz" },
+  { name: "gif-Mitglied", line: "Immobilienwirtschaftliche Forschung" },
+  { name: "DIA-Absolvent", line: "Deutsche Immobilien-Akademie" },
 ] as const;
 
 export function TrustSignals(): JSX.Element {
   return (
-    <SectionWrapper id="why-wertavio" background="cream">
-      <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-5 lg:gap-14">
-        <div className="lg:col-span-3">
-          <StaggerReveal className="max-w-xl md:max-w-none">
+    <section id="why-wertavio" className="section-y">
+      <div className="container-wide grid gap-14 lg:grid-cols-12 lg:gap-12">
+        <div className="lg:col-span-6">
+          <StaggerReveal>
             <StaggerItem>
-              <p className="text-eyebrow">Warum Wertavio</p>
+              <h2 className="text-h2 text-wertavio-slate">Ins Netzwerk kommt nur, wer geprüft ist</h2>
             </StaggerItem>
             <StaggerItem>
-              <h2 className="text-h2 mt-3 text-balance text-wertavio-slate">
-                Weniger Streuung — mehr klare Zuordnung
-              </h2>
+              <p className="text-lead mt-5 max-w-[46ch]">
+                Jeder Makler im Wertavio-Netzwerk wird vor Aufnahme persönlich geprüft. Für jedes Büro gilt dasselbe
+                Verfahren.
+              </p>
             </StaggerItem>
           </StaggerReveal>
-          <StaggerReveal className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
-            {points.map((p) => (
-              <StaggerItem key={p.title}>
-                <article className="card-surface-hover space-y-3">
-                  <h3 className="text-lg font-semibold text-wertavio-slate text-balance">{p.title}</h3>
-                  <p className="text-sm leading-relaxed text-wertavio-muted text-pretty">{p.body}</p>
-                </article>
+          <StaggerReveal as="ul" className="mt-10 space-y-7">
+            {checks.map((c) => (
+              <StaggerItem as="li" key={c.title} className="border-l-2 border-wertavio-gold pl-5">
+                <h3 className="text-h3 text-wertavio-slate">{c.title}</h3>
+                <p className="mt-1.5 max-w-[46ch] leading-relaxed text-wertavio-muted">{c.body}</p>
               </StaggerItem>
             ))}
           </StaggerReveal>
         </div>
-        <div className="flex justify-center lg:col-span-2 lg:justify-end lg:pt-4">
-          <TrustCertificateCard />
-        </div>
+
+        <StaggerReveal className="lg:col-span-6 lg:col-start-7">
+          <StaggerItem className="rounded-2xl bg-wertavio-stone p-6 sm:p-8">
+            <p className="text-h3 text-wertavio-slate">Qualifikationen im Netzwerk</p>
+            <ul className="mt-6 grid gap-x-6 sm:grid-cols-2">
+              {credentials.map((c) => (
+                <li key={c.name} className="border-t border-wertavio-slate/10 py-4">
+                  <p className="font-semibold text-wertavio-slate">{c.name}</p>
+                  <p className="mt-0.5 text-sm text-wertavio-muted">{c.line}</p>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 text-xs leading-relaxed text-wertavio-muted">
+              Nicht alle Partner tragen alle Zertifikate. Mindestvoraussetzung ist der IHK-Sachkundenachweis §34c GewO.
+            </p>
+          </StaggerItem>
+        </StaggerReveal>
       </div>
-    </SectionWrapper>
+    </section>
   );
 }

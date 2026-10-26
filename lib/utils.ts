@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]): string {
   return twMerge(clsx(inputs));
 }
 
-export const motionEase = [0.25, 0.1, 0.25, 1] as const;
+export const motionEase = [0.22, 1, 0.36, 1] as const;
 
 export const staggerContainer = {
   hidden: {},
@@ -14,16 +14,8 @@ export const staggerContainer = {
   },
 } as const;
 
-/** Rezensionskarten: etwas großzügigerer Abstand */
-export const reviewStaggerContainer = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren: 0.1, delayChildren: 0.04 },
-  },
-} as const;
-
 export const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 16 },
   show: {
     opacity: 1,
     y: 0,

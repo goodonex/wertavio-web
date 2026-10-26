@@ -5,22 +5,26 @@ alwaysApply: true
 
 # Farben (Tailwind `wertavio.*`)
 
-- slate `#1A1F2E`, gold `#B8902A`, gold-light `#D4A843`, cream `#FAFAF5`, white `#FFFFFF`, muted `#6B7380`, border `#E4E2D8`, slate-soft `#2A3045`
-- Gold **sparsam**: primäre CTAs, Heading-Underline, nummerierte Steps, punktuelle Icon-Akzente (Homepage ca. ≤6 sichtbare Gold-Akzente)
-- Kein Blau als Akzent; keine Gradients
+- slate `#1A1F2E` (Tinte), slate-soft `#2A3045`, gold `#C9A84C`, gold-light `#DFC278`, gold-ink `#85671C`, cream `#FAFAF5` (Seite), stone `#F1EEE5` (getönte Panels), white, muted `#5E6573`, border `#E4E2D8`
+- Primär-CTA: auf hellem Grund Tinte (`Button variant="primary"`), auf dunklem Grund Gold (`variant="gold"`). Ein Label überall: `PRIMARY_CTA_LABEL` aus `lib/cta.ts`
+- Gold als Text/Icon auf hellem Grund nur als `gold-ink` (AA); reines Gold nur auf dunklem Grund oder als Fläche
+- Ein dunkler Kontrastmoment pro Seite (Startseite: „Was auf dem Spiel steht“, Partner: Preise) plus CTA-Panel und Footer. Dunkle Flächen bekommen die Klasse `on-dark` (Fokusring)
 
 # Layout & Typo
 
-- Hero + ausgewählte CTAs: dunkler Slate-Hintergrund; sonst cream / weiße Cards
-- Cards: weiß, Rand `wertavio-border`, `rounded-[10px]`, `p-6`, nur `shadow-sm`
-- Section: `py-16 md:py-24`, Content `max-w-5xl` zentriert, Mobile min. horizontales Padding (`px-4`)
-- H1/H2 per Utilities (`text-h1` / `text-h2` in globals); Eyebrow 11px uppercase tracking-widest muted
-- Body min. 14px; Fließtext `leading-relaxed`
+- Headlines: Schibsted Grotesk (`font-display`, bold, enges Tracking) über `text-h1` / `text-h2` / `text-h3`; Fließtext Inter, `text-lead` für Einleitungen
+- Keine Serifen-Mischung, keine kursiv gesetzten Einzelwörter in Headlines, kein Geviertstrich `—` im sichtbaren Text
+- Container `container-wide` (max-w-6xl), Sections `section-y`, Trennung über `border-t border-wertavio-border` statt Farbwechsel
+- Radius: Flächen und Bilder `rounded-2xl`, Interaktives als Pill (`rounded-full`)
+- Eyebrow (`text-eyebrow`) höchstens 1× pro 3 Sektionen; Standard ist: weglassen
+- Keine drei gleichen Karten nebeneinander; jede Sektion eine eigene Layout-Familie
+- Achtung: `cn()`/twMerge entfernt `text-h*`, wenn eine `text-<farbe>`-Klasse folgt. Für `text-h*` Template-Strings statt `cn()` nutzen
 
 # Motion
 
-- Sektionen: Fade-up beim Scroll, stagger ~0.08s, ease `[0.25,0.1,0.25,1]`
-- `prefers-reduced-motion`: Animationen reduzieren/abschalten
-- Header: `backdrop-blur` + Border **erst nach Scroll**
-- TrustBar-Marquee: Pause bei Hover; bei reduced-motion statisch oder minimal
-- Primary CTA: dezenter Hover-Scale, optionales subtiles Idle-Glow (kein „Portal-Glass“ auf Cards)
+- Hero: einmaliger Einstieg (Headline → Text → CTA → Bild), danach ruhig
+- Sektionen: `StaggerReveal`/`StaggerItem`, Fade-up 16px, einmalig
+- Vergleich „Ein Makler statt zehn Anrufe“: Zustandswechsel Portal → Wertavio einmal automatisch, danach nur per Klick
+- Keine Idle-Animationen, Puls- oder Glow-Effekte, keine Marquees
+- `prefers-reduced-motion`: alle Animationen aus (`usePrefersReducedMotion`)
+- Header: Blur + Border erst nach Scroll (IntersectionObserver, kein Scroll-Listener)

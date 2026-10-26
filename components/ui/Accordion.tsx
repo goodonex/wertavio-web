@@ -1,9 +1,9 @@
 "use client";
 
-import { ChevronDown } from "lucide-react";
+import { Plus } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useId, useState } from "react";
-import { cn } from "@/lib/utils";
+import { cn, motionEase } from "@/lib/utils";
 
 export interface AccordionItemData {
   id: string;
@@ -17,41 +17,32 @@ export interface AccordionProps {
 
 export function Accordion({ items }: AccordionProps): JSX.Element {
   const [openId, setOpenId] = useState<string | null>(items[0]?.id ?? null);
-  const headingId = useId();
+  const baseId = useId();
 
   return (
-    <div className="flex flex-col gap-3">
-      {items.map((item, index) => {
+    <div className="border-b border-wertavio-border">
+      {items.map((item) => {
         const isOpen = openId === item.id;
-        const headerId = `${headingId}-${item.id}-h`;
-        const panelId = `${headingId}-${item.id}-p`;
+        const headerId = `${baseId}-${item.id}-h`;
+        const panelId = `${baseId}-${item.id}-p`;
 
         return (
-          <div key={item.id} className="card-surface relative overflow-hidden p-0">
-            <motion.span
-              aria-hidden
-              className="pointer-events-none absolute left-0 top-0 z-0 h-full w-0 origin-left bg-wertavio-gold"
-              initial={false}
-              animate={{ width: isOpen ? 3 : 0 }}
-              transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-            />
-            <h3 className="text-base font-semibold text-wertavio-slate">
+          <div key={item.id} className="border-t border-wertavio-border">
+            <h3>
               <button
                 type="button"
                 id={headerId}
                 aria-expanded={isOpen}
                 aria-controls={panelId}
-                className="relative z-[1] flex w-full items-center justify-between gap-4 px-6 py-4 text-left text-base font-semibold text-wertavio-slate transition-colors hover:bg-wertavio-cream/60"
+                className="flex w-full items-center justify-between gap-6 py-5 text-left font-display text-lg font-semibold text-wertavio-slate transition-colors hover:text-wertavio-slate/75"
                 onClick={() => setOpenId(isOpen ? null : item.id)}
               >
-                <span className="pr-2">
-                  {index + 1}. {item.question}
-                </span>
-                <ChevronDown
+                <span>{item.question}</span>
+                <Plus
                   aria-hidden
                   className={cn(
-                    "h-5 w-5 shrink-0 text-wertavio-muted transition-transform duration-300",
-                    isOpen ? "rotate-180" : "rotate-0",
+                    "h-5 w-5 shrink-0 text-wertavio-gold-ink transition-transform duration-300",
+                    isOpen && "rotate-45",
                   )}
                 />
               </button>
@@ -65,12 +56,10 @@ export function Accordion({ items }: AccordionProps): JSX.Element {
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.28, ease: [0.25, 0.1, 0.25, 1] }}
-                  className="relative z-[1] overflow-hidden px-6"
+                  transition={{ duration: 0.3, ease: motionEase }}
+                  className="overflow-hidden"
                 >
-                  <p className="pb-5 text-sm leading-relaxed text-wertavio-muted">
-                    {item.answer}
-                  </p>
+                  <p className="max-w-[62ch] pb-6 leading-relaxed text-wertavio-muted">{item.answer}</p>
                 </motion.div>
               ) : null}
             </AnimatePresence>

@@ -4,96 +4,85 @@
 
 @layer base {
   html {
-    @apply m-0 p-0 scroll-smooth;
+    @apply m-0 scroll-smooth p-0;
+    scroll-padding-top: 5.5rem;
   }
 
   body {
     @apply m-0 overflow-x-hidden bg-wertavio-cream p-0 font-sans text-base leading-relaxed text-wertavio-slate antialiased;
   }
+
+  :focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-wertavio-gold-ink;
+  }
+
+  /* Dunkle Flächen: Fokusring in Gold, damit er dort sichtbar bleibt. */
+  .on-dark :focus-visible {
+    @apply outline-wertavio-gold;
+  }
+
+  .on-dark .on-light :focus-visible {
+    @apply outline-wertavio-gold-ink;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
 }
 
 @layer components {
   .text-eyebrow {
-    @apply text-center text-[11px] font-medium uppercase tracking-[0.1em] text-wertavio-muted md:text-left;
+    @apply text-xs font-semibold uppercase tracking-[0.14em] text-wertavio-gold-ink;
   }
 
   .text-h1 {
-    font-family: var(--font-playfair), Georgia, serif;
-    font-size: 2.25rem;
-    line-height: 1.1;
-    @apply font-normal;
-  }
-
-  @media (min-width: 768px) {
-    .text-h1 {
-      font-size: clamp(2.75rem, 5vw, 4.5rem);
-    }
+    @apply font-display font-bold text-balance;
+    font-size: clamp(2.35rem, 1.6rem + 3.2vw, 4rem);
+    line-height: 1.04;
+    letter-spacing: -0.03em;
   }
 
   .text-h2 {
-    font-family: var(--font-playfair), Georgia, serif;
-    font-size: 1.875rem;
-    line-height: 1.2;
-    @apply font-normal;
+    @apply font-display font-bold text-balance;
+    font-size: clamp(1.85rem, 1.35rem + 2vw, 2.9rem);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
   }
 
-  @media (min-width: 768px) {
-    .text-h2 {
-      font-size: clamp(1.75rem, 3vw, 2.75rem);
-    }
+  .text-h3 {
+    @apply font-display text-xl font-semibold;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
   }
 
+  .text-lead {
+    @apply text-pretty text-[1.0625rem] leading-relaxed text-wertavio-muted md:text-lg;
+  }
+
+  /* Ein Radius-System: Flächen und Bilder 16px, Interaktives als Pill. */
   .card-surface {
-    @apply w-full rounded-[10px] border border-wertavio-border bg-wertavio-white p-6 shadow-sm;
+    @apply w-full rounded-2xl border border-wertavio-border bg-wertavio-white p-6;
   }
 
   .card-surface-hover {
-    @apply w-full card-surface transition-transform duration-200 ease-out motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-md;
+    @apply card-surface;
   }
 
   .section-y {
-    @apply py-16 md:py-24;
+    @apply py-20 md:py-28;
+  }
+
+  .container-wide {
+    @apply mx-auto w-full max-w-6xl px-5 md:px-8;
   }
 
   .container-narrow {
-    @apply mx-auto w-full max-w-5xl px-4;
+    @apply mx-auto w-full max-w-5xl px-5 md:px-8;
   }
 
   .link-underline-gold {
     @apply underline decoration-wertavio-gold decoration-2 underline-offset-4;
   }
-
-  .motion-safe\:animate-marquee {
-    animation: marquee 36s linear infinite;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .motion-safe\:animate-marquee {
-      animation: none;
-    }
-
-    .motion-safe\:animate-cta-idle-glow {
-      animation: none !important;
-    }
-
-    .motion-safe\:animate-cta-ring-pulse {
-      animation: none !important;
-    }
-  }
-}
-
-/* Scrollbar — dezent */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(26, 31, 46, 0.28) transparent;
-}
-
-*::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: rgba(26, 31, 46, 0.28);
-  border-radius: 9999px;
 }

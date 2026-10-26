@@ -14,7 +14,7 @@ export function StepZiel({
   return (
     <section aria-labelledby="step2-title" className="space-y-6">
       <h2 id="step2-title" className="text-lg font-semibold text-wertavio-slate">
-        Schritt 2 — Ihr Ziel
+        Schritt 2: Ihr Ziel
       </h2>
       <Fieldset legend="Zeitrahmen" error={errors.timeline?.message} id="timeline">
         <Controller

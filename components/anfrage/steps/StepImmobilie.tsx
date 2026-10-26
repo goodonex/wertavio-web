@@ -16,7 +16,7 @@ export function StepImmobilie({
   return (
     <section aria-labelledby="step1-title" className="space-y-6">
       <h2 id="step1-title" className="text-lg font-semibold text-wertavio-slate">
-        Schritt 1 — Ihre Immobilie
+        Schritt 1: Ihre Immobilie
       </h2>
       <Fieldset legend="Immobilienart" error={errors.propertyType?.message} id="propertyType">
         <Controller

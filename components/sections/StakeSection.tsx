@@ -1,106 +1,71 @@
 "use client";
 
-import { useRef } from "react";
-import { useInView } from "framer-motion";
-import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { Button } from "@/components/ui/Button";
 import { StaggerItem, StaggerReveal } from "@/components/ui/StaggerReveal";
-import { useCountUp } from "@/lib/useCountUp";
+import { PRIMARY_CTA_LABEL } from "@/lib/cta";
 
-function formatDeInteger(n: number): string {
-  return new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 }).format(Math.round(n));
-}
-
-function StatBlock({
-  active,
-  variant,
-}: {
-  active: boolean;
-  variant: "euro" | "months" | "thirds";
-}): JSX.Element {
-  const euro = useCountUp(47_000, active && variant === "euro", 800);
-  const months = useCountUp(4.2, active && variant === "months", 800);
-  const oneOfThree = useCountUp(1, active && variant === "thirds", 800);
-
-  if (variant === "euro") {
-    return (
-      <span className="block font-display text-[3rem] leading-none text-wertavio-gold">
-        ∅ {formatDeInteger(euro)} €
-      </span>
-    );
-  }
-  if (variant === "months") {
-    const formatted = months.toFixed(1).replace(".", ",");
-    return (
-      <span className="block font-display text-[3rem] leading-none text-wertavio-gold">{formatted} Monate</span>
-    );
-  }
-  return (
-    <span className="block font-display text-[3rem] leading-none text-wertavio-gold">
-      {Math.round(oneOfThree)} von 3
-    </span>
-  );
-}
-
-const cards = [
+const stakes = [
   {
-    variant: "euro" as const,
+    value: "∅ 47.000 €",
     label: "Unter Marktwert",
     body: "So viel lassen Eigentümer im Schnitt liegen, wenn der falsche Makler den falschen Preis ansetzt.",
   },
   {
-    variant: "months" as const,
+    value: "4,2 Monate",
     label: "Verlorene Zeit",
-    body: "So lange dauert ein Verkauf mit dem falschen Makler durchschnittlich länger — mit allen Folgekosten.",
+    body: "So lange dauert ein Verkauf mit dem falschen Makler durchschnittlich länger, mit allen Folgekosten.",
   },
   {
-    variant: "thirds" as const,
+    value: "1 von 3",
     label: "Eigentümer bereut",
     body: "Jeder dritte Verkäufer würde im Nachhinein einen anderen Makler wählen.",
   },
-];
+] as const;
 
 export function StakeSection(): JSX.Element {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.25 });
-
   return (
-    <SectionWrapper id="geistige-brandstiftung" background="slate">
-      <div ref={ref}>
-        <StaggerReveal className="mx-auto max-w-3xl text-center md:mx-0 md:text-left">
+    <section id="was-auf-dem-spiel-steht" className="on-dark section-y bg-wertavio-slate text-wertavio-cream">
+      <div className="container-wide grid gap-14 lg:grid-cols-12 lg:gap-12">
+        <StaggerReveal className="lg:col-span-5">
           <StaggerItem>
-            <p className="text-eyebrow text-wertavio-cream/70">WAS AUF DEM SPIEL STEHT</p>
+            <h2 className="text-h2 text-white">Ein falscher Makler kostet Sie mehr als seine Provision.</h2>
           </StaggerItem>
           <StaggerItem>
-            <h2 className="text-h2 mt-3 text-balance text-wertavio-white">
-              Ein falscher Makler kostet Sie mehr als seine Provision.
-            </h2>
-          </StaggerItem>
-          <StaggerItem>
-            <p className="mt-4 text-base leading-relaxed text-wertavio-cream/85 text-pretty">
-              Der häufigste Fehler beim Immobilienverkauf ist nicht der Makler, der zu viel nimmt — sondern der, der zu
+            <p className="mt-5 max-w-[42ch] text-pretty text-lg leading-relaxed text-wertavio-cream/75">
+              Der häufigste Fehler beim Immobilienverkauf ist nicht der Makler, der zu viel nimmt, sondern der, der zu
               wenig erreicht.
             </p>
           </StaggerItem>
+          <StaggerItem className="mt-9">
+            <Button href="/anfrage" variant="gold">
+              {PRIMARY_CTA_LABEL}
+            </Button>
+          </StaggerItem>
         </StaggerReveal>
 
-        <StaggerReveal className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-          {cards.map((c) => (
-            <StaggerItem key={c.label}>
-              <article className="flex h-full w-full flex-col gap-4 rounded-[10px] bg-wertavio-slate-soft p-6 shadow-sm">
-                <StatBlock active={inView} variant={c.variant} />
-                <h3 className="text-base font-semibold text-wertavio-white">{c.label}</h3>
-                <p className="text-sm leading-relaxed text-wertavio-cream/75 text-pretty">{c.body}</p>
-              </article>
-            </StaggerItem>
-          ))}
-        </StaggerReveal>
-
-        <div className="mx-auto mt-12 flex max-w-xl flex-col items-center gap-3 text-center md:mx-0 md:items-start md:text-left">
-          <Button href="/anfrage">Jetzt den richtigen Makler finden →</Button>
-          <p className="text-[11px] text-wertavio-cream/55">* Schätzwerte basierend auf Marktbeobachtungen</p>
+        <div className="lg:col-span-7">
+          <StaggerReveal as="ul">
+            {stakes.map((s) => (
+              <StaggerItem
+                as="li"
+                key={s.label}
+                className="grid gap-2 border-t border-white/15 py-7 sm:grid-cols-[15rem_1fr] sm:gap-8"
+              >
+                <p className="whitespace-nowrap font-display text-4xl font-bold tracking-[-0.03em] text-wertavio-gold md:text-[2.75rem] md:leading-none">
+                  {s.value}
+                </p>
+                <div>
+                  <p className="font-semibold text-white">{s.label}</p>
+                  <p className="mt-1 text-pretty leading-relaxed text-wertavio-cream/70">{s.body}</p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerReveal>
+          <p className="border-t border-white/15 pt-5 text-xs text-wertavio-cream/60">
+            * Schätzwerte basierend auf Marktbeobachtungen
+          </p>
         </div>
       </div>
-    </SectionWrapper>
+    </section>
   );
 }

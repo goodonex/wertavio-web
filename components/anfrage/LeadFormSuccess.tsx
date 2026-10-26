@@ -18,7 +18,7 @@ export function LeadFormSuccess({ firstName }: LeadFormSuccessProps): JSX.Elemen
         <SuccessCheckmark />
       </div>
       <p className="text-lg font-semibold text-wertavio-slate">
-        Vielen Dank{namePart}. Die erste Rückmeldung erreicht Sie innerhalb von 48 Stunden — per E-Mail
+        Vielen Dank{namePart}. Die erste Rückmeldung erreicht Sie innerhalb von 48 Stunden per E-Mail
         oder Telefon, mit einem konkret benannten Makler.
       </p>
       <div className="space-y-4">

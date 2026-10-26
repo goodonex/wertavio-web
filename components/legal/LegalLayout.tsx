@@ -11,7 +11,7 @@ export function LegalLayout({ title, children }: LegalLayoutProps): JSX.Element 
   return (
     <>
       <Header />
-      <main className="section-y bg-wertavio-cream pt-24">
+      <main className="bg-wertavio-cream pb-20 pt-32 md:pb-28 md:pt-40">
         <article className="container-narrow max-w-2xl space-y-10">
           <h1 className="text-h2 text-balance text-wertavio-slate">{title}</h1>
           <div className="space-y-10 text-sm leading-relaxed">{children}</div>

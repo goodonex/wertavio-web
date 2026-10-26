@@ -7,7 +7,7 @@ alwaysApply: true
 
 - Next.js 14 App Router, TypeScript strict, Deploy Vercel
 - Tailwind CSS v3, Framer Motion, react-hook-form + zod + @hookform/resolvers
-- Icons lucide-react; Fonts `next/font/google` — Playfair Display (headings), Inter (body)
+- Icons lucide-react; Fonts `next/font/google`: Schibsted Grotesk (headings), Inter (body)
 - Import-Alias `@/*`
 
 # Sprache & Domain

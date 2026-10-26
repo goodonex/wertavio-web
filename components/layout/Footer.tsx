@@ -1,67 +1,58 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
-import { motionEase } from "@/lib/utils";
-import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
-const footerLinkClass =
-  "text-wertavio-muted transition-colors duration-200 hover:text-wertavio-gold-light";
-
-const maklerFooterLinkClass =
-  "text-xs text-wertavio-muted transition-colors duration-200 hover:text-wertavio-gold";
+const columns = [
+  {
+    title: "Eigentümer",
+    links: [
+      { href: "/#how-it-works", label: "Wie es funktioniert" },
+      { href: "/#faq", label: "FAQ" },
+      { href: "/anfrage", label: "Makler finden" },
+    ],
+  },
+  {
+    title: "Makler",
+    links: [{ href: "/partner", label: "Partner werden" }],
+  },
+  {
+    title: "Rechtliches",
+    links: [
+      { href: "/impressum", label: "Impressum" },
+      { href: "/datenschutz", label: "Datenschutz" },
+      { href: "/agb", label: "Nutzungsbedingungen" },
+    ],
+  },
+] as const;
 
 export function Footer(): JSX.Element {
-  const prefersReducedMotion = usePrefersReducedMotion();
-
-  const inner = (
-    <>
-      <div className="container-narrow flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
-        <div className="max-w-md space-y-3">
-          <p className="font-display text-2xl font-semibold text-white">Wertavio</p>
-          <p className="text-sm leading-relaxed text-white/90">
-            Der richtige Makler. Für Ihre Immobilie.
+  return (
+    <footer className="on-dark bg-wertavio-slate pb-10 pt-16 text-wertavio-cream md:pt-20">
+      <div className="container-wide grid gap-12 md:grid-cols-[1.4fr_repeat(3,1fr)]">
+        <div className="max-w-xs">
+          <p className="font-display text-2xl font-bold tracking-[-0.03em] text-white">Wertavio</p>
+          <p className="mt-3 text-sm leading-relaxed text-wertavio-cream/70">
+            Der richtige Makler für Ihre Immobilie. Persönlich ausgewählt, für Eigentümer kostenlos.
           </p>
         </div>
-        <nav aria-label="Fußzeilen-Navigation" className="flex flex-col gap-3 text-sm sm:flex-row sm:flex-wrap sm:gap-x-8">
-          <Link href="/impressum" className={footerLinkClass}>
-            Impressum
-          </Link>
-          <Link href="/datenschutz" className={footerLinkClass}>
-            Datenschutz
-          </Link>
-          <Link href="/agb" className={footerLinkClass}>
-            Nutzungsbedingungen
-          </Link>
-        </nav>
+        {columns.map((col) => (
+          <nav key={col.title} aria-label={col.title}>
+            <p className="text-sm font-semibold text-white">{col.title}</p>
+            <ul className="mt-2 text-sm">
+              {col.links.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="inline-block py-2.5 text-wertavio-cream/70 transition-colors hover:text-white">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))}
       </div>
-      <div className="container-narrow mt-12 border-t border-white/10 pt-8">
-        <p className="text-xs text-white/90">© 2026 Wertavio. Alle Rechte vorbehalten.</p>
-        <p className="mt-3 border-t border-white/10 pt-3 text-xs text-white/90">
-          <span className="text-white/45" aria-hidden>
-            ·{" "}
-          </span>
-          <Link href="/partner" className={maklerFooterLinkClass}>
-            Für Makler
-          </Link>
+      <div className="container-wide mt-14">
+        <p className="border-t border-white/10 pt-6 text-xs text-wertavio-cream/60">
+          © 2026 Wertavio. Alle Rechte vorbehalten.
         </p>
       </div>
-    </>
-  );
-
-  if (prefersReducedMotion) {
-    return <footer className="bg-wertavio-slate py-16">{inner}</footer>;
-  }
-
-  return (
-    <motion.footer
-      className="bg-wertavio-slate py-16"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.55, ease: motionEase }}
-    >
-      {inner}
-    </motion.footer>
+    </footer>
   );
 }

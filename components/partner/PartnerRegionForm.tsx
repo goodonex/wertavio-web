@@ -51,7 +51,7 @@ export function PartnerRegionForm(): JSX.Element {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="mx-auto max-w-lg space-y-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
       <div>
         <label htmlFor="pr-plz" className="mb-2 block text-sm font-medium text-wertavio-slate">
           Postleitzahl
@@ -74,11 +74,12 @@ export function PartnerRegionForm(): JSX.Element {
               key={opt}
               type="button"
               className={cn(
-                "rounded border px-3 py-2 text-sm font-medium transition-colors",
+                "min-h-11 rounded-full border px-4 py-2 text-sm font-medium transition-colors",
                 spez === opt
-                  ? "border-wertavio-gold bg-wertavio-gold/15 text-wertavio-slate"
-                  : "border-wertavio-border bg-wertavio-white text-wertavio-slate hover:border-wertavio-gold/50",
+                  ? "border-wertavio-slate bg-wertavio-slate text-wertavio-cream"
+                  : "border-wertavio-border bg-wertavio-white text-wertavio-slate hover:border-wertavio-slate/40",
               )}
+              aria-pressed={spez === opt}
               onClick={() => setValue("spezialisierung", opt, { shouldValidate: true })}
             >
               {opt}
@@ -107,8 +108,8 @@ export function PartnerRegionForm(): JSX.Element {
       </div>
 
       <div className="space-y-2">
-        <Button type="submit" className="w-full justify-center">
-          Verfügbarkeit prüfen →
+        <Button type="submit" className="w-full">
+          Verfügbarkeit prüfen
         </Button>
         <p className="text-center text-xs text-wertavio-muted">Wir melden uns innerhalb von 24h.</p>
       </div>

@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 export const inputClass =
-  "w-full rounded border border-wertavio-border bg-wertavio-white px-3 py-3 text-sm text-wertavio-slate outline-none ring-wertavio-gold/40 focus:ring-2";
+  "w-full rounded-xl border border-wertavio-border bg-wertavio-white px-4 py-3 text-base text-wertavio-slate outline-none transition-colors focus:border-wertavio-slate focus-visible:outline-none focus:ring-2 focus:ring-wertavio-gold/40";
 
 export function Fieldset({
   legend,
@@ -43,10 +43,10 @@ export function ChoiceGroup({
           key={opt}
           type="button"
           className={cn(
-            "rounded border px-3 py-2 text-sm font-medium transition-colors",
+            "min-h-11 rounded-full border px-4 py-2 text-sm font-medium transition-colors",
             v === opt
-              ? "border-wertavio-gold bg-wertavio-gold/10 text-wertavio-slate"
-              : "border-wertavio-border bg-wertavio-white text-wertavio-slate hover:border-wertavio-gold/50",
+              ? "border-wertavio-slate bg-wertavio-slate text-wertavio-cream"
+              : "border-wertavio-border bg-wertavio-white text-wertavio-slate hover:border-wertavio-slate/40",
           )}
           aria-pressed={v === opt}
           onClick={() => onChange(opt)}
