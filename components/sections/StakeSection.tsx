@@ -1,72 +1,28 @@
 "use client";
 
-import { useRef } from "react";
-import { useInView } from "framer-motion";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { Button } from "@/components/ui/Button";
 import { StaggerItem, StaggerReveal } from "@/components/ui/StaggerReveal";
-import { useCountUp } from "@/lib/useCountUp";
-
-function formatDeInteger(n: number): string {
-  return new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 }).format(Math.round(n));
-}
-
-function StatBlock({
-  active,
-  variant,
-}: {
-  active: boolean;
-  variant: "euro" | "months" | "thirds";
-}): JSX.Element {
-  const euro = useCountUp(47_000, active && variant === "euro", 800);
-  const months = useCountUp(4.2, active && variant === "months", 800);
-  const oneOfThree = useCountUp(1, active && variant === "thirds", 800);
-
-  if (variant === "euro") {
-    return (
-      <span className="block font-display text-[3rem] leading-none text-wertavio-gold">
-        ∅ {formatDeInteger(euro)} €
-      </span>
-    );
-  }
-  if (variant === "months") {
-    const formatted = months.toFixed(1).replace(".", ",");
-    return (
-      <span className="block font-display text-[3rem] leading-none text-wertavio-gold">{formatted} Monate</span>
-    );
-  }
-  return (
-    <span className="block font-display text-[3rem] leading-none text-wertavio-gold">
-      {Math.round(oneOfThree)} von 3
-    </span>
-  );
-}
 
 const cards = [
   {
-    variant: "euro" as const,
-    label: "Unter Marktwert",
-    body: "So viel lassen Eigentümer im Schnitt liegen, wenn der falsche Makler den falschen Preis ansetzt.",
+    label: "Verkauf unter Wert",
+    body: "Setzt der Makler den falschen Preis an, verkaufen Sie unter Marktwert oder müssen später nachverhandeln.",
   },
   {
-    variant: "months" as const,
     label: "Verlorene Zeit",
-    body: "So lange dauert ein Verkauf mit dem falschen Makler durchschnittlich länger — mit allen Folgekosten.",
+    body: "Ohne passende Käufer im Bestand zieht sich der Verkauf. Jeder zusätzliche Monat kostet Finanzierung, Nebenkosten und Nerven.",
   },
   {
-    variant: "thirds" as const,
-    label: "Eigentümer bereut",
-    body: "Jeder dritte Verkäufer würde im Nachhinein einen anderen Makler wählen.",
+    label: "Ärger im Nachhinein",
+    body: "Viele Verkäufer merken erst nach dem Notartermin, dass ein anderer Makler mehr erreicht hätte.",
   },
 ];
 
 export function StakeSection(): JSX.Element {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.25 });
-
   return (
     <SectionWrapper id="geistige-brandstiftung" background="slate">
-      <div ref={ref}>
+      <div>
         <StaggerReveal className="mx-auto max-w-3xl text-center md:mx-0 md:text-left">
           <StaggerItem>
             <p className="text-eyebrow text-wertavio-cream/70">WAS AUF DEM SPIEL STEHT</p>
@@ -88,8 +44,7 @@ export function StakeSection(): JSX.Element {
           {cards.map((c) => (
             <StaggerItem key={c.label}>
               <article className="flex h-full w-full flex-col gap-4 rounded-[10px] bg-wertavio-slate-soft p-6 shadow-sm">
-                <StatBlock active={inView} variant={c.variant} />
-                <h3 className="text-base font-semibold text-wertavio-white">{c.label}</h3>
+                <h3 className="font-display text-2xl leading-tight text-wertavio-gold">{c.label}</h3>
                 <p className="text-sm leading-relaxed text-wertavio-cream/75 text-pretty">{c.body}</p>
               </article>
             </StaggerItem>
@@ -98,7 +53,6 @@ export function StakeSection(): JSX.Element {
 
         <div className="mx-auto mt-12 flex max-w-xl flex-col items-center gap-3 text-center md:mx-0 md:items-start md:text-left">
           <Button href="/anfrage">Jetzt den richtigen Makler finden →</Button>
-          <p className="text-[11px] text-wertavio-cream/55">* Schätzwerte basierend auf Marktbeobachtungen</p>
         </div>
       </div>
     </SectionWrapper>
