@@ -10,8 +10,8 @@ export const siteLegal = {
   /** z. B. „Einzelunternehmen“, „UG (haftungsbeschränkt)“ — an die tatsächliche Rechtsform anpassen. */
   legalFormShort: "Einzelunternehmen",
   address: {
-    streetLine: "[Straße und Hausnummer — bitte in site-legal.ts eintragen]",
-    postalCodeCity: "[PLZ und Ort — bitte in site-legal.ts eintragen]",
+    streetLine: "Brauhausstieg 48",
+    postalCodeCity: "22041 Hamburg",
     country: "Deutschland",
   },
   /** Öffentlich einsehbare Erreichbarkeit (z. B. kontakt@…). */
