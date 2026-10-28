@@ -6,19 +6,16 @@ import { PRIMARY_CTA_LABEL } from "@/lib/cta";
 
 const stakes = [
   {
-    value: "∅ 47.000 €",
-    label: "Unter Marktwert",
-    body: "So viel lassen Eigentümer im Schnitt liegen, wenn der falsche Makler den falschen Preis ansetzt.",
+    label: "Verkauf unter Wert",
+    body: "Setzt der Makler den falschen Preis an, verkaufen Sie unter Marktwert oder müssen später nachverhandeln.",
   },
   {
-    value: "4,2 Monate",
     label: "Verlorene Zeit",
-    body: "So lange dauert ein Verkauf mit dem falschen Makler durchschnittlich länger, mit allen Folgekosten.",
+    body: "Ohne passende Käufer im Bestand zieht sich der Verkauf. Jeder zusätzliche Monat kostet Finanzierung, Nebenkosten und Nerven.",
   },
   {
-    value: "1 von 3",
-    label: "Eigentümer bereut",
-    body: "Jeder dritte Verkäufer würde im Nachhinein einen anderen Makler wählen.",
+    label: "Ärger im Nachhinein",
+    body: "Viele Verkäufer merken erst nach dem Notartermin, dass ein anderer Makler mehr erreicht hätte.",
   },
 ] as const;
 
@@ -49,21 +46,13 @@ export function StakeSection(): JSX.Element {
               <StaggerItem
                 as="li"
                 key={s.label}
-                className="grid gap-2 border-t border-white/15 py-7 sm:grid-cols-[15rem_1fr] sm:gap-8"
+                className="grid gap-2 border-t border-white/15 py-7 last:border-b sm:grid-cols-[15rem_1fr] sm:gap-8"
               >
-                <p className="whitespace-nowrap font-display text-4xl font-bold tracking-[-0.03em] text-wertavio-gold md:text-[2.75rem] md:leading-none">
-                  {s.value}
-                </p>
-                <div>
-                  <p className="font-semibold text-white">{s.label}</p>
-                  <p className="mt-1 text-pretty leading-relaxed text-wertavio-cream/70">{s.body}</p>
-                </div>
+                <p className="font-display text-2xl font-bold tracking-[-0.02em] text-wertavio-gold">{s.label}</p>
+                <p className="text-pretty leading-relaxed text-wertavio-cream/70">{s.body}</p>
               </StaggerItem>
             ))}
           </StaggerReveal>
-          <p className="border-t border-white/15 pt-5 text-xs text-wertavio-cream/60">
-            * Schätzwerte basierend auf Marktbeobachtungen
-          </p>
         </div>
       </div>
     </section>
