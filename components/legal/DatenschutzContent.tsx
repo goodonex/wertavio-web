@@ -1,20 +1,16 @@
+import { RETENTION_DAYS } from "@/lib/leads/retention";
 import { siteLegal } from "@/lib/site-legal";
 import { LegalSection } from "@/components/legal/LegalSection";
 
-const leadsEndpointNote =
-  typeof process !== "undefined" && process.env.NEXT_PUBLIC_LEADS_ENDPOINT
-    ? " Zusätzlich können Anfragen über eine konfigurierte Schnittstelle (NEXT_PUBLIC_LEADS_ENDPOINT) an einen von uns beauftragten Dienst übermittelt werden; dort gilt dann die jeweilige Auftragsverarbeitung durch uns."
-    : "";
-
+/* ENTWURF (30.10.2026): Abschnitte 3 und 5 neu für die Speicherung und Weitergabe von Anfragen. Vor dem Livegang
+   anwaltlich prüfen lassen; Einwilligungstexte stehen in lib/consent.ts, Fristen in lib/leads/retention.ts. */
 export function DatenschutzContent(): JSX.Element {
   const mail = `mailto:${siteLegal.email}`;
 
   return (
     <>
       <LegalSection id="ds-verantwortlicher" title="1. Verantwortlicher">
-        <p>
-          Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:
-        </p>
+        <p>Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:</p>
         <p>
           <strong>{siteLegal.operatorDisplayName}</strong>
           <br />
@@ -31,51 +27,87 @@ export function DatenschutzContent(): JSX.Element {
 
       <LegalSection id="ds-allgemein" title="2. Allgemeines zur Datenverarbeitung">
         <p>
-          Wir verarbeiten personenbezogene Daten nur, soweit dies zur Bereitstellung einer funktionsfähigen Website sowie
-          unserer Inhalte und Leistungen erforderlich ist. Die Verarbeitung erfolgt regelmäßig nur nach Einwilligung
-          oder soweit eine gesetzliche Erlaubnis besteht.
+          Wir verarbeiten personenbezogene Daten nur, soweit dies zur Bereitstellung einer funktionsfähigen Website
+          sowie unserer Inhalte und Leistungen erforderlich ist. Die Verarbeitung erfolgt regelmäßig nur nach
+          Einwilligung oder soweit eine gesetzliche Erlaubnis besteht.
         </p>
       </LegalSection>
 
-      <LegalSection id="ds-hosting" title="3. Hosting">
+      <LegalSection id="ds-hosting" title="3. Hosting und Speicherung">
         <p>
-          Unser Hoster stellt die Infrastruktur zur Verfügung, auf der diese Website betrieben wird (Hosting). Hierbei
-          können Zugriffsdaten verarbeitet werden. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes
-          Interesse an einer sicheren und schnellen Bereitstellung unseres Online-Angebots). Mit unserem Hoster werden
-          — soweit erforderlich — Verträge zur Auftragsverarbeitung gem. Art. 28 DSGVO geschlossen.
+          Diese Website wird bei <strong>Netlify, Inc.</strong> (USA) betrieben. Dabei werden Zugriffsdaten verarbeitet.
+          Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer sicheren und schnellen
+          Bereitstellung). Informationen:{" "}
+          <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener noreferrer">
+            netlify.com/privacy
+          </a>
+          .
         </p>
         <p>
-          <strong>Vercel Inc.</strong>, 440 N Barranca Ave #4133, Covina, CA 91723, USA. Informationen zu Datenschutz und
-          Auftragsverarbeitung:{" "}
-          <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">
-            vercel.com/legal/privacy-policy
+          Anfragen aus unseren Formularen speichern wir in einer Datenbank von <strong>Supabase, Inc.</strong> (USA) auf
+          Servern in Irland (EU). Informationen:{" "}
+          <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">
+            supabase.com/privacy
           </a>
-          . Eine Übermittlung von Daten in die USA kann erfolgen; dies wird — soweit erforderlich — auf geeignete Garantien
-          gestützt (insb. EU-Standardvertragsklauseln).
+          .
+        </p>
+        <p>
+          Mit beiden Anbietern bestehen Verträge zur Auftragsverarbeitung nach Art. 28 DSGVO. Soweit Daten in die USA
+          übermittelt werden können, stützt sich dies auf den Angemessenheitsbeschluss der EU-Kommission (EU-US Data
+          Privacy Framework) bzw. auf EU-Standardvertragsklauseln.
         </p>
       </LegalSection>
 
       <LegalSection id="ds-logs" title="4. Server-Logfiles / Aufruf der Website">
         <p>
           Beim Aufruf dieser Website verarbeitet der Server automatisch Informationen (z. B. Browsertyp, Datum und
-          Uhrzeit, IP-Adresse). Zweck ist die technische Auslieferung der Seite, Stabilität und Sicherheit. Rechtsgrundlage
-          ist Art. 6 Abs. 1 lit. f DSGVO. Logfiles werden in der Regel nach einer technisch notwendigen Dauer gelöscht
-          oder anonymisiert, soweit kein gesetzlicher Aufbewahrungsgrund entgegensteht.
+          Uhrzeit, IP-Adresse). Zweck ist die technische Auslieferung der Seite, Stabilität und Sicherheit.
+          Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Logfiles werden in der Regel nach einer technisch notwendigen
+          Dauer gelöscht oder anonymisiert, soweit kein gesetzlicher Aufbewahrungsgrund entgegensteht.
         </p>
       </LegalSection>
 
-      <LegalSection id="ds-formulare" title="5. Kontakt und Formulare (Anfragen)">
+      <LegalSection id="ds-formulare" title="5. Anfragen über unsere Formulare">
         <p>
-          Wenn Sie Formulare nutzen (z. B. Eigentümer-Anfrage, Partner-Anfrage, ggf. Profil-Assistent), verarbeiten wir
-          die von Ihnen eingegebenen Daten (z. B. Name, Kontaktdaten, Angaben zur Immobilie/Region), um Ihre Anfrage zu
-          bearbeiten und ggf. eine Vermittlung anzubahnen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche
-          Maßnahmen auf Ihre Anfrage) bzw. Art. 6 Abs. 1 lit. a DSGVO bei zusätzlichen Einwilligungen.
-          {leadsEndpointNote}
+          <strong>Eigentümer-Anfrage.</strong> Wenn Sie einen Makler über Wertavio suchen, speichern wir Ihre Angaben
+          (Name, Telefon, E-Mail, PLZ, Angaben zur Immobilie und zum Zeitrahmen). Zusammen mit Ihrer Anfrage speichern
+          wir als Nachweis, wann Sie welche Einwilligung mit welchem Wortlaut erteilt haben.
         </p>
         <p>
-          Wenn Anfragen technisch über serverseitige Endpunkte verarbeitet werden, können Daten vorübergehend in
-          Server-Umgebungen protokolliert werden (z. B. zu Schutz vor Missbrauch/Technik). Eine darüber hinausgehende
-          dauerhafte Speicherung erfolgt nur, soweit dies für die Bearbeitung erforderlich oder rechtlich nötig ist.
+          <strong>Weitergabe an einen Makler oder Finanzierungsberater.</strong> Mit Ihrer Einwilligung (Art. 6 Abs. 1
+          lit. a DSGVO) geben wir Ihre Anfrage an einen geprüften Immobilienmakler oder Finanzierungsberater in Ihrer
+          Region weiter, damit er Sie kontaktiert. Ab der Übergabe ist der Empfänger für die weitere Verarbeitung selbst
+          verantwortlich; wir nennen Ihnen auf Anfrage, an wen Ihre Daten gegangen sind. Ohne diese Einwilligung können
+          wir Ihnen keinen Makler vermitteln.
+        </p>
+        <p>
+          <strong>Informationen per E-Mail (freiwillig).</strong> Nur wenn Sie zusätzlich zustimmen, darf der
+          vermittelte Makler Ihnen auch nach dem ersten Gespräch Informationen zum Immobilienverkauf per E-Mail schicken
+          (Art. 6 Abs. 1 lit. a DSGVO). Sie können sich jederzeit abmelden.
+        </p>
+        <p>
+          <strong>Anfragen über Partnerseiten.</strong> Anfragen können auch über Seiten unserer Partner zu uns kommen
+          (z. B. ein Räumungsdienst, wenn Sie angeben, die Immobilie danach verkaufen zu wollen). Die Einwilligung zur
+          Weitergabe holt dann die Partnerseite ein; für die Speicherung und Weitergabe bei uns gilt dasselbe wie oben.
+        </p>
+        <p>
+          <strong>Makler-Anfragen.</strong> Wenn Sie als Makler ein Partnergespräch anfragen oder Ihre Region prüfen
+          lassen, verarbeiten wir Ihre Angaben zur Bearbeitung Ihrer Anfrage (Art. 6 Abs. 1 lit. b DSGVO).
+        </p>
+        <p>
+          <strong>Speicherdauer.</strong> Nach der Übergabe an einen Makler oder Finanzierungsberater löschen wir unsere
+          Kopie Ihrer Daten nach {RETENTION_DAYS.afterHandover} Tagen. Eigentümer-Anfragen, die nicht übergeben werden,
+          löschen wir nach {RETENTION_DAYS.eigentuemer} Tagen, Makler-Anfragen nach {RETENTION_DAYS.makler} Tagen.
+          Danach behalten wir nur Angaben ohne Personenbezug (Datum, Art der Anfrage, PLZ-Bereich, Empfänger) für
+          Abrechnung und Statistik.
+        </p>
+        <p>
+          <strong>Widerruf.</strong> Sie können erteilte Einwilligungen jederzeit mit Wirkung für die Zukunft
+          widerrufen, z. B. per E-Mail an{" "}
+          <a href={mail} className="font-medium text-wertavio-slate underline">
+            {siteLegal.email}
+          </a>
+          . Wurde Ihre Anfrage bereits übergeben, leiten wir den Widerruf an den Empfänger weiter.
         </p>
       </LegalSection>
 
@@ -96,7 +128,11 @@ export function DatenschutzContent(): JSX.Element {
         </p>
         <p>
           Eine Liste der Behörden finden Sie u. a. unter:{" "}
-          <a href="https://www.bfdi.bund.de/DE/Service/Anschriften/Laender/Laender-node.html" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.bfdi.bund.de/DE/Service/Anschriften/Laender/Laender-node.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             bfdi.bund.de
           </a>
           .
@@ -113,8 +149,8 @@ export function DatenschutzContent(): JSX.Element {
 
       <LegalSection id="ds-aenderungen" title="9. Stand">
         <p>
-          Diese Hinweise können angepasst werden, wenn sich das Angebot oder die Rechtslage ändert. Bitte informieren Sie
-          sich regelmäßig über den aktuellen Stand auf dieser Seite.
+          Diese Hinweise können angepasst werden, wenn sich das Angebot oder die Rechtslage ändert. Bitte informieren
+          Sie sich regelmäßig über den aktuellen Stand auf dieser Seite.
         </p>
       </LegalSection>
     </>

@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
 
 export const inputClass =
@@ -58,18 +59,18 @@ export function ChoiceGroup({
   );
 }
 
-export function TextField({
-  id,
-  label,
-  error,
-  ...props
-}: React.ComponentPropsWithoutRef<"input"> & { label: string; error?: string }): JSX.Element {
+/** forwardRef, damit `register()` von react-hook-form den Wert des Feldes lesen kann. */
+export const TextField = forwardRef<
+  HTMLInputElement,
+  React.ComponentPropsWithoutRef<"input"> & { label: string; error?: string }
+>(function TextField({ id, label, error, ...props }, ref): JSX.Element {
   return (
     <div>
       <label htmlFor={id} className="mb-2 block text-sm font-medium text-wertavio-slate">
         {label}
       </label>
       <input
+        ref={ref}
         id={id}
         className={inputClass}
         aria-invalid={!!error}
@@ -83,4 +84,4 @@ export function TextField({
       ) : null}
     </div>
   );
-}
+});

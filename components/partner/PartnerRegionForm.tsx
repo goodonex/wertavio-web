@@ -18,6 +18,7 @@ const resolver: Resolver<PartnerLeadInput, object, PartnerLeadOutput> = zodResol
 
 export function PartnerRegionForm(): JSX.Element {
   const [done, setDone] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
   const {
     register,
     handleSubmit,
@@ -33,12 +34,16 @@ export function PartnerRegionForm(): JSX.Element {
   const spez = watch("spezialisierung");
 
   const onSubmit = async (data: PartnerLeadOutput): Promise<void> => {
+    setSubmitError(false);
     const res = await fetch("/api/partner-leads", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
-    });
-    if (!res.ok) return;
+    }).catch(() => null);
+    if (!res?.ok) {
+      setSubmitError(true);
+      return;
+    }
     setDone(true);
   };
 
@@ -56,13 +61,7 @@ export function PartnerRegionForm(): JSX.Element {
         <label htmlFor="pr-plz" className="mb-2 block text-sm font-medium text-wertavio-slate">
           Postleitzahl
         </label>
-        <input
-          id="pr-plz"
-          inputMode="numeric"
-          autoComplete="postal-code"
-          className={inputClass}
-          {...register("plz")}
-        />
+        <input id="pr-plz" inputMode="numeric" autoComplete="postal-code" className={inputClass} {...register("plz")} />
         {errors.plz ? <p className="mt-2 text-sm text-red-700">{errors.plz.message}</p> : null}
       </div>
 
@@ -86,9 +85,7 @@ export function PartnerRegionForm(): JSX.Element {
             </button>
           ))}
         </div>
-        {errors.spezialisierung ? (
-          <p className="text-sm text-red-700">{errors.spezialisierung.message}</p>
-        ) : null}
+        {errors.spezialisierung ? <p className="text-sm text-red-700">{errors.spezialisierung.message}</p> : null}
       </fieldset>
 
       <div>
@@ -111,6 +108,11 @@ export function PartnerRegionForm(): JSX.Element {
         <Button type="submit" className="w-full">
           Verfügbarkeit prüfen
         </Button>
+        {submitError ? (
+          <p className="text-center text-sm text-red-700" role="alert">
+            Das hat gerade nicht geklappt. Bitte versuchen Sie es erneut oder schreiben Sie an kontakt@wertavio.de.
+          </p>
+        ) : null}
         <p className="text-center text-xs text-wertavio-muted">Wir melden uns innerhalb von 24h.</p>
       </div>
     </form>

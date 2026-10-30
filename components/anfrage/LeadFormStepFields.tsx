@@ -8,6 +8,7 @@ import { StepZiel } from "@/components/anfrage/steps/StepZiel";
 
 export interface LeadFormStepFieldsProps {
   step: number;
+  flowType: LeadFormInput["flowType"];
   register: UseFormRegister<LeadFormInput>;
   control: Control<LeadFormInput>;
   errors: FieldErrors<LeadFormInput>;
@@ -15,17 +16,16 @@ export interface LeadFormStepFieldsProps {
 
 export function LeadFormStepFields({
   step,
+  flowType,
   register,
   control,
   errors,
 }: LeadFormStepFieldsProps): JSX.Element {
   return (
     <>
-      {step === 0 ? (
-        <StepImmobilie register={register} control={control} errors={errors} />
-      ) : null}
+      {step === 0 ? <StepImmobilie register={register} control={control} errors={errors} /> : null}
       {step === 1 ? <StepZiel control={control} errors={errors} /> : null}
-      {step === 2 ? <StepKontakt register={register} errors={errors} /> : null}
+      {step === 2 ? <StepKontakt flowType={flowType} register={register} errors={errors} /> : null}
     </>
   );
 }

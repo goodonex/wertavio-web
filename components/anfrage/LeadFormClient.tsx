@@ -21,6 +21,7 @@ export function LeadForm({ flowType, prefill }: LeadFormProps): JSX.Element {
   const hasAutoJumped = useRef(false);
   const [step, setStep] = useState(0);
   const [done, setDone] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
   const mergedDefaults = useMemo<LeadFormInput>(
     () => ({
@@ -35,6 +36,8 @@ export function LeadForm({ flowType, prefill }: LeadFormProps): JSX.Element {
       phone: "",
       email: "",
       privacyAccepted: false,
+      consentForwarding: false,
+      consentMarketing: false,
     }),
     [flowType, prefill?.propertyType, prefill?.plz, prefill?.timeline, prefill?.experience],
   );
@@ -89,12 +92,16 @@ export function LeadForm({ flowType, prefill }: LeadFormProps): JSX.Element {
     const parsed = leadFormSchema.safeParse(data);
     if (!parsed.success) return;
     const endpoint = process.env.NEXT_PUBLIC_LEADS_ENDPOINT ?? "/api/leads";
+    setSubmitError(false);
     const res = await fetch(endpoint, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(parsed.data),
-    });
-    if (!res.ok) return;
+    }).catch(() => null);
+    if (!res?.ok) {
+      setSubmitError(true);
+      return;
+    }
     setDone(true);
   };
 
@@ -115,10 +122,17 @@ export function LeadForm({ flowType, prefill }: LeadFormProps): JSX.Element {
         <input type="hidden" {...register("flowType")} />
         {flowType === "makler" ? (
           <p className="text-sm text-wertavio-muted">
-            Nach dem Absenden erhalten Sie innerhalb von 48 Stunden einen Terminvorschlag fürs Partnergespräch, per E-Mail.
+            Nach dem Absenden erhalten Sie innerhalb von 48 Stunden einen Terminvorschlag fürs Partnergespräch, per
+            E-Mail.
           </p>
         ) : null}
-        <LeadFormStepFields step={step} register={register} control={control} errors={errors} />
+        <LeadFormStepFields step={step} flowType={flowType} register={register} control={control} errors={errors} />
+        {submitError ? (
+          <p className="text-sm text-red-700" role="alert">
+            Ihre Anfrage konnte gerade nicht gesendet werden. Bitte versuchen Sie es in einem Moment erneut oder
+            schreiben Sie an kontakt@wertavio.de.
+          </p>
+        ) : null}
 
         <div className="flex flex-col gap-3 sm:flex-row sm:justify-between">
           {step > 0 ? (
