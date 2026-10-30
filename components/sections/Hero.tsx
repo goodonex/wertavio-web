@@ -13,7 +13,7 @@ const facts = [
   { icon: BadgeEuro, title: "0 € für Eigentümer", body: "Kein Entgelt an Wertavio, weder vorher noch nachher." },
   { icon: UserRoundCheck, title: "Ein Makler pro Anfrage", body: "Ihre Daten gehen an genau einen Spezialisten." },
   { icon: Clock3, title: "Rückmeldung in 48 Stunden", body: "Persönlich ausgewählt nach Region und Objekt." },
-  { icon: ShieldCheck, title: "Geprüftes Netzwerk", body: "Prüfung vor Aufnahme, Neubewertung jährlich." },
+  { icon: ShieldCheck, title: "Persönlich geprüft", body: "Erlaubnis nach § 34c GewO und Gespräch vor der ersten Anfrage." },
 ] as const;
 
 export function Hero(): JSX.Element {

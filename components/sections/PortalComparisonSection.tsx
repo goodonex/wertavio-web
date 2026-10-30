@@ -23,7 +23,7 @@ const lists: Record<MatchingMode, { title: string; items: readonly string[] }> =
     title: "Mit Wertavio",
     items: [
       "Ein Makler, persönlich für Sie ausgewählt",
-      "Geprüft vor der Aufnahme ins Netzwerk",
+      "Persönlich geprüft, mit Erlaubnis nach § 34c GewO",
       "Passend zu Ihrer Region, Immobilie und Ziel",
       "Klare Empfehlung statt Vergleichsmarathon",
       "0 € für Eigentümer",

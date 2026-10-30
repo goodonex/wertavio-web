@@ -12,7 +12,7 @@ const steps = [
   {
     title: "Wir wählen aus",
     meta: "Innerhalb von 48 Stunden",
-    body: "Algorithmus und persönliches Kuratieren: Aus dem geprüften Netzwerk wird genau ein Spezialist ausgewählt.",
+    body: "Wir wählen persönlich genau einen Makler aus, der zu Ihrer Region, Ihrer Immobilie und Ihrem Ziel passt.",
   },
   {
     title: "Ihr Makler meldet sich",

@@ -19,7 +19,8 @@ const faqItems = [
   {
     id: "auswahl",
     question: "Wie werden Makler aufgenommen?",
-    answer: "Jedes Büro durchläuft eine Prüfung vor Aufnahme und eine erneute Bewertung mindestens einmal pro Jahr.",
+    answer:
+      "Wir sprechen mit jedem Makler persönlich und lassen uns seine Erlaubnis nach § 34c GewO vorlegen, bevor er eine Anfrage von uns erhält.",
   },
   {
     id: "daten",
@@ -35,7 +36,7 @@ const faqItems = [
     id: "region",
     question: "Wo ist Wertavio aktiv?",
     answer:
-      "Deutschlandweit mit Schwerpunkt auf Ballungsräumen. Anfragen aus ländlichen PLZ werden innerhalb von 48 Stunden beantwortet oder mit einem Alternativvorschlag versehen.",
+      "Wir nehmen Makler Region für Region auf. Kennen wir für Ihre PLZ noch keinen passenden Makler, sagen wir Ihnen das innerhalb von 48 Stunden offen.",
   },
 ];
 

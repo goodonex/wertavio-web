@@ -8,22 +8,20 @@ const checks = [
     body: "Jedes Büro wird persönlich geprüft, bevor es eine einzige Anfrage erhält.",
   },
   {
-    title: "Neubewertung jedes Jahr",
-    body: "Mindestens einmal pro Jahr wird jedes Büro erneut bewertet.",
+    title: "Nachfrage nach jeder Vermittlung",
+    body: "Wir fragen Sie, wie die Zusammenarbeit lief. Wer Eigentümer schlecht betreut, bekommt keine Anfragen mehr.",
   },
   {
     title: "Klare Mindestvoraussetzung",
-    body: "Ohne IHK-Sachkundenachweis nach §34c GewO kommt niemand ins Netzwerk.",
+    body: "Ohne Erlaubnis nach § 34c GewO bekommt niemand eine Anfrage von uns.",
   },
 ] as const;
 
 const credentials = [
-  { name: "IHK-Zertifiziert", line: "Sachkundenachweis §34c GewO" },
-  { name: "IVD-Mitglied", line: "Immobilienverband Deutschland" },
-  { name: "DEKRA-geprüft", line: "Unabhängige Qualitätsprüfung" },
-  { name: "TÜV-zertifiziert", line: "Geprüfte Fachkompetenz" },
-  { name: "gif-Mitglied", line: "Immobilienwirtschaftliche Forschung" },
-  { name: "DIA-Absolvent", line: "Deutsche Immobilien-Akademie" },
+  { name: "Erlaubnis nach § 34c GewO", line: "Wir lassen sie uns vorlegen" },
+  { name: "Persönliches Gespräch", line: "Bevor die erste Anfrage weitergeht" },
+  { name: "Verkäufe in Ihrer Region", line: "Belegt, nicht nur behauptet" },
+  { name: "Ein fester Ansprechpartner", line: "Kein Callcenter, keine Weitergabe" },
 ] as const;
 
 export function TrustSignals(): JSX.Element {
@@ -33,12 +31,12 @@ export function TrustSignals(): JSX.Element {
         <div className="lg:col-span-6">
           <StaggerReveal>
             <StaggerItem>
-              <h2 className="text-h2 text-wertavio-slate">Ins Netzwerk kommt nur, wer geprüft ist</h2>
+              <h2 className="text-h2 text-wertavio-slate">Wir vermitteln nur Makler, die wir kennen</h2>
             </StaggerItem>
             <StaggerItem>
               <p className="text-lead mt-5 max-w-[46ch]">
-                Jeder Makler im Wertavio-Netzwerk wird vor Aufnahme persönlich geprüft. Für jedes Büro gilt dasselbe
-                Verfahren.
+                Bevor ein Makler eine Anfrage von uns bekommt, sprechen wir persönlich mit ihm und prüfen seine
+                Erlaubnis. Für jedes Büro gilt dasselbe Verfahren.
               </p>
             </StaggerItem>
           </StaggerReveal>
@@ -54,7 +52,7 @@ export function TrustSignals(): JSX.Element {
 
         <StaggerReveal className="lg:col-span-6 lg:col-start-7">
           <StaggerItem className="rounded-2xl bg-wertavio-stone p-6 sm:p-8">
-            <p className="text-h3 text-wertavio-slate">Qualifikationen im Netzwerk</p>
+            <p className="text-h3 text-wertavio-slate">Was wir vor der ersten Anfrage prüfen</p>
             <ul className="mt-6 grid gap-x-6 sm:grid-cols-2">
               {credentials.map((c) => (
                 <li key={c.name} className="border-t border-wertavio-slate/10 py-4">
@@ -63,9 +61,6 @@ export function TrustSignals(): JSX.Element {
                 </li>
               ))}
             </ul>
-            <p className="mt-4 text-xs leading-relaxed text-wertavio-muted">
-              Nicht alle Partner tragen alle Zertifikate. Mindestvoraussetzung ist der IHK-Sachkundenachweis §34c GewO.
-            </p>
           </StaggerItem>
         </StaggerReveal>
       </div>
