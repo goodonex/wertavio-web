@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { Resolver } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { leadFormSchema, type LeadFormInput, type LeadFormOutput } from "@/lib/lead-schema";
+import { einstiege, leadFormSchema, type LeadFormInput, type LeadFormOutput } from "@/lib/lead-schema";
 import { Button } from "@/components/ui/Button";
 import { FormProgress } from "@/components/anfrage/FormProgress";
 import { LeadFormSuccess } from "@/components/anfrage/LeadFormSuccess";
@@ -13,6 +13,14 @@ import { LeadFormStepFields } from "@/components/anfrage/LeadFormStepFields";
 export interface LeadFormProps {
   flowType: "eigentuemer" | "makler";
   prefill?: Partial<Pick<LeadFormInput, "propertyType" | "plz" | "timeline" | "experience">>;
+}
+
+/** Einstiegsseite und Anzeige aus der Adresse (?einstieg=erbe&utm_source=meta&utm_campaign=…). */
+function attribution(): Pick<LeadFormOutput, "einstieg" | "kampagne"> {
+  const q = new URLSearchParams(window.location.search);
+  const einstieg = einstiege.find((e) => e === q.get("einstieg"));
+  const kampagne = [q.get("utm_source"), q.get("utm_campaign")].filter(Boolean).join("/").slice(0, 120);
+  return { einstieg, kampagne: kampagne || undefined };
 }
 
 const resolver: Resolver<LeadFormInput, object, LeadFormOutput> = zodResolver(leadFormSchema);
@@ -89,7 +97,7 @@ export function LeadForm({ flowType, prefill }: LeadFormProps): JSX.Element {
   const prev = (): void => setStep((s) => Math.max(s - 1, 0));
 
   const onSubmit = async (data: LeadFormOutput): Promise<void> => {
-    const parsed = leadFormSchema.safeParse(data);
+    const parsed = leadFormSchema.safeParse({ ...data, ...attribution() });
     if (!parsed.success) return;
     const endpoint = process.env.NEXT_PUBLIC_LEADS_ENDPOINT ?? "/api/leads";
     setSubmitError(false);

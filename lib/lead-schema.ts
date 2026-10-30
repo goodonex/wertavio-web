@@ -13,6 +13,9 @@ export const valueRanges = [
   "> 1.000.000 €",
 ] as const;
 export const timelines = ["Sofort", "In 3 Monaten", "In 6 Monaten", "Noch unklar"] as const;
+/** Thema der Einstiegsseite (Landingpages für Erben, Pflegeheim …), für Weiche und Auswertung. */
+export const einstiege = ["bewertung", "erbe", "pflegeheim", "betreuung"] as const;
+
 export const experiences = ["Noch keinen", "Bereits Erfahrungen gemacht", "War unzufrieden"] as const;
 
 const plzRegex = /^\d{5}$/;
@@ -44,6 +47,9 @@ export const leadFormSchema = z
     consentForwarding: z.boolean().optional(),
     /** Werbe-Einwilligung, immer freiwillig. */
     consentMarketing: z.boolean().optional(),
+    einstieg: z.enum(einstiege).optional(),
+    /** utm_source/utm_campaign der Anzeige */
+    kampagne: z.string().trim().max(120).optional(),
   })
   .refine((d) => d.flowType !== "eigentuemer" || d.consentForwarding === true, {
     path: ["consentForwarding"],

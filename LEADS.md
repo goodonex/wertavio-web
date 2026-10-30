@@ -22,6 +22,11 @@ Stand 30.10.2026, nur lokal gebaut und getestet, noch nicht live.
    365 Tage. Danach bleiben nur Datum, Art, Quelle, PLZ-Bereich, Empfänger und Einwilligungs-Version. Aufgeräumt
    wird bei jeder neuen Anfrage und täglich um 3:15 Uhr in der Datenbank.
 
+## Herkunft einer Anfrage
+
+Das Formular übernimmt `?einstieg=bewertung|erbe|pflegeheim|betreuung` und `utm_source`/`utm_campaign` aus der
+Adresse und speichert sie unter `angaben` als „Einstieg“ und „Kampagne“. Sie gehen bei der Übergabe mit.
+
 ## Weitere Quellen (z. B. Räumung Hamburg)
 
 `POST /api/eingang` mit `Authorization: Bearer <Schlüssel der Quelle aus WERTAVIO_QUELLEN>`:

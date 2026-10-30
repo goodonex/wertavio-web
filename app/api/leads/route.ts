@@ -34,6 +34,8 @@ export async function POST(req: Request): Promise<NextResponse> {
         ...(d.valueRange ? { Wert: d.valueRange } : {}),
         Zeitrahmen: d.timeline,
         "Erfahrung mit Maklern": d.experience,
+        ...(d.einstieg ? { Einstieg: d.einstieg } : {}),
+        ...(d.kampagne ? { Kampagne: d.kampagne } : {}),
       },
       einwilligung: {
         datenschutz: { zeit: now },
