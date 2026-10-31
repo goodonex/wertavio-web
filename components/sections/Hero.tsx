@@ -57,18 +57,15 @@ export function Hero(): JSX.Element {
             animate={{ opacity: 1 }}
             transition={{ duration: 1.1, ease: motionEase, delay: 0.25 }}
           >
-            {/* Karte liegt auf Papier, wie beim Termin im Vermessungsbüro. */}
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-wertavio-cream p-2 shadow-soft sm:p-3">
-              <div className="relative h-full w-full overflow-hidden">
-                <Image
-                  src="/images/marke/flurkarte.jpg"
-                  alt="Historische württembergische Flurkarte im Maßstab 1:2.500 mit Ortskern und Flurstücken"
-                  fill
-                  priority
-                  className="scale-[1.14] object-cover object-[50%_45%]"
-                  sizes="(min-width: 1024px) 450px, 100vw"
-                />
-              </div>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-wertavio-slate-soft shadow-soft">
+              <Image
+                src="/images/marke/klinkerhaus.jpg"
+                alt="Rotes Klinker-Doppelhaus mit Vorgarten in Hamburg-Harburg bei blauem Himmel"
+                fill
+                priority
+                className="object-cover object-[45%_55%]"
+                sizes="(min-width: 1024px) 450px, 100vw"
+              />
             </div>
           </motion.figure>
         </div>

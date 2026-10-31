@@ -1,38 +1,38 @@
 import { siteLegal } from "@/lib/site-legal";
 import { LegalSection } from "@/components/legal/LegalSection";
 
-/** Bilder aus dem Markenpaket (marken/wertavio/bildsprache/quellen.json). CC BY-SA verlangt Urheber, Quelle und Lizenz. */
+/** Bilder von Wikimedia Commons. CC BY und CC BY-SA verlangen Urheber, Quelle und Lizenz. */
 const imageCredits = [
   {
-    what: "Flurkarte",
-    author: "Statistisch-topographisches Institut",
-    source: "https://commons.wikimedia.org/wiki/File:W%C3%BCrttembergische_Flurkarte_1%272.500_Ki%C3%9Flegg.jpg",
-    license: "CC0 1.0",
-    licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/deed.de",
-    changed: true,
-  },
-  {
-    what: "Maßband",
-    author: "Asurnipal",
-    source: "https://commons.wikimedia.org/wiki/File:Dornbirn-Ebnit-Tape_measure-01ASD.jpg",
+    what: "Klinker-Doppelhaus in Hamburg",
+    author: "KaiBorgeest",
+    source: "https://commons.wikimedia.org/wiki/File:Hamburg_Hafenbezirk_20_22.jpg",
     license: "CC BY-SA 4.0",
     licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/deed.de",
     changed: true,
   },
   {
-    what: "Grundbuchauszug",
-    author: "FGPSteinfest",
-    source: "https://commons.wikimedia.org/wiki/File:Seestr45_061_Grundbuch_1940_b.jpg",
-    license: "CC BY-SA 4.0",
-    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/deed.de",
+    what: "Einfamilienhaus in München-Pasing",
+    author: "High Contrast",
+    source: "https://commons.wikimedia.org/wiki/File:Einfamilienhaus_in_Pasing,_M%C3%BCnchen.jpg",
+    license: "CC BY 3.0 DE",
+    licenseUrl: "https://creativecommons.org/licenses/by/3.0/de/deed.de",
     changed: true,
   },
   {
-    what: "Grenzstein",
-    author: "Kd6=dra",
-    source: "https://commons.wikimedia.org/wiki/File:Grenzstein_(Ottmaring)_070.jpg",
-    license: "CC0 1.0",
-    licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/deed.de",
+    what: "Doppelhaus in München-Pasing",
+    author: "High Contrast",
+    source: "https://commons.wikimedia.org/wiki/File:Doppelhaus_in_Pasing,_M%C3%BCnchen.jpg",
+    license: "CC BY 3.0 DE",
+    licenseUrl: "https://creativecommons.org/licenses/by/3.0/de/deed.de",
+    changed: true,
+  },
+  {
+    what: "Wohnhaus in Rheinberg",
+    author: "Steffen Schmitz",
+    source: "https://commons.wikimedia.org/wiki/File:Rheinberg,_Ossenberg,_Graf-Luitpold-Stra%C3%9Fe_6-8,_2018-04_CN-01.jpg",
+    license: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/deed.de",
     changed: true,
   },
   {

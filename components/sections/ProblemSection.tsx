@@ -14,17 +14,17 @@ const items: readonly ProblemItem[] = [
   {
     title: "Makler vom Portal",
     body: "Ihre Daten landen bei jedem, der zahlt, und nicht automatisch beim stärksten Marktkenner in Ihrer PLZ.",
-    image: { src: "/images/marke/massband.jpg", alt: "Aufgerolltes, gebrauchtes Maßband aus Leinen auf Packpapier" },
+    image: { src: "/images/marke/einfamilienhaus.jpg", alt: "Einfamilienhaus mit Garten und blühendem Flieder in München-Pasing" },
   },
   {
     title: "Kein Überblick, keine Kontrolle",
     body: "Ohne Vergleichspfad bleibt offen: Wer deckt Ihre Immobilie in den nächsten 90 Tagen am sachlichsten ab?",
-    image: { src: "/images/marke/grundbuch.jpg", alt: "Alter Grundbuchauszug mit Stempeln und Spalten" },
+    image: { src: "/images/marke/doppelhaus.jpg", alt: "Doppelhaus mit Hecke und Einfahrt in München-Pasing" },
   },
   {
     title: "Druck statt klarem Zeitplan",
     body: "Verkauf in unter 60 Tagen wird oft priorisiert, ohne dass Ihr Zielpreis oder Ihre Ruhephase festgelegt wurden.",
-    image: { src: "/images/marke/grenzstein.jpg", alt: "Alter Grenzstein in einer Wiese" },
+    image: { src: "/images/marke/landhaus.jpg", alt: "Eingeschossiges Wohnhaus mit rotem Ziegeldach in Rheinberg" },
   },
 ];
 
