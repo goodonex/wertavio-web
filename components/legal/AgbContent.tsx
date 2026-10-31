@@ -16,8 +16,8 @@ export function AgbContent(): JSX.Element {
         <p>
           Die Website dient der Information über das Angebot von {siteLegal.brandName} sowie der Aufnahme von
           Anfragen. Ein Anspruch auf erfolgreiche Vermittlung, auf eine bestimmte Bearbeitungsgeschwindigkeit oder auf
-          die Zustellung an bestimmte Dritte besteht nicht. Verträge über Maklerleistungen kommen — soweit
-          vorliegend — ausschließlich zwischen Ihnen und dem jeweiligen Makler bzw. Ansprechpartner zustande, nicht
+          die Zustellung an bestimmte Dritte besteht nicht. Verträge über Maklerleistungen kommen, soweit
+          vorliegend, ausschließlich zwischen Ihnen und dem jeweiligen Makler bzw. Ansprechpartner zustande, nicht
           mit dem Anbieter dieser Website allein durch die Nutzung der Website oder das Absenden einer Anfrage.
         </p>
       </LegalSection>
@@ -42,7 +42,7 @@ export function AgbContent(): JSX.Element {
 
       <LegalSection id="agb-links" title="5. Links">
         <p>
-          Für externe Links zu Websites Dritter wird — wie im Impressum beschrieben — keine Verantwortung für deren
+          Für externe Links zu Websites Dritter wird, wie im Impressum beschrieben, keine Verantwortung für deren
           Inhalte übernommen.
         </p>
       </LegalSection>

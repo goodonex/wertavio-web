@@ -14,17 +14,17 @@ const items: readonly ProblemItem[] = [
   {
     title: "Makler vom Portal",
     body: "Ihre Daten landen bei jedem, der zahlt, und nicht automatisch beim stärksten Marktkenner in Ihrer PLZ.",
-    image: { src: "/images/problem-portal.jpg", alt: "Illustration: Eine Person wird von Nachrichten und Anrufen überhäuft" },
+    image: { src: "/images/marke/massband.jpg", alt: "Aufgerolltes, gebrauchtes Maßband aus Leinen auf Packpapier" },
   },
   {
     title: "Kein Überblick, keine Kontrolle",
     body: "Ohne Vergleichspfad bleibt offen: Wer deckt Ihre Immobilie in den nächsten 90 Tagen am sachlichsten ab?",
-    image: { src: "/images/problem-overview.jpg", alt: "Illustration: Eine Person steht ratlos vor vielen Türen" },
+    image: { src: "/images/marke/grundbuch.jpg", alt: "Alter Grundbuchauszug mit Stempeln und Spalten" },
   },
   {
     title: "Druck statt klarem Zeitplan",
     body: "Verkauf in unter 60 Tagen wird oft priorisiert, ohne dass Ihr Zielpreis oder Ihre Ruhephase festgelegt wurden.",
-    image: { src: "/images/problem-druck.jpg", alt: "Illustration: Eine Person stemmt sich gegen eine große Uhr" },
+    image: { src: "/images/marke/grenzstein.jpg", alt: "Alter Grenzstein in einer Wiese" },
   },
 ];
 
@@ -55,7 +55,7 @@ export function ProblemSection(): JSX.Element {
             >
               <div
                 className={cn(
-                  "relative overflow-hidden rounded-2xl border border-wertavio-border bg-[#F9F7EB]",
+                  "relative overflow-hidden rounded-2xl border border-wertavio-border bg-wertavio-stone",
                   i === 0 ? "aspect-[16/10] lg:aspect-[4/3]" : "aspect-[16/10] lg:aspect-square",
                 )}
               >
@@ -63,7 +63,7 @@ export function ProblemSection(): JSX.Element {
                   src={item.image.src}
                   alt={item.image.alt}
                   fill
-                  className="object-contain"
+                  className="object-cover"
                   sizes={i === 0 ? "(min-width: 1024px) 620px, 100vw" : "(min-width: 1024px) 176px, 100vw"}
                 />
               </div>

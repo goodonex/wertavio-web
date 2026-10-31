@@ -9,7 +9,7 @@ export function FormProgress({ progress }: { progress: number }): JSX.Element {
         <span>Fortschritt</span>
         <span>{Math.round(progress)} %</span>
       </div>
-      <div className="h-2 overflow-hidden rounded-full bg-wertavio-cream">
+      <div className="h-2 overflow-hidden rounded-sm bg-wertavio-cream">
         <motion.div
           className="h-full bg-wertavio-gold"
           initial={false}

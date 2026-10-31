@@ -48,7 +48,7 @@ export function StakeSection(): JSX.Element {
                 key={s.label}
                 className="grid gap-2 border-t border-white/15 py-7 last:border-b sm:grid-cols-[15rem_1fr] sm:gap-8"
               >
-                <p className="font-display text-2xl font-bold tracking-[-0.02em] text-wertavio-gold">{s.label}</p>
+                <p className="font-display text-2xl font-medium text-wertavio-gold">{s.label}</p>
                 <p className="text-pretty leading-relaxed text-wertavio-cream/70">{s.body}</p>
               </StaggerItem>
             ))}

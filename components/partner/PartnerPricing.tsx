@@ -59,7 +59,7 @@ export function PartnerPricing(): JSX.Element {
         <StaggerReveal className="lg:col-span-5 lg:col-start-8">
           <StaggerItem className="on-light rounded-2xl bg-wertavio-cream p-8 text-wertavio-slate sm:p-10">
             <p className="text-sm font-medium text-wertavio-muted">Laufend</p>
-            <p className="mt-2 font-display text-5xl font-bold tracking-[-0.03em]">
+            <p className="mt-2 font-display text-5xl font-medium">
               750 €<span className="ml-2 text-lg font-semibold text-wertavio-muted">/ 30 Tage</span>
             </p>
             <p className="mt-6 border-t border-wertavio-border pt-6 text-wertavio-slate">

@@ -46,7 +46,7 @@ export function FounderSection(): JSX.Element {
           <StaggerItem>
             <ul className="mt-8 flex flex-wrap gap-2">
               {facts.map((f) => (
-                <li key={f} className="rounded-full border border-wertavio-border px-4 py-2 text-sm text-wertavio-slate">
+                <li key={f} className="rounded-sm border border-wertavio-border px-4 py-2 text-sm text-wertavio-slate">
                   {f}
                 </li>
               ))}

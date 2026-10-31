@@ -3,7 +3,7 @@ import { LegalLayout } from "@/components/legal/LegalLayout";
 import { ImpressumContent } from "@/components/legal/ImpressumContent";
 
 export const metadata: Metadata = {
-  title: "Impressum — Wertavio",
+  title: "Impressum | Wertavio",
   description: "Impressum und gesetzliche Anbieterkennzeichnung von Wertavio.",
   alternates: { canonical: "/impressum" },
 };

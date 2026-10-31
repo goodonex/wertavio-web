@@ -113,7 +113,7 @@ export function DatenschutzContent(): JSX.Element {
 
       <LegalSection id="ds-rechte" title="6. Ihre Rechte">
         <p>
-          Sie haben — unter den jeweiligen gesetzlichen Voraussetzungen — das Recht auf Auskunft (Art. 15 DSGVO),
+          Sie haben, unter den jeweiligen gesetzlichen Voraussetzungen, das Recht auf Auskunft (Art. 15 DSGVO),
           Berichtigung (Art. 16 DSGVO), Löschung (Art. 17 DSGVO), Einschränkung der Verarbeitung (Art. 18 DSGVO),
           Datenübertragbarkeit (Art. 20 DSGVO) sowie Widerspruch gegen die Verarbeitung (Art. 21 DSGVO). Sofern eine
           Verarbeitung auf Einwilligung beruht, können Sie diese mit Wirkung für die Zukunft widerrufen.

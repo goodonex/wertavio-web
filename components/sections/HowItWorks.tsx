@@ -43,7 +43,7 @@ export function HowItWorks(): JSX.Element {
                 {i < steps.length - 1 ? (
                   <span className="absolute left-5 top-12 h-[calc(100%-3.5rem)] w-px bg-wertavio-border" aria-hidden />
                 ) : null}
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-wertavio-gold bg-wertavio-cream font-display text-base font-bold text-wertavio-slate">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm border border-wertavio-gold bg-wertavio-cream font-display text-base font-bold text-wertavio-slate">
                   {i + 1}
                 </span>
                 <div className="pt-1.5">

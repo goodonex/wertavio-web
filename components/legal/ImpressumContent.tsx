@@ -1,6 +1,58 @@
 import { siteLegal } from "@/lib/site-legal";
 import { LegalSection } from "@/components/legal/LegalSection";
 
+/** Bilder aus dem Markenpaket (marken/wertavio/bildsprache/quellen.json). CC BY-SA verlangt Urheber, Quelle und Lizenz. */
+const imageCredits = [
+  {
+    what: "Flurkarte",
+    author: "Statistisch-topographisches Institut",
+    source: "https://commons.wikimedia.org/wiki/File:W%C3%BCrttembergische_Flurkarte_1%272.500_Ki%C3%9Flegg.jpg",
+    license: "CC0 1.0",
+    licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/deed.de",
+    changed: true,
+  },
+  {
+    what: "Maßband",
+    author: "Asurnipal",
+    source: "https://commons.wikimedia.org/wiki/File:Dornbirn-Ebnit-Tape_measure-01ASD.jpg",
+    license: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/deed.de",
+    changed: true,
+  },
+  {
+    what: "Grundbuchauszug",
+    author: "FGPSteinfest",
+    source: "https://commons.wikimedia.org/wiki/File:Seestr45_061_Grundbuch_1940_b.jpg",
+    license: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/deed.de",
+    changed: true,
+  },
+  {
+    what: "Grenzstein",
+    author: "Kd6=dra",
+    source: "https://commons.wikimedia.org/wiki/File:Grenzstein_(Ottmaring)_070.jpg",
+    license: "CC0 1.0",
+    licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/deed.de",
+    changed: true,
+  },
+  {
+    what: "Ortsansicht Hausdülmen",
+    author: "Dietmar Rabich",
+    source: "https://commons.wikimedia.org/wiki/File:D%C3%BClmen,_Hausd%C3%BClmen,_Ortsansicht_--_2024_--_0023.jpg",
+    license: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/deed.de",
+    changed: true,
+  },
+  {
+    what: "Haustür in Lüneburg",
+    author: "Friedrich Haag",
+    source: "https://commons.wikimedia.org/wiki/File:056_2015_07_12_Auf_dem_Kauf_9.jpg",
+    license: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/deed.de",
+    changed: true,
+  },
+] as const;
+
 export function ImpressumContent(): JSX.Element {
   const mail = `mailto:${siteLegal.email}`;
 
@@ -83,6 +135,24 @@ export function ImpressumContent(): JSX.Element {
           Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts
           bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
         </p>
+      </LegalSection>
+
+      <LegalSection id="impressum-bilder" title="Bildnachweise">
+        <ul className="space-y-2">
+          {imageCredits.map((c) => (
+            <li key={c.what}>
+              {c.what}: {c.author},{" "}
+              <a href={c.source} target="_blank" rel="noopener noreferrer">
+                Wikimedia Commons
+              </a>
+              ,{" "}
+              <a href={c.licenseUrl} target="_blank" rel="noopener noreferrer">
+                {c.license}
+              </a>
+              {c.changed ? ", zugeschnitten" : ""}
+            </li>
+          ))}
+        </ul>
       </LegalSection>
     </>
   );

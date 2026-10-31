@@ -5,6 +5,7 @@ import { PartnerHero } from "@/components/partner/PartnerHero";
 import { PartnerSteps } from "@/components/partner/PartnerSteps";
 import { PartnerPricing } from "@/components/partner/PartnerPricing";
 import { PartnerRegionForm } from "@/components/partner/PartnerRegionForm";
+import { Disclosure } from "@/components/legal/Disclosure";
 
 export const metadata: Metadata = {
   title: "Für Makler | Wertavio",
@@ -34,6 +35,7 @@ export default function PartnerPage(): JSX.Element {
             <div className="rounded-2xl border border-wertavio-border bg-wertavio-white p-6 shadow-soft sm:p-10 lg:col-span-6 lg:col-start-7">
               <PartnerRegionForm />
             </div>
+            <Disclosure className="lg:col-span-6 lg:col-start-7" />
           </div>
         </section>
       </main>

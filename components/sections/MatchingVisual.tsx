@@ -57,7 +57,7 @@ export function MatchingVisual({ mode, reduced }: MatchingVisualProps): JSX.Elem
         })}
       </div>
       <figcaption className="mt-6 min-h-[3.5rem]" aria-live="polite">
-        <p className="font-display text-lg font-semibold text-wertavio-slate">{caption.lead}</p>
+        <p className="font-display text-xl font-medium text-wertavio-slate">{caption.lead}</p>
         <p className="mt-0.5 text-sm text-wertavio-muted">{caption.rest}</p>
       </figcaption>
     </figure>

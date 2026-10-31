@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const columns = [
@@ -28,7 +29,7 @@ export function Footer(): JSX.Element {
     <footer className="on-dark bg-wertavio-slate pb-10 pt-16 text-wertavio-cream md:pt-20">
       <div className="container-wide grid gap-12 md:grid-cols-[1.4fr_repeat(3,1fr)]">
         <div className="max-w-xs">
-          <p className="font-display text-2xl font-bold tracking-[-0.03em] text-white">Wertavio</p>
+          <Image src="/brand/wortmarke-negativ.svg" alt="Wertavio" width={134} height={35} unoptimized />
           <p className="mt-3 text-sm leading-relaxed text-wertavio-cream/70">
             Der richtige Makler für Ihre Immobilie. Persönlich ausgewählt, für Eigentümer kostenlos.
           </p>

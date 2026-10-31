@@ -9,14 +9,14 @@
   }
 
   body {
-    @apply m-0 overflow-x-hidden bg-wertavio-cream p-0 font-sans text-base leading-relaxed text-wertavio-slate antialiased;
+    @apply m-0 overflow-x-hidden bg-wertavio-cream p-0 font-sans text-base leading-relaxed text-wertavio-ink antialiased;
   }
 
   :focus-visible {
     @apply outline outline-2 outline-offset-2 outline-wertavio-gold-ink;
   }
 
-  /* Dunkle Flächen: Fokusring in Gold, damit er dort sichtbar bleibt. */
+  /* Dunkle Flächen: Fokusring in Orange, damit er dort sichtbar bleibt. */
   .on-dark :focus-visible {
     @apply outline-wertavio-gold;
   }
@@ -37,23 +37,24 @@
     @apply text-xs font-semibold uppercase tracking-[0.14em] text-wertavio-gold-ink;
   }
 
+  /* Newsreader wirkt in 500; Antiqua braucht kaum negativen Zeichenabstand. */
   .text-h1 {
-    @apply font-display font-bold text-balance;
-    font-size: clamp(2.35rem, 1.6rem + 3.2vw, 4rem);
-    line-height: 1.04;
-    letter-spacing: -0.03em;
+    @apply font-display font-medium text-balance;
+    font-size: clamp(2.4rem, 1.6rem + 3.2vw, 4.1rem);
+    line-height: 1.06;
+    letter-spacing: -0.012em;
   }
 
   .text-h2 {
-    @apply font-display font-bold text-balance;
-    font-size: clamp(1.85rem, 1.35rem + 2vw, 2.9rem);
-    line-height: 1.08;
-    letter-spacing: -0.025em;
+    @apply font-display font-medium text-balance;
+    font-size: clamp(1.9rem, 1.35rem + 2vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
   }
 
   .text-h3 {
-    @apply font-display text-xl font-semibold;
-    letter-spacing: -0.01em;
+    @apply font-display text-[1.375rem] font-medium;
+    letter-spacing: -0.005em;
     line-height: 1.25;
   }
 
@@ -61,7 +62,7 @@
     @apply text-pretty text-[1.0625rem] leading-relaxed text-wertavio-muted md:text-lg;
   }
 
-  /* Ein Radius-System: Flächen und Bilder 16px, Interaktives als Pill. */
+  /* Ein Radius-System: 2px für Flächen, Bilder und Knöpfe (Markenpaket). */
   .card-surface {
     @apply w-full rounded-2xl border border-wertavio-border bg-wertavio-white p-6;
   }

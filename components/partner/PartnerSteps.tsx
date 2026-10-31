@@ -26,7 +26,7 @@ export function PartnerSteps(): JSX.Element {
           {steps.map((s, i) => (
             <StaggerItem as="li" key={s.title} className="relative">
               <div className="flex items-center gap-4">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-wertavio-gold font-display font-bold text-wertavio-slate">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm border border-wertavio-gold font-display font-bold text-wertavio-slate">
                   {i + 1}
                 </span>
                 {i < steps.length - 1 ? <span className="hidden h-px flex-1 bg-wertavio-border lg:block" aria-hidden /> : null}

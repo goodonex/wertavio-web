@@ -34,7 +34,7 @@ export function Accordion({ items }: AccordionProps): JSX.Element {
                 id={headerId}
                 aria-expanded={isOpen}
                 aria-controls={panelId}
-                className="flex w-full items-center justify-between gap-6 py-5 text-left font-display text-lg font-semibold text-wertavio-slate transition-colors hover:text-wertavio-slate/75"
+                className="flex w-full items-center justify-between gap-6 py-5 text-left font-display text-xl font-medium text-wertavio-slate transition-colors hover:text-wertavio-slate/75"
                 onClick={() => setOpenId(isOpen ? null : item.id)}
               >
                 <span>{item.question}</span>

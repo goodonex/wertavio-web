@@ -3,8 +3,8 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 /**
- * primary: Tinte auf hellem Grund · gold: Primär-CTA auf dunklem Grund
- * secondary: Kontur · ghost: Textlink
+ * primary und gold: Orange mit Text in Tinte (nie Weiß, Weiß auf Orange hat nur 3,35:1), auf hellem und dunklem Grund
+ * secondary: Kontur in Petrol · ghost: Textlink
  */
 type ButtonVariant = "primary" | "gold" | "secondary" | "ghost";
 
@@ -17,15 +17,15 @@ export interface ButtonProps extends Omit<ComponentPropsWithoutRef<"button">, "c
 }
 
 const variants: Record<ButtonVariant, string> = {
-  primary: "bg-wertavio-slate text-wertavio-cream hover:bg-wertavio-slate-soft",
-  gold: "bg-wertavio-gold text-wertavio-slate hover:bg-wertavio-gold-light",
+  primary: "bg-wertavio-gold text-wertavio-ink hover:bg-wertavio-gold-light",
+  gold: "bg-wertavio-gold text-wertavio-ink hover:bg-wertavio-gold-light",
   secondary:
     "border border-wertavio-slate/25 bg-transparent text-wertavio-slate hover:border-wertavio-slate hover:bg-wertavio-slate/[0.03]",
   ghost: "px-0 text-wertavio-slate underline-offset-4 hover:underline",
 };
 
 const base =
-  "group/btn relative inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-6 py-3.5 text-[0.9375rem] font-semibold leading-none transition-colors duration-200 ease-out disabled:pointer-events-none disabled:opacity-50";
+  "group/btn relative inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm px-6 py-3.5 text-[0.9375rem] font-semibold leading-none transition-colors duration-200 ease-out disabled:pointer-events-none disabled:opacity-50";
 
 export function Button({
   variant = "primary",

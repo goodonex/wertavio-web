@@ -1,19 +1,30 @@
 import type { Metadata } from "next";
-import { Inter, Schibsted_Grotesk } from "next/font/google";
+import localFont from "next/font/local";
 import { JsonLd } from "@/components/JsonLd";
 import { RootShell } from "@/components/RootShell";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
+/** Schriften aus dem Markenpaket, selbst ausgeliefert (OFL, siehe app/fonts/LIZENZ.txt). */
+const inter = localFont({
+  src: [
+    { path: "./fonts/ibm-plex-sans-400-latin.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/ibm-plex-sans-600-latin.woff2", weight: "600", style: "normal" },
+    { path: "./fonts/ibm-plex-sans-400-latin-ext.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/ibm-plex-sans-600-latin-ext.woff2", weight: "600", style: "normal" },
+  ],
   variable: "--font-inter",
   display: "swap",
+  fallback: ["-apple-system", "Helvetica Neue", "Arial", "sans-serif"],
 });
 
-const display = Schibsted_Grotesk({
-  subsets: ["latin"],
+const display = localFont({
+  src: [
+    { path: "./fonts/newsreader-400-600-latin.woff2", weight: "400 600", style: "normal" },
+    { path: "./fonts/newsreader-400-600-latin-ext.woff2", weight: "400 600", style: "normal" },
+  ],
   variable: "--font-display",
   display: "swap",
+  fallback: ["Georgia", "Times New Roman", "serif"],
 });
 
 const siteUrl = "https://wertavio.de";

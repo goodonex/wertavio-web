@@ -73,7 +73,7 @@ export function PartnerRegionForm(): JSX.Element {
               key={opt}
               type="button"
               className={cn(
-                "min-h-11 rounded-full border px-4 py-2 text-sm font-medium transition-colors",
+                "min-h-11 rounded-sm border px-4 py-2 text-sm font-medium transition-colors",
                 spez === opt
                   ? "border-wertavio-slate bg-wertavio-slate text-wertavio-cream"
                   : "border-wertavio-border bg-wertavio-white text-wertavio-slate hover:border-wertavio-slate/40",

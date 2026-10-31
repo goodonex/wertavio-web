@@ -81,7 +81,7 @@ export function MaklerProfilSection(): JSX.Element {
           </div>
           <div className="mt-4 grid grid-cols-3 gap-1.5" aria-hidden>
             {[0, 1, 2].map((i) => (
-              <span key={i} className={`h-1 rounded-full transition-colors duration-300 ${i <= step ? "bg-wertavio-gold" : "bg-wertavio-border"}`} />
+              <span key={i} className={`h-1 rounded-sm transition-colors duration-300 ${i <= step ? "bg-wertavio-gold" : "bg-wertavio-border"}`} />
             ))}
           </div>
         </div>

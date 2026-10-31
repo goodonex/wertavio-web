@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { LeadForm, type LeadFormProps } from "@/components/anfrage/LeadForm";
+import { Disclosure } from "@/components/legal/Disclosure";
 import { isPropertyType } from "@/lib/lead-schema";
 import { prioritaetToLeadStep2 } from "@/lib/makler-profil-map";
 
@@ -57,6 +58,7 @@ function AnfrageInner(): JSX.Element {
           </noscript>
 
           <LeadForm flowType={flowType} prefill={prefill} />
+          <Disclosure className="max-w-2xl" />
         </div>
       </main>
       <Footer />

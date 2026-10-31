@@ -73,7 +73,7 @@ export function PortalComparisonSection(): JSX.Element {
         </StaggerReveal>
 
         <div
-          className="mt-10 inline-flex rounded-full border border-wertavio-border bg-wertavio-cream p-1"
+          className="mt-10 inline-flex rounded-sm border border-wertavio-border bg-wertavio-cream p-1"
           role="group"
           aria-label="Ablauf vergleichen"
         >
@@ -83,7 +83,7 @@ export function PortalComparisonSection(): JSX.Element {
               type="button"
               aria-pressed={mode === t.id}
               className={cn(
-                "min-h-11 rounded-full px-4 text-sm font-semibold transition-colors duration-300 sm:px-5",
+                "min-h-11 rounded-sm px-4 text-sm font-semibold transition-colors duration-300 sm:px-5",
                 mode === t.id ? "bg-wertavio-slate text-wertavio-cream" : "text-wertavio-muted hover:text-wertavio-slate",
               )}
               onClick={() => select(t.id)}

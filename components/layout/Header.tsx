@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
@@ -64,8 +65,9 @@ export function Header({ audience = "owner" }: HeaderProps): JSX.Element {
         )}
       >
         <div className="container-wide flex h-[72px] items-center gap-6">
-          <Link href="/" className="font-display text-[1.375rem] font-bold tracking-[-0.03em] text-wertavio-slate">
-            Wertavio
+          <Link href="/" className="shrink-0" aria-label="Wertavio, zur Startseite">
+            {/* Wortmarke aus dem Markenpaket, Seitenverhältnis 428:112 unverändert */}
+            <Image src="/brand/wortmarke.svg" alt="Wertavio" width={115} height={30} priority unoptimized />
           </Link>
 
           <nav className="ml-6 hidden items-center gap-7 lg:flex" aria-label="Hauptnavigation">
@@ -87,7 +89,7 @@ export function Header({ audience = "owner" }: HeaderProps): JSX.Element {
             </Button>
             <button
               type="button"
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full text-wertavio-slate hover:bg-wertavio-slate/5 lg:hidden"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-sm text-wertavio-slate hover:bg-wertavio-slate/5 lg:hidden"
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav"
               onClick={() => setMobileOpen((o) => !o)}

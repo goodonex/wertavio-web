@@ -57,11 +57,11 @@ export function PartnerHero(): JSX.Element {
             transition={{ duration: 1.1, ease: motionEase, delay: 0.25 }}
           >
             <Image
-              src="/images/hero-bg.jpg"
-              alt="Altbau-Straße mit Gründerzeitfassaden"
+              src="/images/marke/haustuer.jpg"
+              alt="Petrolfarbene historische Haustür mit Steintreppe an einem Backsteinhaus in Lüneburg"
               fill
               priority
-              className="object-cover object-[30%_50%]"
+              className="object-cover object-[50%_40%]"
               sizes="(min-width: 1024px) 450px, 100vw"
             />
           </motion.div>

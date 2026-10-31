@@ -3,7 +3,7 @@ import { LegalLayout } from "@/components/legal/LegalLayout";
 import { DatenschutzContent } from "@/components/legal/DatenschutzContent";
 
 export const metadata: Metadata = {
-  title: "Datenschutz — Wertavio",
+  title: "Datenschutz | Wertavio",
   description: "Informationen zur Verarbeitung personenbezogener Daten bei Wertavio.",
   alternates: { canonical: "/datenschutz" },
 };
