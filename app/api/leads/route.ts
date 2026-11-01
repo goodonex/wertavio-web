@@ -40,7 +40,9 @@ export async function POST(req: Request): Promise<NextResponse> {
       einwilligung: {
         datenschutz: { zeit: now },
         weitergabe: d.flowType === "eigentuemer" ? consent(d.consentForwarding, consentTexts.forwarding) : null,
-        werbung: d.flowType === "eigentuemer" ? consent(d.consentMarketing, consentTexts.marketing) : null,
+        finanzierung: d.flowType === "eigentuemer" ? consent(d.consentFinancing, consentTexts.financing) : null,
+        // Werbe-Einwilligung erst mit Bestätigung per Link (Double-opt-in), bis dahin nicht im Formular.
+        werbung: null,
       },
     });
   } catch (e) {

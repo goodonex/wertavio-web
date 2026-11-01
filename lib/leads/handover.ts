@@ -12,6 +12,7 @@ import type { LeadKind, LeadRecord } from "@/lib/leads/types";
  *    { "id": "kollege", "typ": "kollege", "name": "Kollege Makler + Finanzierung", "plz": ["*"], "aktiv": false }]
  *
  * plz: Präfixe der fünfstelligen PLZ, "*" passt auf alle.
+ * Ziele vom Typ `kollege` (Finanzierungsberater) bekommen nur Anfragen mit dem freiwilligen Finanzierungs-Häkchen.
  */
 export interface HandoverTarget {
   id: string;
@@ -37,12 +38,18 @@ export function loadTargets(raw = process.env.WERTAVIO_ZIELE): HandoverTarget[] 
   }
 }
 
+/** Darf diese Anfrage an das Ziel gehen? Der Finanzierungsberater braucht die eigene, freiwillige Einwilligung. */
+export function consentAllows(lead: LeadRecord, target: HandoverTarget): boolean {
+  return target.typ !== "kollege" || Boolean(lead.einwilligung.finanzierung);
+}
+
 export function pickTarget(lead: LeadRecord, targets: HandoverTarget[]): HandoverTarget | null {
   const plz = lead.plz ?? "";
   return (
     targets.find(
       (t) =>
         t.aktiv !== false &&
+        consentAllows(lead, t) &&
         (t.arten ?? ["eigentuemer"]).includes(lead.art) &&
         t.plz.some((p) => p === "*" || plz.startsWith(p)),
     ) ?? null
@@ -99,12 +106,16 @@ export async function handOver(store: LeadStore, lead: LeadRecord, targetId?: st
   const targets = loadTargets();
   const target = targetId ? (targets.find((t) => t.id === targetId) ?? null) : pickTarget(lead, targets);
   if (!target) return { ok: false, ziel: null, fehler: "Kein passendes Ziel für diese Anfrage" };
+  if (!consentAllows(lead, target)) {
+    return { ok: false, ziel: target.id, fehler: "Keine Einwilligung zur Weitergabe an den Finanzierungsberater" };
+  }
 
   try {
     if (target.typ === "signday") {
       await sendToSignday(target, lead);
     } else {
-      // Kollege (Makler + Finanzierung) ist noch nicht angebunden; hier kommt sein Eingang hin.
+      // Finanzierungsberater ist noch nicht angebunden; hier kommt sein Eingang hin. Laut Einwilligung geht die
+      // Anfrage zusätzlich zum Partner-Makler an ihn, nicht stattdessen; das muss beim Anbinden gebaut werden.
       throw new Error("Ziel 'kollege' ist noch nicht angebunden");
     }
   } catch (e) {

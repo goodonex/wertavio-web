@@ -7,7 +7,7 @@ import { consentTexts } from "@/lib/consent";
 import type { LeadFormInput } from "@/lib/lead-schema";
 import { TextField } from "@/components/anfrage/FormPrimitives";
 
-type ConsentField = "privacyAccepted" | "consentForwarding" | "consentMarketing";
+type ConsentField = "consentForwarding" | "consentFinancing";
 
 function ConsentCheckbox({
   name,
@@ -77,23 +77,23 @@ export function StepKontakt({
         error={errors.email?.message}
         {...register("email")}
       />
-      <ConsentCheckbox name="privacyAccepted" register={register} error={errors.privacyAccepted?.message}>
-        Ich habe die{" "}
-        <Link href="/datenschutz" className="font-medium underline decoration-wertavio-gold">
-          Datenschutzerklärung
-        </Link>{" "}
-        gelesen. <span className="text-wertavio-muted">(erforderlich)</span>
-      </ConsentCheckbox>
       {flowType === "eigentuemer" ? (
         <>
           <ConsentCheckbox name="consentForwarding" register={register} error={errors.consentForwarding?.message}>
             {consentTexts.forwarding} <span className="text-wertavio-muted">(erforderlich)</span>
           </ConsentCheckbox>
-          <ConsentCheckbox name="consentMarketing" register={register}>
-            {consentTexts.marketing} <span className="text-wertavio-muted">(freiwillig)</span>
+          <ConsentCheckbox name="consentFinancing" register={register}>
+            {consentTexts.financing}
           </ConsentCheckbox>
         </>
       ) : null}
+      <p className="text-sm text-wertavio-muted">
+        Wie wir Ihre Daten verarbeiten, steht in der{" "}
+        <Link href="/datenschutz" className="font-medium underline decoration-wertavio-gold">
+          Datenschutzerklärung
+        </Link>
+        .
+      </p>
     </section>
   );
 }

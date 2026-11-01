@@ -25,7 +25,7 @@ export async function POST(req: Request): Promise<NextResponse> {
       telefon: d.phone.trim(),
       plz: d.plz,
       angaben: { Spezialisierung: d.spezialisierung },
-      einwilligung: { datenschutz: null, weitergabe: null, werbung: null },
+      einwilligung: { datenschutz: null, weitergabe: null, finanzierung: null, werbung: null },
     });
   } catch (e) {
     console.error("Partner-Lead konnte nicht gespeichert werden", e);

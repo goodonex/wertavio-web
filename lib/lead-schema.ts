@@ -40,13 +40,10 @@ export const leadFormSchema = z
     lastName: z.string().trim().min(2, "Bitte Nachnamen eingeben"),
     phone: z.string().min(6, "Bitte Telefonnummer eingeben"),
     email: z.string().trim().email("Bitte gültige E-Mail eingeben"),
-    privacyAccepted: z.boolean().refine((v) => v === true, {
-      message: "Bitte stimmen Sie der Datenschutzerklärung zu.",
-    }),
-    /** Weitergabe an Makler/Finanzierungsberater; Pflicht nur bei Eigentümer-Anfragen. */
+    /** Weitergabe an den Partner-Makler samt Zustimmung zum Anruf; Pflicht nur bei Eigentümer-Anfragen. */
     consentForwarding: z.boolean().optional(),
-    /** Werbe-Einwilligung, immer freiwillig. */
-    consentMarketing: z.boolean().optional(),
+    /** Zusätzliche Weitergabe an einen Finanzierungsberater, immer freiwillig. */
+    consentFinancing: z.boolean().optional(),
     einstieg: z.enum(einstiege).optional(),
     /** utm_source/utm_campaign der Anzeige */
     kampagne: z.string().trim().max(120).optional(),
