@@ -19,24 +19,20 @@ gelegentlich Verkauf, externer Partner).
 - Supabase auf Pro hochgestuft (01.11., war wegen Datenvolumen gesperrt), keine Anfrage verloren.
 
 ## Stand heute
+- Rechtsprüfung 01.11. live (01.11. abends, Kevins Ja): Weitergabe-Häkchen nennt den einen Partner-Makler und
+  „Telefon oder E-Mail“, freiwilliges Häkchen `financing` (nur damit Ziel `kollege`), Werbe-Häkchen ausgeblendet bis
+  Double-opt-in, Datenschutz-Hinweis statt Häkchen, Datenschutz Abschnitte 3/5/6/7 neu, Impressum § 5 DDG,
+  `CONSENT_VERSION` 2026-11-01, Schritt-3-Fehler im Formular behoben. Datenbank: Migration 0112 in
+  `uriel/supabase/migrations/` eingespielt (Bereinigen behält `finanzierung`, löscht verkürzte Einträge nach 3 Jahren).
 - Live: `main` = wertavio.de (Netlify, Site `wertavio`, Deploy bei Push auf `main`).
 - Werbe-Häkchen später wieder einblenden: erst Double-opt-in bauen (Bestätigungs-Link per Mail), Wortlaut steht
   schon in `lib/consent.ts` (`marketing`); `werbung` geht erst nach Bestätigung an den Makler.
 - Lokal, nicht live (Zweige):
-  - `fix/consent-legal` (01.11., wartet auf Kevins Ja): Umsetzung der Rechtsprüfung
-    (`side-session-notes/…/rechtsblick-wertavio-datenschutz-2026-11-01.md`). Weitergabe-Häkchen nennt den einen
-    Partner-Makler und „Telefon oder E-Mail“, neues freiwilliges Häkchen `financing` (nur damit geht eine Anfrage an
-    Ziel `kollege`), Werbe-Häkchen ausgeblendet bis Double-opt-in, „Datenschutzerklärung gelesen“ ist nur noch
-    Hinweis, Datenschutz Abschnitte 3/5/6/7 neu, verkürzter Eintrag nach 3 Jahren gelöscht, Impressum § 5 DDG,
-    `CONSENT_VERSION` 2026-11-01. Dazu: Schritt 3 des Formulars zeigte beim Ankommen sofort rote Fehler (Knopf schickte
-    ab), behoben. Livegang: erst `supabase/wertavio_anfragen_bereinigen_2026-11-01.sql` als nächste Migration in
-    `uriel/supabase/migrations/` einspielen (sonst verliert das nächtliche Bereinigen den Nachweis `finanzierung`),
-    dann Zweig in `main` mergen und pushen.
-  - `feat/lead-notify` (auf `fix/consent-legal` aufgesetzt): Mail an kontakt@ bei jeder Anfrage (Resend), nur
+  - `feat/lead-notify` (auf der Rechtsprüfungs-Fassung aufgesetzt): Mail an kontakt@ bei jeder Anfrage (Resend), nur
     Anfrage-Nummer, Art, PLZ-Bereich (keine Kontaktdaten), Resend in der Datenschutzerklärung, Nachholen bei Fehler,
     lokale Tests nicht in die echte Tabelle. Braucht: Postfach, Resend-Schlüssel, DB-Spalten (`supabase/wertavio_anfragen_meldung.sql`
-    als nächste freie Migration in `uriel/supabase/migrations/`, Stand 0112).
-  - `feat/visitor-counter` (auf `fix/consent-legal` aufgesetzt): Jophiel-Besucherzähler im `<head>` + Datenschutz-Absatz, Skript
+    als nächste freie Migration in `uriel/supabase/migrations/`, Stand 0113).
+  - `feat/visitor-counter` (auf der Rechtsprüfungs-Fassung aufgesetzt): Jophiel-Besucherzähler im `<head>` + Datenschutz-Absatz, Skript
     `scripts/report-leads.mjs` (meldet Anfragen-Anzahl der letzten 7 Tage an Jophiel; einmal am 01.11. gelaufen).
     Braucht: Kevins Ja, freigeschaltete Adresse zaehler.frameworkos.de und eine Änderung im Jophiel-Zählskript:
     Geräteart am Server aus dem User-Agent bestimmen, nicht im Skript (so steht es jetzt im Datenschutztext).
@@ -62,7 +58,6 @@ gelegentlich Verkauf, externer Partner).
 ## Offen bei Kevin
 - Postfach/Weiterleitung für kontakt@wertavio.de einrichten (es gibt keinen Mail-Eingang für die Domain).
 - wertavio.de einmal in Safari auf dem iPhone ansehen.
-- Ja zum Livegang von `fix/consent-legal` (Rechtsprüfung 01.11. umgesetzt, lokal geprüft).
 - Supabase-Auftragsverarbeitungsvertrag unterschreiben (Supabase → Organisation → Legal Documents); bis dahin
   stimmt der Satz „Mit allen genannten Anbietern bestehen Verträge …“ für Supabase nicht.
 - kontakt@wertavio.de über einen Mailanbieter mit Auftragsverarbeitungsvertrag einrichten, nicht als Weiterleitung
@@ -79,8 +74,6 @@ gelegentlich Verkauf, externer Partner).
   auch vorerst an Kevins Gmail gehen; das Postfach kontakt@ selbst gehört laut Rechtsprüfung zu einem Anbieter mit AVV.
 
 ## Nächste Schritte
-0. Nach Kevins Ja: Migration `wertavio_anfragen_bereinigen_2026-11-01.sql` einspielen, `fix/consent-legal` mergen,
-   pushen, Formular auf wertavio.de einmal durchklicken (ohne Absenden).
 1. Nach Postfach + Resend: Migration einspielen, `feat/lead-notify` mergen, Testanfrage, live.
 2. Nach Kevins Ja: `feat/visitor-counter` mergen; Anfragen-Meldung täglich einplanen (Mini oder Laptop).
 3. Kollegen anbinden, sobald er einen Eingang hat (Zieltyp `kollege` in `lib/leads/handover.ts`).
