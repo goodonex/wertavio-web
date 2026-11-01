@@ -43,9 +43,8 @@ export function LeadForm({ flowType, prefill }: LeadFormProps): JSX.Element {
       lastName: "",
       phone: "",
       email: "",
-      privacyAccepted: false,
       consentForwarding: false,
-      consentMarketing: false,
+      consentFinancing: false,
     }),
     [flowType, prefill?.propertyType, prefill?.plz, prefill?.timeline, prefill?.experience],
   );
@@ -151,11 +150,12 @@ export function LeadForm({ flowType, prefill }: LeadFormProps): JSX.Element {
             <span className="order-2 sm:order-1" />
           )}
           {step < 2 ? (
-            <Button type="button" onClick={next} className="order-1 w-full sm:order-2 sm:w-auto">
+            // Eigene keys: sonst wird derselbe Knopf beim Wechsel auf Schritt 3 zum Absenden-Knopf und schickt sofort ab.
+            <Button key="next" type="button" onClick={next} className="order-1 w-full sm:order-2 sm:w-auto">
               Weiter
             </Button>
           ) : (
-            <Button type="submit" className="order-1 w-full sm:order-2 sm:w-auto">
+            <Button key="submit" type="submit" className="order-1 w-full sm:order-2 sm:w-auto">
               {flowType === "makler" ? "Partnergespräch anfragen" : "Anfrage senden"}
             </Button>
           )}
