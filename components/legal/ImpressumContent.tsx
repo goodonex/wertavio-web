@@ -58,7 +58,7 @@ export function ImpressumContent(): JSX.Element {
 
   return (
     <>
-      <LegalSection id="impressum-tmg" title="Angaben gemäß § 5 TMG">
+      <LegalSection id="impressum-tmg" title="Angaben gemäß § 5 DDG">
         <p>
           <strong>{siteLegal.operatorDisplayName}</strong>
           <br />
@@ -108,16 +108,8 @@ export function ImpressumContent(): JSX.Element {
 
       <LegalSection id="impressum-haftung-inhalt" title="Haftung für Inhalte">
         <p>
-          Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen
-          Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet,
-          übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf
-          eine rechtswidrige Tätigkeit hinweisen.
-        </p>
-        <p>
-          Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen
-          bleiben hiervon unberührt. Eine diesbezügliche Haftung ist erst ab dem Zeitpunkt der Kenntnis einer konkreten
-          Rechtsverletzung möglich. Bei Bekanntwerden entsprechender Rechtsverletzungen entfernen wir diese Inhalte
-          umgehend.
+          Für eigene Inhalte auf diesen Seiten sind wir nach den allgemeinen Gesetzen verantwortlich. Bei Bekanntwerden
+          von Rechtsverletzungen entfernen wir die betreffenden Inhalte umgehend.
         </p>
       </LegalSection>
 

@@ -16,8 +16,11 @@ export interface ConsentRecord {
 }
 
 export interface LeadConsent {
+  /** Zeitpunkt, zu dem das Formular mit dem Hinweis auf die Datenschutzerklärung abgeschickt wurde */
   datenschutz: { zeit: string } | null;
   weitergabe: ConsentRecord | null;
+  /** Freiwillig: zusätzlich an einen Finanzierungsberater (Ziel `kollege`). Fehlt bei Anfragen vor dem 01.11.2026. */
+  finanzierung?: ConsentRecord | null;
   werbung: ConsentRecord | null;
 }
 

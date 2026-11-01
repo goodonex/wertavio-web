@@ -25,6 +25,7 @@ const externalLeadSchema = z.object({
   einwilligung: z.object({
     datenschutz: z.object({ zeit: z.iso.datetime({ offset: true }) }),
     weitergabe: consentSchema,
+    finanzierung: consentSchema.nullable().optional(),
     werbung: consentSchema.nullable().optional(),
   }),
 });
@@ -65,6 +66,7 @@ export async function POST(req: Request): Promise<NextResponse> {
       einwilligung: {
         datenschutz: d.einwilligung.datenschutz,
         weitergabe: d.einwilligung.weitergabe,
+        finanzierung: d.einwilligung.finanzierung ?? null,
         werbung: d.einwilligung.werbung ?? null,
       },
     });

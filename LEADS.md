@@ -5,7 +5,7 @@ Stand 30.10.2026, nur lokal gebaut und getestet, noch nicht live.
 ## Ablauf
 
 1. Formular (`/anfrage`) → `POST /api/leads`. Eigentümer müssen der Weitergabe zustimmen (Pflicht-Häkchen),
-   Werbung ist ein eigenes, freiwilliges Häkchen. Wortlaut und Version: `lib/consent.ts`.
+   zusätzlich gibt es ein freiwilliges Häkchen für den Finanzierungsberater (nur damit geht eine Anfrage an das Ziel `kollege`). Das Werbe-Häkchen ist ausgeblendet, bis die Bestätigung per Link (Double-opt-in) gebaut ist. Wortlaut und Version: `lib/consent.ts`.
 2. Die Anfrage wird mit Zeitstempel, Wortlaut und Version jeder Einwilligung gespeichert (`lib/leads/store.ts`).
 3. Übergabe über die Weiche (`lib/leads/handover.ts`): Signday-Büro über dessen Lead-Eingang
    (`makler-buero/server/eingang.mjs`, Quelle „Wertavio“) oder später Kevins Kollegen (Ziel `kollege`, noch nicht
@@ -19,7 +19,8 @@ Stand 30.10.2026, nur lokal gebaut und getestet, noch nicht live.
 
    Das Signday-Büro nimmt Wertavio-Leads nur an, wenn dort `WERTAVIO_FREIGEGEBEN=ja` gesetzt ist.
 4. Löschfristen (`lib/leads/retention.ts`): 30 Tage nach Übergabe, 90 Tage ohne Übergabe, Makler-Anfragen
-   365 Tage. Danach bleiben nur Datum, Art, Quelle, PLZ-Bereich, Empfänger und Einwilligungs-Version. Aufgeräumt
+   365 Tage. Danach bleibt ein verkürzter Eintrag (Datum, Art, Quelle, PLZ-Bereich, Empfänger, Zeitpunkt und
+   Version jeder Einwilligung), der nach drei Jahren ganz gelöscht wird. Aufgeräumt
    wird bei jeder neuen Anfrage und täglich um 3:15 Uhr in der Datenbank.
 
 ## Herkunft einer Anfrage

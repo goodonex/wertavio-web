@@ -1,11 +1,11 @@
 /**
- * Zentrale Pflege rechtlicher Pflichtangaben (TMG / DSGVO).
+ * Zentrale Pflege rechtlicher Pflichtangaben (DDG / DSGVO).
  * Vor dem Livegang: vollständige ladungsfähige Anschrift, E-Mail erreichbar, Rechtsform prüfen.
  */
 export const siteLegal = {
   brandName: "Wertavio",
   siteUrl: "https://wertavio.de",
-  /** Anbieter i. S. d. TMG — ggf. Firmenwortlaut des Handelsregisters eintragen. */
+  /** Anbieter i. S. d. DDG — ggf. Firmenwortlaut des Handelsregisters eintragen. */
   operatorDisplayName: "Kevin Herrmann",
   /** z. B. „Einzelunternehmen“, „UG (haftungsbeschränkt)“ — an die tatsächliche Rechtsform anpassen. */
   legalFormShort: "Einzelunternehmen",

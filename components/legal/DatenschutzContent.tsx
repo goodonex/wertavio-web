@@ -1,9 +1,9 @@
-import { RETENTION_DAYS } from "@/lib/leads/retention";
+import { PROOF_YEARS, RETENTION_DAYS } from "@/lib/leads/retention";
 import { siteLegal } from "@/lib/site-legal";
 import { LegalSection } from "@/components/legal/LegalSection";
 
-/* ENTWURF (30.10.2026): Abschnitte 3 und 5 neu für die Speicherung und Weitergabe von Anfragen. Vor dem Livegang
-   anwaltlich prüfen lassen; Einwilligungstexte stehen in lib/consent.ts, Fristen in lib/leads/retention.ts. */
+/* Fassung nach Rechtsprüfung vom 01.11.2026. Einwilligungstexte stehen in lib/consent.ts, Fristen in
+   lib/leads/retention.ts. */
 export function DatenschutzContent(): JSX.Element {
   const mail = `mailto:${siteLegal.email}`;
 
@@ -52,7 +52,7 @@ export function DatenschutzContent(): JSX.Element {
           .
         </p>
         <p>
-          Mit beiden Anbietern bestehen Verträge zur Auftragsverarbeitung nach Art. 28 DSGVO. Soweit Daten in die USA
+          Mit allen genannten Anbietern bestehen Verträge zur Auftragsverarbeitung nach Art. 28 DSGVO. Soweit Daten in die USA
           übermittelt werden können, stützt sich dies auf den Angemessenheitsbeschluss der EU-Kommission (EU-US Data
           Privacy Framework) bzw. auf EU-Standardvertragsklauseln.
         </p>
@@ -74,21 +74,29 @@ export function DatenschutzContent(): JSX.Element {
           wir als Nachweis, wann Sie welche Einwilligung mit welchem Wortlaut erteilt haben.
         </p>
         <p>
-          <strong>Weitergabe an einen Makler oder Finanzierungsberater.</strong> Mit Ihrer Einwilligung (Art. 6 Abs. 1
-          lit. a DSGVO) geben wir Ihre Anfrage an einen geprüften Immobilienmakler oder Finanzierungsberater in Ihrer
-          Region weiter, damit er Sie kontaktiert. Ab der Übergabe ist der Empfänger für die weitere Verarbeitung selbst
-          verantwortlich; wir nennen Ihnen auf Anfrage, an wen Ihre Daten gegangen sind. Ohne diese Einwilligung können
-          wir Ihnen keinen Makler vermitteln.
+          <strong>Weitergabe an den Partner-Makler.</strong> Wir geben Ihre Anfrage an den Partner-Makler weiter, der für
+          Ihre Postleitzahl zuständig ist. Das ist die Leistung, die Sie bei uns anfordern (Art. 6 Abs. 1 lit. b DSGVO).
+          Dass er Sie anruft oder anschreibt, beruht auf Ihrer ausdrücklichen Zustimmung im Formular. Gibt es in Ihrer
+          Region keinen Partner, geben wir nichts weiter. Der Makler bezahlt uns für die Vermittlung und ist ab der
+          Übergabe für die weitere Verarbeitung selbst verantwortlich. Mit der Anfrage übermitteln wir auch, über welche
+          Seite oder Anzeige Sie zu uns gekommen sind. Auf Anfrage nennen wir Ihnen den Empfänger. Sie können Ihre
+          Anfrage jederzeit per E-Mail an{" "}
+          <a href={mail} className="font-medium text-wertavio-slate underline">
+            {siteLegal.email}
+          </a>{" "}
+          zurückziehen; einen bereits benachrichtigten Makler informieren wir dann. Ohne Weitergabe können wir Sie nicht
+          vermitteln.
         </p>
         <p>
-          <strong>Informationen per E-Mail (freiwillig).</strong> Nur wenn Sie zusätzlich zustimmen, darf der
-          vermittelte Makler Ihnen auch nach dem ersten Gespräch Informationen zum Immobilienverkauf per E-Mail schicken
-          (Art. 6 Abs. 1 lit. a DSGVO). Sie können sich jederzeit abmelden.
+          <strong>Finanzierungsberater (freiwillig).</strong> Nur wenn Sie das gesondert ankreuzen, geben wir Ihre
+          Anfrage zusätzlich an einen Finanzierungsberater weiter (Art. 6 Abs. 1 lit. a DSGVO). Widerruf jederzeit mit
+          Wirkung für die Zukunft.
         </p>
         <p>
-          <strong>Anfragen über Partnerseiten.</strong> Anfragen können auch über Seiten unserer Partner zu uns kommen
-          (z. B. ein Räumungsdienst, wenn Sie angeben, die Immobilie danach verkaufen zu wollen). Die Einwilligung zur
-          Weitergabe holt dann die Partnerseite ein; für die Speicherung und Weitergabe bei uns gilt dasselbe wie oben.
+          <strong>Anfragen über Räumlotse.</strong> Anfragen können auch über Räumlotse kommen, einen Räumungsdienst
+          desselben Inhabers (Kevin Herrmann). Dort fragen wir ausdrücklich, ob Sie die Immobilie danach verkaufen
+          möchten und Ihre Anfrage dafür an Wertavio gehen darf (Art. 6 Abs. 1 lit. a DSGVO). Danach gilt dasselbe wie
+          oben.
         </p>
         <p>
           <strong>Makler-Anfragen.</strong> Wenn Sie als Makler ein Partnergespräch anfragen oder Ihre Region prüfen
@@ -98,8 +106,10 @@ export function DatenschutzContent(): JSX.Element {
           <strong>Speicherdauer.</strong> Nach der Übergabe an einen Makler oder Finanzierungsberater löschen wir unsere
           Kopie Ihrer Daten nach {RETENTION_DAYS.afterHandover} Tagen. Eigentümer-Anfragen, die nicht übergeben werden,
           löschen wir nach {RETENTION_DAYS.eigentuemer} Tagen, Makler-Anfragen nach {RETENTION_DAYS.makler} Tagen.
-          Danach behalten wir nur Angaben ohne Personenbezug (Datum, Art der Anfrage, PLZ-Bereich, Empfänger) für
-          Abrechnung und Statistik.
+          Danach bewahren wir nur einen verkürzten Eintrag auf (Anfrage-Nummer, Datum, Art der Anfrage, erste zwei
+          Ziffern der PLZ, Empfänger, Zeitpunkt und Fassung Ihrer Zustimmung). Er dient dem Nachweis Ihrer Zustimmung und
+          der Abrechnung mit dem Makler (Art. 6 Abs. 1 lit. c und f DSGVO) und wird nach{" "}
+          {PROOF_YEARS === 3 ? "drei" : PROOF_YEARS} Jahren gelöscht.
         </p>
         <p>
           <strong>Widerruf.</strong> Sie können erteilte Einwilligungen jederzeit mit Wirkung für die Zukunft
@@ -118,6 +128,15 @@ export function DatenschutzContent(): JSX.Element {
           Datenübertragbarkeit (Art. 20 DSGVO) sowie Widerspruch gegen die Verarbeitung (Art. 21 DSGVO). Sofern eine
           Verarbeitung auf Einwilligung beruht, können Sie diese mit Wirkung für die Zukunft widerrufen.
         </p>
+        <p>
+          <strong>Widerspruchsrecht.</strong> Soweit wir Daten auf Grundlage berechtigter Interessen verarbeiten (Art. 6
+          Abs. 1 lit. f DSGVO, z. B. Hosting, Server-Protokolle, Besucherzählung), können Sie aus Gründen, die sich aus
+          Ihrer besonderen Situation ergeben, jederzeit widersprechen (Art. 21 DSGVO). Eine formlose E-Mail an{" "}
+          <a href={mail} className="font-medium text-wertavio-slate underline">
+            {siteLegal.email}
+          </a>{" "}
+          genügt.
+        </p>
       </LegalSection>
 
       <LegalSection id="ds-beschwerde" title="7. Beschwerderecht bei einer Aufsichtsbehörde">
@@ -125,6 +144,10 @@ export function DatenschutzContent(): JSX.Element {
           Sie haben zudem das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren, insbesondere in dem
           Mitgliedstaat Ihres gewöhnlichen Aufenthaltsorts, Ihres Arbeitsplatzes oder des Orts des mutmaßlichen
           Verstoßes.
+        </p>
+        <p>
+          Zuständig für uns ist der Hamburgische Beauftragte für Datenschutz und Informationsfreiheit,
+          Ludwig-Erhard-Str. 22, 20459 Hamburg.
         </p>
         <p>
           Eine Liste der Behörden finden Sie u. a. unter:{" "}

@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { anonymize, deleteAfter } from "@/lib/leads/retention";
+import { anonymize, deleteAfter, proofExpired } from "@/lib/leads/retention";
 import type { LeadRecord, NewLead } from "@/lib/leads/types";
 
 /**
@@ -15,7 +15,10 @@ export interface LeadStore {
   get(id: string): Promise<LeadRecord | null>;
   findByExternalId(quelle: string, externId: string): Promise<LeadRecord | null>;
   update(id: string, patch: Partial<LeadRecord>): Promise<void>;
-  /** Löscht personenbezogene Daten aller Anfragen mit abgelaufener Frist. Gibt die Anzahl zurück. */
+  /**
+   * Löscht personenbezogene Daten aller Anfragen mit abgelaufener Frist und verkürzte Einträge nach `PROOF_YEARS`.
+   * Gibt die Anzahl der gekürzten Anfragen zurück.
+   */
   purgeExpired(): Promise<number>;
 }
 
@@ -139,12 +142,15 @@ class FileStore implements LeadStore {
     return this.serial(async () => {
       const now = new Date().toISOString();
       let count = 0;
-      const rows = (await this.read()).map((r) => {
-        if (r.geloescht_am || r.loeschen_ab > now) return r;
-        count += 1;
-        return anonymize(r, now);
-      });
-      if (count) await this.write(rows);
+      const all = await this.read();
+      const rows = all
+        .filter((r) => !proofExpired(r, now))
+        .map((r) => {
+          if (r.geloescht_am || r.loeschen_ab > now) return r;
+          count += 1;
+          return anonymize(r, now);
+        });
+      if (count || rows.length !== all.length) await this.write(rows);
       return count;
     });
   }

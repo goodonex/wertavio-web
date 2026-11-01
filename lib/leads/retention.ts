@@ -1,9 +1,10 @@
 import type { LeadKind, LeadRecord } from "@/lib/leads/types";
 
 /**
- * Löschfristen für Wertavios eigene Kopie. Danach bleiben nur Zeitpunkte, Quelle, Art, PLZ-Bereich und Empfänger
- * (für Abrechnung und Statistik), keine Namen, Kontaktdaten oder Formularangaben.
- * ENTWURF: Fristen mit dem Anwalt abstimmen; bei Änderung auch `supabase/wertavio_anfragen.sql` anpassen.
+ * Löschfristen für Wertavios eigene Kopie. Danach bleibt ein verkürzter Eintrag (Anfrage-Nummer, Zeitpunkte, Quelle,
+ * Art, erste zwei Ziffern der PLZ, Empfänger, Zeitpunkt und Fassung der Einwilligungen) als Nachweis und für die
+ * Abrechnung, keine Namen, Kontaktdaten oder Formularangaben. Dieser Eintrag wird nach `PROOF_YEARS` ganz gelöscht.
+ * Bei Änderung auch `supabase/wertavio_anfragen.sql` und die Datenschutzerklärung anpassen.
  */
 export const RETENTION_DAYS = {
   /** Nach erfolgreicher Übergabe: Zeit für Rückfragen, Widerruf und Reklamation des Empfängers */
@@ -14,6 +15,9 @@ export const RETENTION_DAYS = {
   makler: 365,
   partner: 365,
 } as const satisfies Record<LeadKind | "afterHandover", number>;
+
+/** Jahre, die der verkürzte Eintrag nach dem Löschen der Personendaten noch bleibt. */
+export const PROOF_YEARS = 3;
 
 export function addDays(iso: string, days: number): string {
   return new Date(new Date(iso).getTime() + days * 86_400_000).toISOString();
@@ -38,8 +42,17 @@ export function anonymize(lead: LeadRecord, now: string): LeadRecord {
     einwilligung: {
       datenschutz: lead.einwilligung.datenschutz,
       weitergabe: keep(lead.einwilligung.weitergabe),
+      finanzierung: keep(lead.einwilligung.finanzierung ?? null),
       werbung: keep(lead.einwilligung.werbung),
     },
     geloescht_am: now,
   };
+}
+
+/** Ist der verkürzte Eintrag so alt, dass er ganz gelöscht wird? */
+export function proofExpired(lead: LeadRecord, now: string): boolean {
+  if (!lead.geloescht_am) return false;
+  const until = new Date(lead.geloescht_am);
+  until.setUTCFullYear(until.getUTCFullYear() + PROOF_YEARS);
+  return until.toISOString() <= now;
 }
