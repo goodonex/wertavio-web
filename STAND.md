@@ -58,8 +58,6 @@ gelegentlich Verkauf, externer Partner).
 ## Offen bei Kevin
 - Postfach/Weiterleitung für kontakt@wertavio.de einrichten (es gibt keinen Mail-Eingang für die Domain).
 - wertavio.de einmal in Safari auf dem iPhone ansehen.
-- Supabase-Auftragsverarbeitungsvertrag unterschreiben (Supabase → Organisation → Legal Documents); bis dahin
-  stimmt der Satz „Mit allen genannten Anbietern bestehen Verträge …“ für Supabase nicht.
 - kontakt@wertavio.de über einen Mailanbieter mit Auftragsverarbeitungsvertrag einrichten, nicht als Weiterleitung
   ins private Gmail (Rechtsprüfung Punkt 6).
 - Partnervertrag Makler: Daten nur für diese Anfrage, Datenschutz-Info beim Erstkontakt (Art. 14), Nachweis
